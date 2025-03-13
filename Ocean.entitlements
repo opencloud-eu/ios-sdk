@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.owncloud.ocean</string>
+		<string>group.com.opencloud.ocean</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.owncloud.ocean</string>
+		<string>$(AppIdentifierPrefix)com.opencloud.ocean</string>
 	</array>
 </dict>
 </plist>

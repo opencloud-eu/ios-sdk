@@ -1,18 +1,18 @@
 [main]
 host = https://www.transifex.com
 
-[o:owncloud-org:p:owncloud-ios:r:sdk]
+[o:opencloud-org:p:opencloud-ios:r:sdk]
 resource_name = sdk
-file_filter = ownCloudSDK/Resources/Localizable.xcstrings
-source_file = ownCloudSDK/Resources/Localizable.xcstrings
+file_filter = OpenCloudSDK/Resources/Localizable.xcstrings
+source_file = OpenCloudSDK/Resources/Localizable.xcstrings
 source_lang = en
 type = XCSTRINGS
 minimum_perc = 75
 
-[o:owncloud-org:p:owncloud-ios:r:sdk-ui]
+[o:opencloud-org:p:opencloud-ios:r:sdk-ui]
 resource_name = sdk-ui
-file_filter = ownCloudUI/Resources/Localizable.xcstrings
-source_file = ownCloudUI/Resources/Localizable.xcstrings
+file_filter = OpenCloudUI/Resources/Localizable.xcstrings
+source_file = OpenCloudUI/Resources/Localizable.xcstrings
 source_lang = en
 type = XCSTRINGS
 minimum_perc = 75

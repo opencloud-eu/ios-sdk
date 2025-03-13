@@ -50,9 +50,9 @@
 	<string>$(AppIdentifierPrefix)</string>
 
 	<key>OCKeychainAccessGroupIdentifier</key>
-	<string>com.owncloud.ocean</string>
+	<string>com.opencloud.ocean</string>
 
 	<key>OCAppGroupIdentifier</key>
-	<string>group.com.owncloud.ocean</string>
+	<string>group.com.opencloud.ocean</string>
 </dict>
 </plist>

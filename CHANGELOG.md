@@ -182,5 +182,5 @@
 - support for file provider access
 - support for Share API 
 - OAuth2
-- Latest ownCloud Server API
+- Latest OpenCloud Server API
 

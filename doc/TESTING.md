@@ -1,8 +1,8 @@
 # Testing Recipes
 
-This documents collects testing recipes to test the ownCloud iOS app and SDK against
+This documents collects testing recipes to test the OpenCloud iOS app and SDK against
 
-**These recipes are targeted for use by developers and are not designed to run secured instances of ownCloud. If you're using any of these recipes, please take action as necessary to secure your computer and any services and instances you spin up against unauthorized use.**
+**These recipes are targeted for use by developers and are not designed to run secured instances of OpenCloud. If you're using any of these recipes, please take action as necessary to secure your computer and any services and instances you spin up against unauthorized use.**
 
 ## Simple instance
 
@@ -12,8 +12,8 @@ This `docker-compose.yml` can be used to bring up a simple instance:
 version: '3'
 
 services:
-  owncloud:
-    image: owncloud/server:latest
+  opencloud:
+    image: opencloud/server:latest
     restart: always
     ports:
       - 36080:8080
@@ -30,13 +30,13 @@ Run in the same directory:
 
 The instance can be accessed through  `https://localhost:36443/`  and `http://localhost:36080/` while running.
 
-## Running an docker instance in a `/owncloud` sub-directory
+## Running an docker instance in a `/opencloud` sub-directory
 
-Append this snippet in the scope of `services: owncloud:` (same level as `ports:` above) to the `docker-compose.yml` file:
+Append this snippet in the scope of `services: opencloud:` (same level as `ports:` above) to the `docker-compose.yml` file:
 
 ```
     environment:
-      - OWNCLOUD_SUB_URL=/owncloud
+      - OPENCLOUD_SUB_URL=/opencloud
 ```
 
 ## Enabling and disabling maintenance mode
@@ -48,8 +48,8 @@ The shell commands inside the instance for enabling and disabling maintenance mo
 
 For dockerized instances spun up using the above `docker-compose.yml`, the following can be used:
 
-- `docker-compose exec owncloud occ maintenance:mode --on` turns on maintenance mode
-- `docker-compose exec owncloud occ maintenance:mode --off`  turns off maintenance mode
+- `docker-compose exec opencloud occ maintenance:mode --on` turns on maintenance mode
+- `docker-compose exec opencloud occ maintenance:mode --off`  turns off maintenance mode
 
 ## Simulating certificate changes
 
@@ -75,17 +75,17 @@ Pre-requisites:
 - create new OAuth2-based bookmark for instance
 
 ### Listing access tokens
-`docker-compose exec owncloud sqlite3 /mnt/data/files/owncloud.db "SELECT * FROM oc_oauth2_access_tokens"`
+`docker-compose exec opencloud sqlite3 /mnt/data/files/opencloud.db "SELECT * FROM oc_oauth2_access_tokens"`
 
 ### Listing refresh tokens
-`docker-compose exec owncloud sqlite3 /mnt/data/files/owncloud.db "SELECT * FROM oc_oauth2_refresh_tokens"`
+`docker-compose exec opencloud sqlite3 /mnt/data/files/opencloud.db "SELECT * FROM oc_oauth2_refresh_tokens"`
 
 ### Deleting access tokens
-`docker-compose exec owncloud sqlite3 /mnt/data/files/owncloud.db "DELETE FROM oc_oauth2_access_tokens"`
+`docker-compose exec opencloud sqlite3 /mnt/data/files/opencloud.db "DELETE FROM oc_oauth2_access_tokens"`
 
 ### Deleting refresh tokens
-`docker-compose exec owncloud sqlite3 /mnt/data/files/owncloud.db "DELETE FROM oc_oauth2_refresh_tokens"`
+`docker-compose exec opencloud sqlite3 /mnt/data/files/opencloud.db "DELETE FROM oc_oauth2_refresh_tokens"`
 
 ### Deleting all tokens
-`docker-compose exec owncloud sqlite3 /mnt/data/files/owncloud.db "DELETE FROM oc_oauth2_access_tokens; DELETE FROM oc_oauth2_refresh_tokens;"`
+`docker-compose exec opencloud sqlite3 /mnt/data/files/opencloud.db "DELETE FROM oc_oauth2_access_tokens; DELETE FROM oc_oauth2_refresh_tokens;"`
 

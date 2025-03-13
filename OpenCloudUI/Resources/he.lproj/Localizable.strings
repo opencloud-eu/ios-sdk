@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  OpenCloudSDK
+
+  Created by Felix Schwarz on 13.03.18.
+  Copyright © 2018 ownCloud GmbH. All rights reserved.
+*/
+
+/* OCCertificateViewController buttons */
+"Show ±" = "Show ±";
+"Hide ±" = "Hide ±";
+
+/* OCCertificateViewController section titles */
+"Subject" = "נושא";
+"Issuer" = "מנפיק";
+"Public Key" = "מפתח ציבורי";
+"Extensions" = "סיומות";
+"Fingerprints" = "טביעות אצבעות";
+
+"Validation Status" = "מצב אימות";
+"Hostname" = "שם מארח";
+"Validation Error" = "שגיאת אימות";
+"User-rejected." = "נדחה על ידי המשתמש.";
+"Certificate has issues." = "תעודת אימות נופקה.";
+"User-accepted." = "אושר על ידי המשתמש.";
+"Auto-accepted." = "Auto-accepted.";
+"Reason" = "Reason";
+"No issues found." = "לא נמצאו בעיות.";
+
+/* X.509 certificate fields */
+"businessCategory" = "קטגורית עסקים";
+"commonName" = "שם נפוץ";
+"countryName" = "מדינה";
+"jurisdictionCountryName" = "ארץ שיפוט";
+"jurisdictionLocalityName" = "מתחם השיפוט";
+"jurisdictionStateOrProvinceName" = "מדינה או מחוז שיפוט";
+"localityName" = "מתחם";
+"organizationName" = "ארגון";
+"organizationalUnitName" = "יחידה ארגונית";
+"stateOrProvinceName" = "מדינה או מחוז";
+
+"version" = "גרסה";
+"serialNumber" = "מספר סידורי";
+"signatureAlgorithm" = "אלגוריתם חתימה";
+
+"validFrom" = "בר תוקף מ-";
+"validUntil" = "בתוקף עד";
+
+"keyBytes" = "ביתים של המפתח";
+"keyExponent" = "מעריך של המפתח";
+"keyInformation" = "פרטים";
+"keySizeInBits" = "גודל המפתח (סיביות)";

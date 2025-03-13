@@ -1,6 +1,6 @@
-#  ownCloud iOS SDK Components
+#  OpenCloud iOS SDK Components
 
-### Components used in the ownCloud iOS SDK - and why they were chosen
+### Components used in the OpenCloud iOS SDK - and why they were chosen
 
 ## SQLite
 
@@ -33,7 +33,7 @@ Rather than having to keep track of the database entries and file system objects
 
 ## OpenSSL
 
-The iOS `Security.framework` does not provide the means to extract the details from a certificate that users have come to expect. To fill that gap, the `ownCloudUI.framework` uses OpenSSL for parsing certificates and making the information available through a `OCCertificate` category.
+The iOS `Security.framework` does not provide the means to extract the details from a certificate that users have come to expect. To fill that gap, the `OpenCloudUI.framework` uses OpenSSL for parsing certificates and making the information available through a `OCCertificate` category.
 
 At the time of writing, this is the only use of OpenSSL in the project.
 

@@ -1,7 +1,7 @@
 # Sync Strategies
-*by Felix Schwarz for ownCloud GmbH*
+*by Felix Schwarz for OpenCloud GmbH*
 
-An overview of sync strategies for use by the ownCloud iOS SDK.
+An overview of sync strategies for use by the OpenCloud iOS SDK.
 
 This document only covers what happens at sync time. Other UI interactions are outside the scope of this document.
 

@@ -1,5 +1,5 @@
-# ownCloud iOS: A Fresh Start
-by Felix Schwarz for ownCloud GmbH
+# OpenCloud iOS: A Fresh Start
+by Felix Schwarz for OpenCloud GmbH
 
 ## Table of contents
 1. [A fresh start](#a-fresh-start)
@@ -12,7 +12,7 @@ by Felix Schwarz for ownCloud GmbH
     2. [Sharing / Actions](#sharing-actions)
 
 ## A fresh start
-This document explores ideas and concepts for a rewrite of the ownCloud client for iOS.
+This document explores ideas and concepts for a rewrite of the OpenCloud client for iOS.
 
 ## Proposal of a modern architecture
 The new architecture I'd like to propose consists of two parts:
@@ -26,9 +26,9 @@ The new architecture I'd like to propose consists of two parts:
 
 The iOS SDK comes as a framework that is easy to integrate and encapsulates all needed code and resources.
 
-- **Bookmark** objects contain the URL of an ownCloud server and access to the credentials stored in the iOS keychain. Bookmark objects are used to initialize a Core (see below). Bookmark objects can also be serialized for permanently storing references to a user's servers.
+- **Bookmark** objects contain the URL of an OpenCloud server and access to the credentials stored in the iOS keychain. Bookmark objects are used to initialize a Core (see below). Bookmark objects can also be serialized for permanently storing references to a user's servers.
 
-- **Connection** objects are responsible for forming HTTP(S) and WebDAV requests, sending them to the ownCloud server (identified by a bookmark), parsing the result and returning the result back to the Core. It also is responsible for establishing the authenticity of the server and notifying the Core about any issues it finds. In case of issues, the Core can consult with a delegate (usually implemented by the app using the SDK) and then instruct the Connection on whether to proceed or not.
+- **Connection** objects are responsible for forming HTTP(S) and WebDAV requests, sending them to the OpenCloud server (identified by a bookmark), parsing the result and returning the result back to the Core. It also is responsible for establishing the authenticity of the server and notifying the Core about any issues it finds. In case of issues, the Core can consult with a delegate (usually implemented by the app using the SDK) and then instruct the Connection on whether to proceed or not.
 
 - **Database** objects are responsible for storing cached information on disk and providing the Core access to it. It is also responsible for storing local copies of files. On disk, one directory is used for every database - and one database is used per bookmark. This way, removing all resources related to a server is as easy as deleting its database directory.
 
@@ -61,7 +61,7 @@ The architecture proposed above offers a lot of benefits, some of which I'd like
 
     Delete a file in a folder, navigate back to the parent folder - and see the number of files shown for that directory has already been updated to reflect the change. No extra code required.
 
-- **Push-ready:** If future versions of the ownCloud server add support for push updates, it will be a natural fit for this architecture. Changes received by push would be handled by the core and forwarded to the UI and extensions via queries.
+- **Push-ready:** If future versions of the OpenCloud server add support for push updates, it will be a natural fit for this architecture. Changes received by push would be handled by the core and forwarded to the UI and extensions via queries.
 
 - **Performance:** A key feature of this architecture is that notifications about changes are limited to "updates are available", so that the computation of changes can be delayed until they're actually requested. For example, updates could be pushed to queries as they are parsed. But there won't be 1000 updates to the UI for 1000 changes. This way, results can be displayed immediately while the UI stays responsive and fast.
 

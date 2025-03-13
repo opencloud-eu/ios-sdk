@@ -1,0 +1,215 @@
+/* 
+  Localizable.strings
+  OpenCloudSDK
+
+  Created by Felix Schwarz on 03.03.18.
+  Copyright © 2018 ownCloud GmbH. All rights reserved.
+*/
+
+/* Item property names */
+"itemProperty.lastModified" = "Azken aldaketa";
+"itemProperty.isFavorite" = "Gogokoa";
+"itemProperty.localAttributes" = "Atributu lokalak";
+
+/* Connection Progress */
+"Connecting…" = "Konektatzen...";
+"Authenticating…" = "Autentifikatzen...";
+"Error" = "Errorea";
+"Fetching user information…" = "Erabiltzaileraren informazioa eskuratzen...";
+"Connected" = "Konektatuta";
+
+"Retrieving thumbnail…" = "Irudi txikiak eskuratzen...";
+
+"Cancel" = "Ezeztatu";
+"Proceed" = "Jarraitu";
+"OK" = "Ados";
+
+/* Connection status */
+"Offline" = "Konexiorik gabe";
+"Offline (no WiFi connection)" = "Konexiorik gabe (WiFi konexiorik ez)";
+"Server down for maintenance" = "Zerbitzaria geldituta mantenu lanak direla eta";
+"Online" = "Konektatua";
+
+/* Delete */
+"%@ changed on the server. Really delete it?" = "%@zerbitzarian aldatu da. Benetan ezabatu nahi duzu?";
+"%@ has changed on the server since you requested its deletion." = "%@zerbitzarian aldatu da zuk ezabatzea eskatu zenuenetik.";
+"Delete" = "Ezabatu";
+
+"%@ couldn't be deleted" = "%@ezin izan da ezabatu";
+"Please check if you have sufficient permissions to delete %@." = "Mesedez, ziurtatu behar diren baimenak dituzula %@ ezabatzeko.";
+
+/* Copy / Move */
+"Operation forbidden" = "Eragiketa debekatua";
+"%@ can't be copied to %@." = "%@ ezin da %@-(r)a kopiatu.";
+"%@ can't be moved to %@." = "%@ ezin da %@-(r)a mugitu.";
+
+"%@ not found" = "%@ ez da aurkitu";
+"%@ wasn't found at %@." = "%@ ez da %@-(e)n aurkitu.";
+
+"The target directory %@ doesn't seem to exist." = "Badirudi %@ helmuga karpeta ez dela existitzen.";
+
+"%@ already exists" = "%@ dagoeneko existitzen da";
+"Couldn't copy %@ to %@, because an item called %@ already exists there." = "Ezin izan da %@ %@-ra kopiatu %@ izeneko elementu bat existitzen delako.";
+"Couldn't move %@ to %@, because an item called %@ already exists there." = "Ezin izan da %@ %@-ra mugitu %@ izeneko elementu bat existitzen delako.";
+
+"Insufficient permissions" = "Beharrezko baimenik ez";
+"%@ can't be copied to %@." = "%@ ezin da %@-(r)a kopiatu.";
+"%@ can't be moved to %@." = "%@ ezin da %@-(r)a mugitu.";
+
+"%@ not found on the server" = "%@ ez da zerbitzarian aurkitu";
+"%@ may have been renamed, moved or deleted remotely." = "Agian %@ berrizendatua, mugitua edo urrutitik ezabatua izan da.";
+
+"Error copying %@" = "Errorea %@ kopiatzean";
+"Error moving %@" = "Errorea %@ mugitzean";
+
+/* Download */
+"Downloading %@…" = "%@ deskargatzen...";
+
+/* Move/Rename/Copy */
+"Renaming %@ to %@…" = "%@ %@-(r)a berrizendatzen...";
+"Moving %@ to %@…" = "%@ %@-(r)a mugitzen...";
+"Copying %@ to %@…" = "%@ %@-(r)a kopiatzen...";
+
+/* Create folder */
+"Creating folder %@…" = "%@ karpeta sortzen...";
+
+/* Delete */
+"Deleting %@…" = "%@ ezabatzen...";
+
+/* Retrieving file list */
+"Retrieving file list for %@…" = "%@-(r)en fitxategiak jasotzen...";
+
+/* Update */
+"\"%@\" metadata for %@ couldn't be updated" = "Ezin izan dira  \"%@\"-(e)n metadatuak %@-(r)entzat eguneratu";
+"Update failed with status code %d" = "Eguneraketak huts egin du %d egoera kodearekin";
+"Error updating %@ metadata" = "Errorea %@ metadatua eguneratzean";
+
+/* Logging */
+"Standard error output" = "Errore irteera estandarra";
+"Log file" = "Erregistro fitxategia";
+
+/* Errors */
+"Server doesn't seem to support any authentication method supported by this app." = "Badirudi zerbitzariak ez duela euskarririk app honek erabiltzen dituen autentifikazio moduetarako.";
+"This server runs an unsupported version (%@). Version %@ or later is required by this app." = "Zerbitzariak euskarririk ez duen bertsioa darabil (%@). %@ bertsioa edo ondorengoak behar ditu app honek.";
+
+/* DAV Errors */
+// OCDAVErrorServiceUnavailable
+"Server down for maintenance." = "Zerbitzaria geldirik dago mantenu lanak direla eta.";
+
+/* OC Errors */
+"%@ (error %ld, %@)" = "%@ (%ld errorea, %@)";
+"%@ (error %ld)" = "%@ (%ld errorea)";
+
+// OCErrorInternal
+"Internal error." = "Barne errorea.";
+
+// OCErrorInsufficientParameters
+"Insufficient parameters." = "Parametro gutxiegi";
+
+// OCErrorAuthorizationFailed
+"Authorization failed." = "Baimentzeak huts egin du.";
+
+// OCErrorAuthorizationRedirect
+"Authorization failed because the server returned a redirect. Authorization may be successful when retried with the redirect URL." = "Baimentzeak huts egin du zerbitzariak birbideraketa itzuli duelako.  Baimena arrakastatsua izango da birbideratze URLarekin saiatzen denean.";
+
+// OCErrorAuthorizationNoMethodData
+"Authorization failed because no secret data was set for the authentication method." = "Baimentzeak huts egin du autentifikazio metodorako ez delako datu sekreturik ezarri.";
+
+// OCErrorAuthorizationMissingData
+"Authorization failed because data was missing from the secret data for the authentication method." = "Baimentzeak huts egin du autentifikazio metodorako datu sekretuaren datua ez zegoelako.";
+
+// OCErrroAuthorizationCancelled
+"Authorization was cancelled by the user." = "Baimentzea erabiltzaileak bertan behera utzi du";
+
+// OCErrorRequestURLSessionTaskConstructionFailed
+"Construction of URL Session Task failed." = "Saioko Ataza URLaren sorkuntzak huts egin du.";
+
+// OCErrorNewerVersionExists
+"A newer version already exists." = "Bertsio berriagoa badago.";
+
+// OCErrorRequestCancelled
+"Request was cancelled." = "Eskakizuna bertan behera utzi da.";
+
+// OCErrorRequestRemovedBeforeScheduling
+"Request was removed before scheduling." = "Eskakizuna ezabatua izan da programazioaren aurretik.";
+
+// OCErrorRequestServerCertificateRejected
+"Request was cancelled because the server certificate was rejected." = "Eskakizuna bertan behera utzi da zerbitzariaren ziurtagiria baztertua izan delako.";
+
+// OCErrorRequestDroppedByURLSession
+"Request was dropped by the NSURLSession." = "Eskakizuna NSURLSession-ek alboratu du.";
+
+// OCErrorRequestCompletedWithError
+"Request completed with error." = "Eskakizuna erroreekin burutu da.";
+
+// OCErrorRequestURLSessionInvalidated
+"Request couldn't be scheduled because the underlying URL session has been invalidated." = "Ezin izan da eskakizuna programatu darabilen URL saioa baliogabetua izan delako.";
+
+// OCErrorException
+"An exception occured." = "Errorea gertatu da.";
+
+// OCErrorResponseUnknownFormat
+"Response was in an unknown format." = "Formatu ezezaguneko erantzuna.";
+
+// OCErrorServerDetectionFailed
+"Server detection failed, i.e. when the server at a URL is not an OpenCloud instance." = "Zerbitzari detekzioak huts egin du, hau da, URLko zerbitzaria ez denean OpenCloud instantzia.";
+
+// OCErrorServerTooManyRedirects
+"Server detection failed because of too many redirects." = "Zerbitzari detekzioak huts egin du berbideratze asko eman direlako.";
+
+// OCErrorServerBadRedirection
+"Server redirection to bad/invalid URL." = "Zerbitzari berbideratze URL txar edo baliogabera.";
+
+// OCErrorServerVersionNotSupported
+"This server version is not supported." = "Ez da zerbitzari bertsio honentzat euskarririk.";
+
+// OCErrorServerNoSupportedAuthMethods
+"Server doesn't seem to support any authentication method supported by this app." = "Badirudi zerbitzariak ez duela euskarririk app honek erabiltzen dituen autentifikazio moduetarako.";
+
+// OCErrorCertificateInvalid
+"The certificate is invalid or contains errors" = "Ziurtagiria baliogabea da edo akatsak ditu";
+
+// OCErrorCertificateMissing
+"No certificate was returned for a request despite this being a HTTPS connection (should never occur in production, but only if you forgot to provide a certificate during simulated responses to HTTPS requests)." = "Eskakizunak ez du ziurtagiririk jaso HTTPS konexioa izan arren (ez litzateke sekula gertatu behar ekoizpenean, HTTPS eskaerei emandako erantzun simulatuetan ziurtagiria ematea ahaztu baduzu bakarrik)";
+
+// OCErrorFeatureNotSupportedForItem
+"This feature is not supported for this item." = "Ezaugarri honek ez du euskarririk elementu honentzat.";
+
+// OCErrorFeatureNotSupportedByServer
+"This feature is not supported for this server (version)." = "Ezaugarrik honek ez du euskarririk zerbitzari (bertsio) honetan.";
+
+// OCErrorFeatureNotImplemented
+"This feature is currently not implemented" = "Ezaugarri hau garatzeke dago";
+
+// OCErrorItemNotFound
+"The targeted item has not been found." = "Adierazitako elementurik ez da aurkitu.";
+
+// OCErrorItemDestinationNotFound
+"The destination item has not been found." = "Helburu elementurik ez da aurkitu.";
+
+// OCErrorItemChanged
+"The targeted item has changed." = "Adierazitako elementua aldatu egin da.";
+
+// OCErrorItemInsufficientPermissions
+"The action couldn't be performed on the targeted item because the client lacks permissions." = "Ezin da adierazitako elementuak akzioa burutu bezeroak ez duelako beharrezko baimenik.";
+
+// OCErrorItemOperationForbidden
+"The operation on the targeted item is not allowed." = "Adierazitako elementuan ez da operazioa onartzen.";
+
+// OCErrorItemAlreadyExists
+"There already is an item at the destination of this action." = "Akzio honen helburua den elementua badago jada.";
+
+// OCErrorItemNotAvailableOffline
+"Item not available offline." = "Elementua ez dago eskuragarri konexiorik gabe.";
+
+// OCErrorFileNotFound:
+"File not found." = "Ez da fitxategirik aurkitu.";
+
+// OCErrorCancelled
+"The operation was cancelled." = "Operazioa bertan behera utzi da.";
+
+// OCErrorOutdatedCache
+"An operation failed due to outdated cache information." = "Operazioak huts egin du zaharkitutako cache informazio dela eta.";
+
+// OCErrorRunningOperation
+"A running operation prevents execution." = "Burutzen ari den operazio batek exekuzioa galarazten du.";

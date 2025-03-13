@@ -1,4 +1,4 @@
-#  ownCloud SDK Recipes
+#  OpenCloud SDK Recipes
 
 ## A collection of recipes for common tasks.
 
@@ -8,7 +8,7 @@
 ```objc
 OCBookmark *bookmark;
 
-bookmark = [OCBookmark bookmarkForURL:[NSURL URLWithString:@"https://demo.owncloud.org/"]];
+bookmark = [OCBookmark bookmarkForURL:[NSURL URLWithString:@"https://demo.opencloud.eu/"]];
 ```
 
 ## Bookmark setup and authentication
@@ -79,7 +79,7 @@ if ((connection = [[OCConnection alloc] initWithBookmark:bookmark]) != nil)
                                     bookmark.authenticationData = authenticationData;
                                     bookmark.authenticationMethodIdentifier = authenticationMethodIdentifier;
 
-                                    // -- At this point, we have a bookmark that can be used to log into an ownCloud server --
+                                    // -- At this point, we have a bookmark that can be used to log into an OpenCloud server --
 
                                     // Serialize bookmark and write it to a file on disk
                                     [[bookmark bookmarkData] writeToFile:.. atomically:YES];

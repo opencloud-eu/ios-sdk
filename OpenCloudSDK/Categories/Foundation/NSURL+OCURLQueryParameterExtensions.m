@@ -1,0 +1,134 @@
+//
+//  NSURL+OCURLQueryParameterExtensions.m
+//  OpenCloudSDK
+//
+//  Created by Felix Schwarz on 25.02.18.
+//  Copyright © 2018 ownCloud GmbH. All rights reserved.
+//
+
+/*
+ * Copyright (C) 2018, ownCloud GmbH.
+ *
+ * This code is covered by the GNU Public License Version 3.
+ *
+ * For distribution utilizing Apple mechanisms please see https://opencloud.eu/contribute/iOS-license-exception/
+ * You should have received a copy of this license along with this program. If not, see <http://www.gnu.org/licenses/gpl-3.0.en.html>.
+ *
+ */
+
+#import "NSURL+OCURLQueryParameterExtensions.h"
+
+@implementation NSURL (OCURLQueryParameterExtensions)
+
+- (NSURL *)urlByModifyingQueryParameters:(NSMutableArray <NSURLQueryItem *> *(^)(NSMutableArray <NSURLQueryItem *> *queryItems))queryItemsAction
+{
+	if (queryItemsAction==nil)
+	{
+		return(self);
+	}
+	else
+	{
+		NSURLComponents *urlComponents;
+		
+		if ((urlComponents = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES]) != nil)
+		{
+			NSMutableArray <NSURLQueryItem *> *queryItems;
+			
+			if (urlComponents.queryItems != nil)
+			{
+				queryItems = [NSMutableArray arrayWithArray:urlComponents.queryItems];
+			}
+			else
+			{
+				queryItems = [NSMutableArray array];
+			}
+			
+			urlComponents.queryItems = queryItemsAction(queryItems);
+		}
+		
+		return (urlComponents.URL);
+	}
+}
+
+- (NSURL *)urlByAppendingQueryParameters:(NSDictionary<NSString *,NSString *> *)parameters replaceExisting:(BOOL)replaceExisting
+{
+	return ([self urlByModifyingQueryParameters:^NSMutableArray<NSURLQueryItem *> *(NSMutableArray<NSURLQueryItem *> *queryItems) {
+			// Remove existing
+			if (replaceExisting)
+			{
+				__block NSMutableIndexSet *removeItemsAtIndexes = nil;
+
+				[queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull queryItem, NSUInteger idx, BOOL * _Nonnull stop) {
+					if (parameters[queryItem.name] != nil)
+					{
+						if (removeItemsAtIndexes==nil) { removeItemsAtIndexes = [NSMutableIndexSet indexSet]; }
+						
+						[removeItemsAtIndexes addIndex:idx];
+					}
+				}];
+
+				if (removeItemsAtIndexes != nil)
+				{
+					[queryItems removeObjectsAtIndexes:removeItemsAtIndexes];
+				}
+			}
+	
+			// Add items
+			[parameters enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSString *value, BOOL *stop) {
+				if (![value isKindOfClass:[NSNull class]])
+				{
+					[queryItems addObject:[NSURLQueryItem queryItemWithName:name value:value]];
+				}
+			}];
+		
+			return(queryItems);
+		}]);
+}
+
+- (NSDictionary <NSString *,NSString *> *)queryParameters
+{
+	NSMutableDictionary <NSString *,NSString *> *queryParameters = nil;
+	NSURLComponents *urlComponents;
+
+	if ((urlComponents = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES]) != nil)
+	{
+		if (urlComponents.queryItems != nil)
+		{
+			queryParameters = [NSMutableDictionary dictionary];
+			
+			for (NSURLQueryItem *queryItem in urlComponents.queryItems)
+			{
+				[queryParameters setObject:((queryItem.value!=nil) ? queryItem.value : @"") forKey:queryItem.name];
+			}
+		}
+	}
+	
+	return (queryParameters);
+}
+
+- (NSString *)hostAndPort
+{
+	if (self.port != nil)
+	{
+		return ([NSString stringWithFormat:@"%@:%@", self.host, self.port]);
+	}
+
+	return (self.host);
+}
+
+- (NSURL *)rootURL
+{
+	NSURLComponents *urlComponents;
+
+	if ((urlComponents = [[NSURLComponents alloc] initWithURL:self resolvingAgainstBaseURL:YES]) != nil)
+	{
+		urlComponents.path = @"/";
+		urlComponents.queryItems = nil;
+
+		return (urlComponents.URL);
+	}
+
+	return (nil);
+}
+
+@end

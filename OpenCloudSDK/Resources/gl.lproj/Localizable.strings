@@ -1,0 +1,215 @@
+/* 
+  Localizable.strings
+  OpenCloudSDK
+
+  Created by Felix Schwarz on 03.03.18.
+  Copyright © 2018 ownCloud GmbH. All rights reserved.
+*/
+
+/* Item property names */
+"itemProperty.lastModified" = "Ultima modificación";
+"itemProperty.isFavorite" = "Favorito";
+"itemProperty.localAttributes" = "Atributos locais";
+
+/* Connection Progress */
+"Connecting…" = "Conectando…";
+"Authenticating…" = "Autenticando…";
+"Error" = "Erro";
+"Fetching user information…" = "Obtendo a información do usuario…";
+"Connected" = "Conectado";
+
+"Retrieving thumbnail…" = "Recuperando miniaturas…";
+
+"Cancel" = "Cancelar";
+"Proceed" = "Proceder";
+"OK" = "Aceptar";
+
+/* Connection status */
+"Offline" = "Desconectado";
+"Offline (no WiFi connection)" = "Desconectado (sin conexión WiFi)";
+"Server down for maintenance" = "Servidor inactivo por mantemento";
+"Online" = "Conectado";
+
+/* Delete */
+"%@ changed on the server. Really delete it?" = "%@ cambiou no servidor. Confirma que quere eliminalo?";
+"%@ has changed on the server since you requested its deletion." = "%@ cambiou no servidor dende que solicitou a eliminación?";
+"Delete" = "Eliminar";
+
+"%@ couldn't be deleted" = "Non foi posíbel eliminar %@";
+"Please check if you have sufficient permissions to delete %@." = "Comprobe se ten permisos abondo para eliminar %@.";
+
+/* Copy / Move */
+"Operation forbidden" = "Esta operación está prohibida";
+"%@ can't be copied to %@." = "Non é posíbel copiar %@ en %@.";
+"%@ can't be moved to %@." = "Non é posíbel mover %@ a %@.";
+
+"%@ not found" = "Non se atopou %@";
+"%@ wasn't found at %@." = "Non se atopou %@ en %@.";
+
+"The target directory %@ doesn't seem to exist." = "Semella que o directorio de destino %@ non existe.";
+
+"%@ already exists" = "%@ xa existe";
+"Couldn't copy %@ to %@, because an item called %@ already exists there." = "Non foi posíbel copiar %@ en %@ porque xa existe un elemento chamado %@.";
+"Couldn't move %@ to %@, because an item called %@ already exists there." = "Non foi posíbel mover %@ para %@ porque xa existe un elemento chamado %@.";
+
+"Insufficient permissions" = "Non ten permisos abondo";
+"%@ can't be copied to %@." = "Non é posíbel copiar %@ en %@.";
+"%@ can't be moved to %@." = "Non é posíbel mover %@ a %@.";
+
+"%@ not found on the server" = "Non se atopou %@ no servidor";
+"%@ may have been renamed, moved or deleted remotely." = "%@pode ter sido renomeado, movido ou eliminado de forma remota.";
+
+"Error copying %@" = "Produciuse un erro ao copiar %@";
+"Error moving %@" = "Produciuse un erro ao mover %@";
+
+/* Download */
+"Downloading %@…" = "Descargando %@…";
+
+/* Move/Rename/Copy */
+"Renaming %@ to %@…" = "Renomeando %@ a %@…";
+"Moving %@ to %@…" = "Movendo %@ para %@…";
+"Copying %@ to %@…" = "Copiando %@ en %@…";
+
+/* Create folder */
+"Creating folder %@…" = "Creando o cartafol %@…";
+
+/* Delete */
+"Deleting %@…" = "Eliminando %@…";
+
+/* Retrieving file list */
+"Retrieving file list for %@…" = "Recuperando a lista de ficheiros para %@…";
+
+/* Update */
+"\"%@\" metadata for %@ couldn't be updated" = "Os metadatos «%@» para %@ non puideron actualizarse";
+"Update failed with status code %d" = "Produciuse un fallo de actualización co código de estado %d";
+"Error updating %@ metadata" = "Produciuse un erro ao actualizar os metadatos %@";
+
+/* Logging */
+"Standard error output" = "Saída de erro estándar";
+"Log file" = "Ficheiro de rexistro";
+
+/* Errors */
+"Server doesn't seem to support any authentication method supported by this app." = "O servidor non admite ningún método de autenticación compatíbel con esta aplicación.";
+"This server runs an unsupported version (%@). Version %@ or later is required by this app." = "Este servidor executa unha versión non compatíbel (%@). Esta aplicación require a versión %@ ou unha posterior.";
+
+/* DAV Errors */
+// OCDAVErrorServiceUnavailable
+"Server down for maintenance." = "Servidor inactivo por mantemento";
+
+/* OC Errors */
+"%@ (error %ld, %@)" = "%@ (erro %ld, %@)";
+"%@ (error %ld)" = "%@ (erro %ld)";
+
+// OCErrorInternal
+"Internal error." = "Produciuse un erro interno.";
+
+// OCErrorInsufficientParameters
+"Insufficient parameters." = "Non hai parámetros abondo.";
+
+// OCErrorAuthorizationFailed
+"Authorization failed." = "Produciuse un fallo de autorización.";
+
+// OCErrorAuthorizationRedirect
+"Authorization failed because the server returned a redirect. Authorization may be successful when retried with the redirect URL." = "Produciuse un fallo de autorización porque o servidor devolveu unha redirección. A autorización pode ser satisfactoria cando se volva tentar co URL de redirección.";
+
+// OCErrorAuthorizationNoMethodData
+"Authorization failed because no secret data was set for the authentication method." = "Produciuse un fallo na autorización porque non se estabeleceu ningún dato segredo para o método de autenticación.";
+
+// OCErrorAuthorizationMissingData
+"Authorization failed because data was missing from the secret data for the authentication method." = "Produciuse un fallo na autorización porque faltaban datos dos datos segredos para o método de autenticación.";
+
+// OCErrroAuthorizationCancelled
+"Authorization was cancelled by the user." = "A autorización foi cancelada polo usuario.";
+
+// OCErrorRequestURLSessionTaskConstructionFailed
+"Construction of URL Session Task failed." = "Produciuse un fallo na construción da tarefa da sesión URL.";
+
+// OCErrorNewerVersionExists
+"A newer version already exists." = "Xa existe unha versión nova.";
+
+// OCErrorRequestCancelled
+"Request was cancelled." = "A solicitude foi cancelada";
+
+// OCErrorRequestRemovedBeforeScheduling
+"Request was removed before scheduling." = "A solicitude foi eliminada antes da programación.";
+
+// OCErrorRequestServerCertificateRejected
+"Request was cancelled because the server certificate was rejected." = "A solicitude foi cancelada porque o certificado do servidor foi rexeitado.";
+
+// OCErrorRequestDroppedByURLSession
+"Request was dropped by the NSURLSession." = "A solicitude foi retirada pola NSURLSession.";
+
+// OCErrorRequestCompletedWithError
+"Request completed with error." = "A solicitude completouse con erros.";
+
+// OCErrorRequestURLSessionInvalidated
+"Request couldn't be scheduled because the underlying URL session has been invalidated." = "Non foi posíbel programar a solicitude porque a sesión de URL subxacente foi invalidada.";
+
+// OCErrorException
+"An exception occured." = "Produciuse unha excepción.";
+
+// OCErrorResponseUnknownFormat
+"Response was in an unknown format." = "A resposta estaba nun formato descoñecido.";
+
+// OCErrorServerDetectionFailed
+"Server detection failed, i.e. when the server at a URL is not an OpenCloud instance." = "Produciuse un fallou na detección do servidor, cando o servidor nun URL non é unha instancia OpenCloud.";
+
+// OCErrorServerTooManyRedirects
+"Server detection failed because of too many redirects." = "Produciuse un fallo na detección do servidor por mor de demasiadas redireccións.";
+
+// OCErrorServerBadRedirection
+"Server redirection to bad/invalid URL." = "Redirección do servidor car un URL incorrecto/non válido.";
+
+// OCErrorServerVersionNotSupported
+"This server version is not supported." = "Esta versión do servidor non é compatíbel.";
+
+// OCErrorServerNoSupportedAuthMethods
+"Server doesn't seem to support any authentication method supported by this app." = "O servidor non admite ningún método de autenticación compatíbel con esta aplicación.";
+
+// OCErrorCertificateInvalid
+"The certificate is invalid or contains errors" = "O certificado non é válido ou contén erros";
+
+// OCErrorCertificateMissing
+"No certificate was returned for a request despite this being a HTTPS connection (should never occur in production, but only if you forgot to provide a certificate during simulated responses to HTTPS requests)." = "Non se devolveu ningún certificado para unha solicitude a pesares de ser unha conexión HTTPS (nunca debería ocorrer en produción, mais só se esqueceu de fornever un certificado durante as respostas simuladas ás solicitudes HTTPS).";
+
+// OCErrorFeatureNotSupportedForItem
+"This feature is not supported for this item." = "Esta característica non é compatíbel con este elemento.";
+
+// OCErrorFeatureNotSupportedByServer
+"This feature is not supported for this server (version)." = "Esta característica non é compatíbel con este servidor (versión).";
+
+// OCErrorFeatureNotImplemented
+"This feature is currently not implemented" = "Esta característica non está implementada";
+
+// OCErrorItemNotFound
+"The targeted item has not been found." = "Non se atopou o elemento apuntado.";
+
+// OCErrorItemDestinationNotFound
+"The destination item has not been found." = "Non se atopou o elemento de destino.";
+
+// OCErrorItemChanged
+"The targeted item has changed." = "O elemento apuntado cambiou.";
+
+// OCErrorItemInsufficientPermissions
+"The action couldn't be performed on the targeted item because the client lacks permissions." = "Non foi posíbel realizar a acción no elemento de destino porque o cliente carece de permisos.";
+
+// OCErrorItemOperationForbidden
+"The operation on the targeted item is not allowed." = "Non está permitida a operación no elemento apuntado. ";
+
+// OCErrorItemAlreadyExists
+"There already is an item at the destination of this action." = "Xa hai un elemento no destino desta acción.";
+
+// OCErrorItemNotAvailableOffline
+"Item not available offline." = "O elemento non está dispoñíbel sen conexión.";
+
+// OCErrorFileNotFound:
+"File not found." = "Ficheiro non atopado";
+
+// OCErrorCancelled
+"The operation was cancelled." = "A operación foi cancelada";
+
+// OCErrorOutdatedCache
+"An operation failed due to outdated cache information." = "Produciuse un fallo nunha operación por mor de que á información da caché está desactualizada.";
+
+// OCErrorRunningOperation
+"A running operation prevents execution." = "Unha operación en proceso impide a execución.";

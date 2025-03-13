@@ -1,8 +1,8 @@
-#  ownCloud iOS SDK
+#  OpenCloud iOS SDK
 
 ## Introduction
 
-A new, modern ownCloud iOS SDK.
+A new, modern OpenCloud iOS SDK.
 
 ## Architecture
 (this section is not entirely up-to-date)
@@ -11,9 +11,9 @@ A new, modern ownCloud iOS SDK.
 
 The iOS SDK comes as a framework that is easy to integrate and encapsulates all needed code and resources.
 
-- `OCBookmark` objects contain the name and URL of an ownCloud server. It also transparently stores and provides access to credentials/tokens (e.g. OAuth2 tokens) in the iOS keychain for use with an `OCAuthenticationMethod`. Bookmark objects are used to initialize a Core (see below). Bookmark objects can also be serialized for permanently storing references to a user's servers.
+- `OCBookmark` objects contain the name and URL of an OpenCloud server. It also transparently stores and provides access to credentials/tokens (e.g. OAuth2 tokens) in the iOS keychain for use with an `OCAuthenticationMethod`. Bookmark objects are used to initialize a Core (see below). Bookmark objects can also be serialized for permanently storing references to a user's servers.
 
-- `OCConnection` objects are responsible for forming HTTP(S) and WebDAV requests, sending them to the ownCloud server (identified by a bookmark), parsing the result and returning the result back to the Core as an `OCEvent`. It also is responsible for establishing the authenticity of the server and notifying the Core about any issues it finds. In case of issues, the Core can consult with a delegate (usually implemented by the app using the SDK) and then instruct the Connection on whether to proceed or not.
+- `OCConnection` objects are responsible for forming HTTP(S) and WebDAV requests, sending them to the OpenCloud server (identified by a bookmark), parsing the result and returning the result back to the Core as an `OCEvent`. It also is responsible for establishing the authenticity of the server and notifying the Core about any issues it finds. In case of issues, the Core can consult with a delegate (usually implemented by the app using the SDK) and then instruct the Connection on whether to proceed or not.
 
 - `OCDatabase` objects are responsible for storing cached information on disk and providing the Core access to it. It is also responsible for storing local copies of files. On disk, one database is used per vault/bookmark.
 
@@ -58,5 +58,5 @@ Note: since `OCEventTarget` handles the resolution and actual delivery of the ev
 ## License
 
 This project is currently licensed under GPL v3.
-We do provide support as well as an option for a dual-licensing as part of our ownCloud Enterprise subscriptions. Please contact info@owncloud.com for more information.
+We do provide support as well as an option for a dual-licensing as part of our OpenCloud Enterprise subscriptions. Please contact info@opencloud.eu for more information.
 

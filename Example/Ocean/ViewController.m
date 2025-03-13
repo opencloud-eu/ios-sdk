@@ -11,14 +11,14 @@
  *
  * This code is covered by the GNU Public License Version 3.
  *
- * For distribution utilizing Apple mechanisms please see https://owncloud.org/contribute/iOS-license-exception/
+ * For distribution utilizing Apple mechanisms please see https://opencloud.eu/contribute/iOS-license-exception/
  * You should have received a copy of this license along with this program. If not, see <http://www.gnu.org/licenses/gpl-3.0.en.html>.
  *
  */
 
 #import "ViewController.h"
-#import <ownCloudSDK/ownCloudSDK.h>
-#import <ownCloudUI/ownCloudUI.h>
+#import <OpenCloudSDK/OpenCloudSDK.h>
+#import <OpenCloudUI/OpenCloudUI.h>
 
 @interface ViewController ()
 {

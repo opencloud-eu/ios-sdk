@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  OpenCloudSDK
+
+  Created by Felix Schwarz on 13.03.18.
+  Copyright © 2018 ownCloud GmbH. All rights reserved.
+*/
+
+/* OCCertificateViewController buttons */
+"Show ±" = "Show ±";
+"Hide ±" = "Hide ±";
+
+/* OCCertificateViewController section titles */
+"Subject" = "Gaia";
+"Issuer" = "Bidaltzailea";
+"Public Key" = "Gako Publikoa";
+"Extensions" = "Luzapenak";
+"Fingerprints" = "Hatz-aztarnak";
+
+"Validation Status" = "Balidazio Egoera";
+"Hostname" = "Ostalari izena";
+"Validation Error" = "Balidazio Akatsa";
+"User-rejected." = "Erabiltzaileak errefusatua.";
+"Certificate has issues." = "Ziurtagiriak arazoak ditu.";
+"User-accepted." = "Erabiltzaileak onartua.";
+"Auto-accepted." = "Auto-accepted.";
+"Reason" = "Reason";
+"No issues found." = "Ez da arazorik aurkitu.";
+
+/* X.509 certificate fields */
+"businessCategory" = "Negozio kategoria";
+"commonName" = "Izen arrunta";
+"countryName" = "Herrialdea";
+"jurisdictionCountryName" = "Jurisdikzio herrialdea";
+"jurisdictionLocalityName" = "Jurisdikzio herria";
+"jurisdictionStateOrProvinceName" = "Jurisdikzio estatu edo probintzia";
+"localityName" = "Herria";
+"organizationName" = "Erakundea";
+"organizationalUnitName" = "Antolaketa Unitatea";
+"stateOrProvinceName" = "Estatu edo probintzia";
+
+"version" = "Bertsioa";
+"serialNumber" = "Serie Zenbakia";
+"signatureAlgorithm" = "Sinadura Algoritmoa";
+
+"validFrom" = "Baliagarria";
+"validUntil" = "Data hau arte baliogarria";
+
+"keyBytes" = "Gako byteak";
+"keyExponent" = "Gako adierazlea (exponent)";
+"keyInformation" = "Informazioa";
+"keySizeInBits" = "Gako tamaina (bitak)";

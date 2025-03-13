@@ -9,7 +9,7 @@ chmod u+x ./ocstringstool
 
 # Perform normalization
 echo "Normalizing…"
-./ocstringstool normalize ../../ownCloudSDK/Resources/ ../../ownCloudUI/Resources/ 
+./ocstringstool normalize ../../OpenCloudSDK/Resources/ ../../OpenCloudUI/Resources/ 
 
 # Remove ocstringstool build
 rm ./ocstringstool

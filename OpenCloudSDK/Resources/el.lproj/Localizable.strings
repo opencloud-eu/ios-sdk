@@ -1,0 +1,215 @@
+/* 
+  Localizable.strings
+  OpenCloudSDK
+
+  Created by Felix Schwarz on 03.03.18.
+  Copyright © 2018 ownCloud GmbH. All rights reserved.
+*/
+
+/* Item property names */
+"itemProperty.lastModified" = "Τελευταία τροποποίηση";
+"itemProperty.isFavorite" = "Αγαπημένο";
+"itemProperty.localAttributes" = "Τοπικά χαρακτηριστικά";
+
+/* Connection Progress */
+"Connecting…" = "Γίνεται σύνδεση...";
+"Authenticating…" = "Γίνεται πιστοποίηση...";
+"Error" = "Σφάλμα";
+"Fetching user information…" = "Ανάκτηση πληροφοριών χρήστη…";
+"Connected" = "Συνδεδεμένο";
+
+"Retrieving thumbnail…" = "Ανάκτηση μικρογραφίας…";
+
+"Cancel" = "Ακύρωση";
+"Proceed" = "Συνέχιση";
+"OK" = "ΟΚ";
+
+/* Connection status */
+"Offline" = "Εκτός σύνδεσης";
+"Offline (no WiFi connection)" = "Εκτός σύνδεσης (καμία σύνδεση WiFi)";
+"Server down for maintenance" = "Ο διακομιστής είναι εκτός λειτουργίας για συντήρηση";
+"Online" = "Σε σύνδεση";
+
+/* Delete */
+"%@ changed on the server. Really delete it?" = "%@ άλλαξε στο διακομιστή. Θέλετε να το διαγράψετε;";
+"%@ has changed on the server since you requested its deletion." = "%@ έχει αλλάξει στον διακομιστή από τότε που ζητήσατε τη διαγραφή του.";
+"Delete" = "Διαγραφή";
+
+"%@ couldn't be deleted" = "%@ δεν ήταν δυνατή η διαγραφή";
+"Please check if you have sufficient permissions to delete %@." = "Παρακαλούμε ελέγξτε αν έχετε επαρκή δικαιώματα διαγραφής %@.";
+
+/* Copy / Move */
+"Operation forbidden" = "Η λειτουργία απαγορεύεται";
+"%@ can't be copied to %@." = "%@ δεν μπορεί να αντιγραφεί σε %@.";
+"%@ can't be moved to %@." = "%@ δεν μπορεί να μετακινηθεί σε %@.";
+
+"%@ not found" = "%@ δεν βρέθηκε";
+"%@ wasn't found at %@." = "%@ δεν βρέθηκε στο %@.";
+
+"The target directory %@ doesn't seem to exist." = "Ο κατάλογος προορισμού %@ δεν φαίνεται να υπάρχει.";
+
+"%@ already exists" = "%@ υπάρχει ήδη";
+"Couldn't copy %@ to %@, because an item called %@ already exists there." = "Αδυναμία αντιγραφής %@ σε %@, επειδή υπάρχει ήδη ένα στοιχείο που ονομάζεται %@.";
+"Couldn't move %@ to %@, because an item called %@ already exists there." = "Αδυναμία μετακίνησης %@ σε %@, επειδή υπάρχει ήδη ένα στοιχείο που ονομάζεται %@.";
+
+"Insufficient permissions" = "Μη επαρκή δικαιώματα";
+"%@ can't be copied to %@." = "%@ δεν μπορεί να αντιγραφεί σε %@.";
+"%@ can't be moved to %@." = "%@ δεν μπορεί να μετακινηθεί σε %@.";
+
+"%@ not found on the server" = "%@ δεν βρέθηκε στο διακομιστή";
+"%@ may have been renamed, moved or deleted remotely." = "%@ ενδέχεται να έχει μετονομαστεί, μετακινηθεί ή διαγραφεί εξ αποστάσεως.";
+
+"Error copying %@" = "Σφάλμα αντιγραφής %@";
+"Error moving %@" = "Σφάλμα μετακίνησης %@";
+
+/* Download */
+"Downloading %@…" = "Λήψη %@…";
+
+/* Move/Rename/Copy */
+"Renaming %@ to %@…" = "Μετονομασία %@ σε %@…";
+"Moving %@ to %@…" = "Μετακίνηση %@ σε %@…";
+"Copying %@ to %@…" = "Αντιγραφή %@ σε %@…";
+
+/* Create folder */
+"Creating folder %@…" = "Δημιουργία φακέλου %@…";
+
+/* Delete */
+"Deleting %@…" = "Διαγραφή %@…";
+
+/* Retrieving file list */
+"Retrieving file list for %@…" = "Ανάκτηση λίστας αρχείων για %@…";
+
+/* Update */
+"\"%@\" metadata for %@ couldn't be updated" = "\"%@\" μεταδεδομένα για %@ δεν ήταν δυνατή η ενημέρωση";
+"Update failed with status code %d" = "Η ενημέρωση απέτυχε με τον κωδικό κατάστασης %d";
+"Error updating %@ metadata" = "Σφάλμα ενημέρωσης %@ μεταδεδομένων";
+
+/* Logging */
+"Standard error output" = "Τυπικό αποτέλεσμα σφάλματος";
+"Log file" = "Αρχείο καταγραφών";
+
+/* Errors */
+"Server doesn't seem to support any authentication method supported by this app." = "Ο διακομιστής δεν υποστηρίζει καμία μέθοδο πιστοποίησης που υποστηρίζεται από αυτήν την εφαρμογή.";
+"This server runs an unsupported version (%@). Version %@ or later is required by this app." = "Αυτός ο διακομιστής εκτελεί μια μη υποστηριζόμενη έκδοση (%@). Η έκδοση %@ ή μεταγενέστερη απαιτείται από αυτήν την εφαρμογή.";
+
+/* DAV Errors */
+// OCDAVErrorServiceUnavailable
+"Server down for maintenance." = "Ο διακομιστής είναι εκτός λειτουργίας για συντήρηση.";
+
+/* OC Errors */
+"%@ (error %ld, %@)" = "%@ (σφάλμα %ld, %@)";
+"%@ (error %ld)" = "%@ (σφάλμα %ld)";
+
+// OCErrorInternal
+"Internal error." = "Εσωτερικό σφάλμα.";
+
+// OCErrorInsufficientParameters
+"Insufficient parameters." = "Ανεπαρκείς παράμετροι.";
+
+// OCErrorAuthorizationFailed
+"Authorization failed." = "Αποτυχία πιστοποίησης.";
+
+// OCErrorAuthorizationRedirect
+"Authorization failed because the server returned a redirect. Authorization may be successful when retried with the redirect URL." = "Η πιστοποίηση απέτυχε επειδή ο διακομιστής επέστρεψε μια ανακατεύθυνση. Η πιστοποίηση μπορεί να είναι επιτυχής όταν επαναληφθεί με τη διεύθυνση URL ανακατεύθυνσης.";
+
+// OCErrorAuthorizationNoMethodData
+"Authorization failed because no secret data was set for the authentication method." = "Η πιστοποίηση απέτυχε επειδή δεν είχαν οριστεί κρυφά δεδομένα για τη μέθοδο πιοστοποίησης.";
+
+// OCErrorAuthorizationMissingData
+"Authorization failed because data was missing from the secret data for the authentication method." = "Η πιστοποίηση απέτυχε λόγω έλλειψης δεδομένων από τα μυστικά δεδομένα για τη μέθοδο πιστοποίησης.";
+
+// OCErrroAuthorizationCancelled
+"Authorization was cancelled by the user." = "Η εξουσιοδότηση ακυρώθηκε από το χρήστη.";
+
+// OCErrorRequestURLSessionTaskConstructionFailed
+"Construction of URL Session Task failed." = "Η κατασκευή της URL Συνεδρίας Εργασίας απέτυχε.";
+
+// OCErrorNewerVersionExists
+"A newer version already exists." = "Υπάρχει ήδη μια νεότερη έκδοση.";
+
+// OCErrorRequestCancelled
+"Request was cancelled." = "Το αίτημα ακυρώθηκε.";
+
+// OCErrorRequestRemovedBeforeScheduling
+"Request was removed before scheduling." = "Το αίτημα καταργήθηκε πριν από τον προγραμματισμό.";
+
+// OCErrorRequestServerCertificateRejected
+"Request was cancelled because the server certificate was rejected." = "Η αίτηση ακυρώθηκε επειδή απορρίφθηκε το πιστοποιητικό διακομιστή.";
+
+// OCErrorRequestDroppedByURLSession
+"Request was dropped by the NSURLSession." = "Το αίτημα απορρίφθηκε από την NSURLSession.";
+
+// OCErrorRequestCompletedWithError
+"Request completed with error." = "Το αίτημα ολοκληρώθηκε με σφάλμα.";
+
+// OCErrorRequestURLSessionInvalidated
+"Request couldn't be scheduled because the underlying URL session has been invalidated." = "Αδυναμία προγραμματισμού αιτήματος επειδή η υποκείμενη URL συνεδρίας έχει ακυρωθεί.";
+
+// OCErrorException
+"An exception occured." = "Παρουσιάστηκε εξαίρεση.";
+
+// OCErrorResponseUnknownFormat
+"Response was in an unknown format." = "Η απάντηση ήταν σε άγνωστη μορφή.";
+
+// OCErrorServerDetectionFailed
+"Server detection failed, i.e. when the server at a URL is not an OpenCloud instance." = "Η ανίχνευση του διακομιστή απέτυχε, δηλ. όταν ο διακομιστής σε μια διεύθυνση URL δεν είναι μια εγκατάσταση OpenCloud.";
+
+// OCErrorServerTooManyRedirects
+"Server detection failed because of too many redirects." = "Η ανίχνευση του διακομιστή απέτυχε λόγω υπερβολικών ανακατευθύνσεων.";
+
+// OCErrorServerBadRedirection
+"Server redirection to bad/invalid URL." = "Ανακατεύθυνση διακομιστή σε κακή/μη έγκυρη διεύθυνση URL.";
+
+// OCErrorServerVersionNotSupported
+"This server version is not supported." = "Αυτή η έκδοση διακομιστή δεν υποστηρίζεται.";
+
+// OCErrorServerNoSupportedAuthMethods
+"Server doesn't seem to support any authentication method supported by this app." = "Ο διακομιστής δεν υποστηρίζει καμία μέθοδο πιστοποίησης που υποστηρίζεται από αυτήν την εφαρμογή.";
+
+// OCErrorCertificateInvalid
+"The certificate is invalid or contains errors" = "Το πιστοποιητικό δεν είναι έγκυρο ή περιέχει σφάλματα";
+
+// OCErrorCertificateMissing
+"No certificate was returned for a request despite this being a HTTPS connection (should never occur in production, but only if you forgot to provide a certificate during simulated responses to HTTPS requests)." = "Δεν έχει επιστραφεί πιστοποιητικό για ένα αίτημα παρά το γεγονός ότι είναι μια σύνδεση HTTPS (δεν πρέπει ποτέ να εμφανιστεί στην παραγωγή, αλλά μόνο αν ξεχάσατε να δώσετε ένα πιστοποιητικό κατά τη διάρκεια προσομοιωμένων απαντήσεων σε αιτήματα HTTPS).";
+
+// OCErrorFeatureNotSupportedForItem
+"This feature is not supported for this item." = "Αυτή η λειτουργία δεν υποστηρίζεται για αυτό το στοιχείο.";
+
+// OCErrorFeatureNotSupportedByServer
+"This feature is not supported for this server (version)." = "Αυτή η λειτουργία δεν υποστηρίζεται για αυτόν τον διακομιστή (έκδοση).";
+
+// OCErrorFeatureNotImplemented
+"This feature is currently not implemented" = "Αυτή η λειτουργία δεν εφαρμόζεται προς το παρόν";
+
+// OCErrorItemNotFound
+"The targeted item has not been found." = "Το αντικείμενο στόχος δεν βρέθηκε.";
+
+// OCErrorItemDestinationNotFound
+"The destination item has not been found." = "Το αντικείμενο προορισμού δεν βρέθηκε.";
+
+// OCErrorItemChanged
+"The targeted item has changed." = "Το αντικείμενο στόχος έχει αλλάξει.";
+
+// OCErrorItemInsufficientPermissions
+"The action couldn't be performed on the targeted item because the client lacks permissions." = "Η ενέργεια δεν ήταν δυνατή για το αντικείμενο στόχος επειδή ο πελάτης δεν διαθέτει δικαιώματα.";
+
+// OCErrorItemOperationForbidden
+"The operation on the targeted item is not allowed." = "Δεν επιτρέπεται η λειτουργία στο αντικείμενο στόχο.";
+
+// OCErrorItemAlreadyExists
+"There already is an item at the destination of this action." = "Υπάρχει ήδη ένα αντικείμενο στον προορισμό αυτής της ενέργειας.";
+
+// OCErrorItemNotAvailableOffline
+"Item not available offline." = "Το αντικείμενο δεν είναι διαθέσιμο εκτός σύνδεσης.";
+
+// OCErrorFileNotFound:
+"File not found." = "Δεν βρέθηκε το αρχείο.";
+
+// OCErrorCancelled
+"The operation was cancelled." = "Η λειτουργία ακυρώθηκε.";
+
+// OCErrorOutdatedCache
+"An operation failed due to outdated cache information." = "Μια λειτουργία απέτυχε εξαιτίας παρωχημένων πληροφοριών λανθάνουσας μνήμης.";
+
+// OCErrorRunningOperation
+"A running operation prevents execution." = "Μια λειτουργία που εκτελείται εμποδίζει την εκτέλεση.";
