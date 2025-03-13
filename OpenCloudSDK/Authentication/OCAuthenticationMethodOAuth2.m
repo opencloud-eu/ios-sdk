@@ -114,10 +114,11 @@ OCAuthenticationMethodAutoRegister
 		OCAuthenticationMethodOAuth2AuthorizationEndpoint : @"index.php/apps/oauth2/authorize",
 		OCAuthenticationMethodOAuth2TokenEndpoint 	  : @"index.php/apps/oauth2/api/v1/token",
 		OCAuthenticationMethodOAuth2RedirectURI 	  : @"oc://ios.opencloud.eu",
-		OCAuthenticationMethodOAuth2ClientID 		  : @"mxd5OQDk6es5LzOzRvidJNfXLUZS2oN3oUFeXPP8LpPrhx3UroJFduGEYIBOxkY1",
-		OCAuthenticationMethodOAuth2ClientSecret 	  : @"KFeFWWEZO9TkisIQzR3fo7hfiMXlOpaqP8CFuTbSHzV1TUuGECglPxpiVKJfOXIx",
+		OCAuthenticationMethodOAuth2ClientID 		  : @"OpenCloudIOS",
+		OCAuthenticationMethodOAuth2ClientSecret 	  : @"",
 		OCAuthenticationMethodOAuth2PostClientIDAndSecret : @(NO)
 	});
+    // Ref https://github.com/opencloud-eu/opencloud/blob/main/services/idp/pkg/config/defaults/defaultconfig.go#L106
 }
 
 + (OCClassSettingsMetadataCollection)classSettingsMetadata
@@ -360,7 +361,7 @@ OCAuthenticationMethodAutoRegister
 - (NSDictionary<NSString *,NSString *> *)prepareAuthorizationRequestParameters:(NSDictionary<NSString *,NSString *> *)parameters forConnection:(OCConnection *)connection options:(OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options
 {
 	// ** Implementation for OC OAuth2 - commented out because ASWebAuthenticationSession and Safari crash (in Simulator and iOS device - 14.2.1) **
-	// ** Test URL: https://demo.opencloud.eu/index.php/apps/oauth2/authorize?response_type=code&redirect_uri=oc://ios.opencloud.eu&client_id=mxd5OQDk6es5LzOzRvidJNfXLUZS2oN3oUFeXPP8LpPrhx3UroJFduGEYIBOxkY1&user=test **
+	// ** Test URL: https://demo.opencloud.eu/index.php/apps/oauth2/authorize?response_type=code&redirect_uri=oc://ios.opencloud.eu&client_id=OpenCloudIOS&user=test **
 
 	// Limited to iOS 15+, because with previous server and iOS versions, providing the user name
 	// led to a crash in ASWebAuthenticationSession and Safari in Simulator + on device (see above).
