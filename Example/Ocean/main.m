@@ -1,6 +1,6 @@
 //
 //  main.m
-//  Ocean - OwnCloud Example ApplicatioN
+//  Ocean - Example Application
 //
 //  Created by Felix Schwarz on 16.02.18.
 //  Copyright © 2018 ownCloud GmbH. All rights reserved.
