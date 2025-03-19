@@ -387,7 +387,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 	}
 	else
 	{
-		// OC10 special characters, as per https://github.com/opencloud/password_policy/blob/master/lib/Controller/SettingsController.php#L47
+		// OC10 special characters, as per https://github.com/opencloud-eu/password_policy/blob/master/lib/Controller/SettingsController.php#L47
 		if (self._passwordRequirements != nil)
 		{
 			// OC10-style password policy

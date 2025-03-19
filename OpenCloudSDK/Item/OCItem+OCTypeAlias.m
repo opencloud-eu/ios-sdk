@@ -28,8 +28,7 @@
 
 	dispatch_once(&onceToken, ^{
 		mimeTypeAliases = @{
-			// List taken from https://github.com/opencloud/core/blob/master/resources/config/mimetypealiases.dist.json on 2022-09-12
-			// (previously taken from https://github.com/opencloud/core/blob/master/core/js/mimetypelist.js)
+			// List taken from https://github.com/opencloud-eu/opencloud/blob/master/resources/config/mimetypealiases.dist.json on 2022-09-12
 			@"application/coreldraw": @"image",
 			@"application/epub+zip": @"text",
 			@"application/font-sfnt": @"image",

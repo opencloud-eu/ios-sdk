@@ -377,7 +377,7 @@
 		{
 			// Roles as described in
 			// - https://github.com/owncloud/ocis/issues/4848#issuecomment-1283678879
-			// - https://github.com/opencloud/web/blob/master/packages/web-client/src/helpers/share/role.ts
+			// - https://github.com/opencloud-eu/web/blob/master/packages/web-client/src/helpers/share/role.ts
 			[_shareRoles addObjectsFromArray:@[
 				// # USERS & GROUPS
 				// ## Viewer

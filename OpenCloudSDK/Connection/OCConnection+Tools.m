@@ -219,7 +219,7 @@
 	NSURL *originalURL = [inOriginalURL absoluteURL];
 	NSURL *redirectionTargetURL = [inRedirectionTargetURL absoluteURL];
 
-	// Find root from redirects based on https://github.com/opencloud/administration/blob/master/redirectServer/Readme.md
+	// Find root from redirects based on https://github.com/opencloud-eu/administration/blob/master/redirectServer/Readme.md
 
 	if ((originalBaseURL!=nil) && (originalURL!=nil))
 	{

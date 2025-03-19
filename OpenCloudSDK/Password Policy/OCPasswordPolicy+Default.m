@@ -24,7 +24,7 @@
 + (OCPasswordPolicy *)defaultPolicy
 {
 	return ([[OCPasswordPolicy alloc] initWithRules:@[
-		// Defaults as per https://github.com/opencloud/web/blob/master/packages/web-pkg/src/services/passwordPolicy/passwordPolicy.ts#L51
+		// Defaults as per https://github.com/opencloud-eu/web/blob/master/packages/web-pkg/src/services/passwordPolicy/passwordPolicy.ts#L51
 		[OCPasswordPolicyRule characterCountMinimum:@(12) maximum:nil],
 		[OCPasswordPolicyRule lowercaseCharactersMinimum:@(2) maximum:nil],
 		[OCPasswordPolicyRule uppercaseCharactersMinimum:@(2) maximum:nil],

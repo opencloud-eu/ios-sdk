@@ -1042,7 +1042,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 
 			if ([[self classSettingForOCClassSettingsKey:OCConnectionValidatorFlags] containsObject:OCConnectionValidatorFlagClearCookies])
 			{
-				// Remove all cookies when entering the connection validator, as per https://github.com/opencloud/client/pull/8558
+				// Remove all cookies when entering the connection validator, as per https://github.com/owncloud/client/pull/8558
 				OCTLog(@[ @"ConnectionValidator" ], @"Clearing cookies on entry to connection validation");
 				[self.cookieStorage removeCookiesWithFilter:nil];
 			}
@@ -1261,7 +1261,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 - (NSProgress *)connectWithCompletionHandler:(void(^)(NSError *error, OCIssue *issue))completionHandler
 {
 	/*
-		Follow the https://github.com/opencloud/administration/tree/master/redirectServer playbook:
+		Follow the https://github.com/opencloud-eu/administration/tree/master/redirectServer playbook:
 
 		0) (not in the playback) Check authentication data availability
 			- if existant: proceed

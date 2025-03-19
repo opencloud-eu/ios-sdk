@@ -80,7 +80,7 @@
 					if ([itemSource containsString:@"!"] && [state isEqual:OCShareStateAccepted] && (share.category == OCShareCategoryWithMe))
 					{
 						// Compute location and FileID in Shares Jail
-						share.itemFileID = [OCDriveIDSharesJail stringByAppendingFormat:@"!%@", shareID]; // Item ID in Shares Jail = OCDriveIDSharesJail + "!" + shareID (via https://github.com/opencloud/web/blob/master/packages/web-client/src/helpers/space/functions.ts#L53 )
+						share.itemFileID = [OCDriveIDSharesJail stringByAppendingFormat:@"!%@", shareID]; // Item ID in Shares Jail = OCDriveIDSharesJail + "!" + shareID (via https://github.com/opencloud-eu/web/blob/master/packages/web-client/src/helpers/space/functions.ts#L53 )
 						share.itemLocation = [[OCLocation alloc] initWithDriveID:OCDriveIDSharesJail path:[@"/" stringByAppendingString:sharePath.lastPathComponent]]; // Item is located in Shares Jail
 					}
 					else

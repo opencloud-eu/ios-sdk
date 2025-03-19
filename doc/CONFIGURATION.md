@@ -15,7 +15,7 @@ The key names in the managed configuration dictionary are built from the section
 
 ## Available options
 
-The file located at `doc/CONFIGURATION.json` provides a machine-readable list of available settings. For the `ios-sdk` repository, this includes only settings implemented in the SDK. For the full list of settings available for configuration, please see [`docs/modules/ROOT/pages/ios_mdm_tables.adoc`](https://github.com/opencloud/ios-app/blob/master/docs/modules/ROOT/pages/ios_mdm_tables.adoc) in the `ios-app` repository.
+The file located at `doc/CONFIGURATION.json` provides a machine-readable list of available settings. For the `ios-sdk` repository, this includes only settings implemented in the SDK. For the full list of settings available for configuration, please see [`docs/modules/ROOT/pages/ios_mdm_tables.adoc`](https://github.com/opencloud-eu/ios-app/blob/master/docs/modules/ROOT/pages/ios_mdm_tables.adoc) in the `ios-app` repository.
 
 # Compile time configuration
 

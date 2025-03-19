@@ -19,12 +19,6 @@
 #import "OCConnection.h"
 #import "NSError+OCError.h"
 
-/*
-	References:
-	- Developer documentation: https://doc.opencloud.eu/server/developer_manual/core/ocs-recipient-api.html
-	- Implementation: https://github.com/opencloud/core/blob/master/apps/files_sharing/lib/Controller/ShareesController.php
-*/
-
 @implementation OCConnection (Recipients)
 
 - (NSMutableArray <OCIdentity *> *)_recipientsFromJSONArray:(NSArray<NSDictionary<NSString *, id> *> *)jsonArray matchType:(OCRecipientMatchType)matchType addToArray:(NSMutableArray <OCIdentity *> *)recipientsArray

@@ -433,7 +433,6 @@ BIT_ACCESSOR(canShare,	setCanShare,	OCSharePermissionsMaskShare);
 
 @end
 
-// Values via https://github.com/opencloud/core/blob/master/lib/private/Share/Constants.php
 OCShareState OCShareStateAccepted = @"0";
 OCShareState OCShareStatePending  = @"1";
 OCShareState OCShareStateDeclined = @"2";

@@ -55,7 +55,7 @@
 		and failing conversion by golang's time.Parse(time.RFC3339, ..). We therefore have to account for this for as long as it is
 		that way and insert ":" in the timezone part *if needed* ("2024-11-17T23:00:00+0000" => "2024-11-17T23:00:00+00:00")
 		to be compatible with golang's time.RFC3339
-		(as used in https://github.com/opencloud/ocis/blob/cff364c998355b1295793e9244e5efdfea064536/services/search/pkg/engine/bleve.go#L225)
+		(as used in https://github.com/opencloud-eu/opencloud/blob/cff364c998355b1295793e9244e5efdfea064536/services/search/pkg/engine/bleve.go#L225)
 
 		This can be verified with this golang snippet:
 			package main
@@ -91,7 +91,7 @@
 
 - (OCKQLString)kqlStringWithTypeAliasToKQLTypeMap:(NSDictionary<NSString *, NSString *> *)typeAliasToKQLTypeMap targetContent:(OCKQLSearchedContent)targetContent
 {
-	// Mappings as per as per https://github.com/opencloud/ocis/blob/21893235442194f790f8c369f3b695eba79a43b9/services/search/pkg/query/bleve/compiler.go#L13
+	// Mappings as per as per https://github.com/opencloud-eu/opencloud/blob/21893235442194f790f8c369f3b695eba79a43b9/services/search/pkg/query/bleve/compiler.go#L13
 	NSString *kqlString = [self _kqlStringWithColumnNameMap:@{
 		OCItemPropertyNameName: 	@"name",
 		OCItemPropertyNameLastModified: @"mtime",

@@ -16,12 +16,6 @@
  *
  */
 
-/*
-	References:
-	- Developer documentation: https://doc.opencloud.eu/server/developer_manual/core/ocs-share-api.html
-	- Implementation: https://github.com/opencloud/core/blob/master/apps/files_sharing/lib/Controller/Share20OcsController.php
-*/
-
 #import "OCConnection.h"
 #import "OCItem.h"
 #import "NSError+OCError.h"
