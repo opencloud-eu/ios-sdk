@@ -304,7 +304,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		// OC10-style password policy
 		minimumCharacters = OCTypedCast(self._passwordRequirements[@"minimum_characters"], NSNumber);
 	} else {
-		// ocis-style password policy
+		// OpenCloud-style password policy
 		minimumCharacters = OCTypedCast(self._passwordPolicy[@"min_characters"], NSNumber);
 	}
 
@@ -326,7 +326,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 
 - (NSNumber *)passwordPolicyMaxCharacters
 {
-	// ocis-style password policy
+	// OpenCloud-style password policy
 	return (OCTypedCast(self._passwordPolicy[@"max_characters"], NSNumber));
 }
 
@@ -337,7 +337,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"lower_case"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
-	// ocis-style password policy
+	// OpenCloud-style password policy
 	return (OCTypedCast(self._passwordPolicy[@"min_lowercase_characters"], NSNumber));
 }
 
@@ -348,7 +348,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"upper_case"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
-	// ocis-style password policy
+	// OpenCloud-style password policy
 	return (OCTypedCast(self._passwordPolicy[@"min_uppercase_characters"], NSNumber));
 }
 
@@ -359,7 +359,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"numbers"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
-	// ocis-style password policy
+	// OpenCloud-style password policy
 	return (OCTypedCast(self._passwordPolicy[@"min_digits"], NSNumber));
 }
 
@@ -370,7 +370,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"special_characters"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
-	// ocis-style password policy
+	// OpenCloud-style password policy
 	return (OCTypedCast(self._passwordPolicy[@"min_special_characters"], NSNumber));
 }
 
@@ -378,10 +378,10 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 {
 	if (self.spacesEnabled.boolValue)
 	{
-		// ocis special characters, as per:
-		// - https://doc.opencloud.eu/ocis/next/deployment/services/s-list/frontend.html (general idea)
-		// - https://github.com/opencloud/ocis/pull/7195 (implementation description)
-		// - https://github.com/opencloud/ocis/blob/master/vendor/github.com/cs3org/reva/v2/pkg/password/password_policies.go#L12 (actual implementation) <= mirrored here
+		// OpenCloud special characters, as per:
+		// - https://doc.opencloud.eu/opencloud/next/deployment/services/s-list/frontend.html (general idea)
+		// - https://github.com/owncloud/ocis/pull/7195 (implementation description)
+		// - https://github.com/opencloud-eu/opencloud/blob/master/vendor/github.com/cs3org/reva/v2/pkg/password/password_policies.go#L12 (actual implementation) <= mirrored here
 		// - minus space, because that can lead to issues, especially if it is at the end
 		return (@"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 	}
@@ -402,7 +402,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 
 				if ([OCTypedCast(specialCharactersGenerateFromDict[@"any"],NSNumber) isEqual:@(YES)])
 				{
-					// Return same special chars as for ocis
+					// Return same special chars as for OpenCloud
 					return (@"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 				}
 			}
@@ -770,7 +770,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 {
 	if (self.spacesEnabled.boolValue)
 	{
-		// ocis bug: can't depend on federatedSharingIncoming and federatedSharingOutgoing: https://github.com/owncloud/ocis/issues/4788
+		// OpenCloud bug: can't depend on federatedSharingIncoming and federatedSharingOutgoing: https://github.com/owncloud/ocis/issues/4788
 		return (NO);
 	}
 

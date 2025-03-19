@@ -341,7 +341,7 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 			  ],
 			  "application_type": "native",
 			  "contacts": null,
-			  "client_name": "OpenCloud/iOS 11.5 on ocis.opencloud.works",
+			  "client_name": "OpenCloud/iOS 11.5 on klaasihasi.opencloud.works",
 			  "client_uri": "",
 			  "jwks": null,
 			  "id_token_signed_response_alg": "RS256",

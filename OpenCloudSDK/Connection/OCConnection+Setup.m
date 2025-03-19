@@ -42,7 +42,7 @@
 
 		2) Query [url]/.well-known/webfinger?resource=https%3A%2F%2Furl
 		   - Error -> ignore
-		   - Success (Example: `{"subject":"https://drive.ocis.test","links":[{"rel":"http://openid.net/specs/connect/1.0/issuer","href":"https://ocis.ocis-wopi.latest.opencloud.works"}]}` )
+		   - Success (Example: `{"subject":"https://drive.opencloud.test","links":[{"rel":"http://openid.net/specs/connect/1.0/issuer","href":"https://opencloud.wobby-bobby.latest.opencloud.works"}]}` )
 		        - links[rel=http://openid.net/specs/connect/1.0/issuer]['href'] in JSON response?
 		        	-> use as new base URL, OpenID Connect should be found via [new base URL]/.well-known/openid-configuration by requestSupportedAuthenticationMethodsWithOptions…
 		        	-> skip step 3
@@ -455,7 +455,7 @@
 			{
 				if (jsonDict != nil)
 				{
-					// Example: {"subject":"https://drive.ocis.test","links":[{"rel":"http://openid.net/specs/connect/1.0/issuer","href":"https://ocis.ocis-wopi.latest.opencloud.works"}]}
+					// Example: {"subject":"https://drive.opencloud.test","links":[{"rel":"http://openid.net/specs/connect/1.0/issuer","href":"https://opencloud.wobby-bobby.latest.opencloud.works"}]}
 					// Require subject = rootURL.absoluteString
 					if ([jsonDict[@"subject"] isEqual:webfingerRootURL.absoluteString])
 					{

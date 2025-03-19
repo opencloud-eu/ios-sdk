@@ -33,6 +33,6 @@
 		- automatic return of a requested OCCore via OCCoreManager upon deallocation
 	[- method that, for a node, returns an object that conforms to a `VFSItem` protocol describing the item (this can of course also be the node or item itself, but gives a hook for future customizations)]
 - VFSItemID string addressing scheme
-	- using "\" as separator, not ":", because that might also be used in ocis identifiers
+	- using "\" as separator, not ":", because that might also be used in opencloud identifiers
 	- Real items: 	 I\[bookmarkUUID]\[driveID]\[localID][\[fileName]]
 	- Virtual items: V\[bookmarkUUID]\[driveID] or V\[vfsNodeID]

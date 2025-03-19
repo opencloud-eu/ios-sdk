@@ -214,15 +214,15 @@
 	{
 		if ([serverVersion compareVersionWith:minimumVersion] == NSOrderedAscending)
 		{
-			// ocis public beta special handling
+			// OpenCloud public beta special handling
 
 			// NSArray<NSString *> *versionSegments = [serverVersion componentsSeparatedByString:@"."];
-			// ocis returns four digit version numbers, with 2 being the major version
+			// OpenCloud returns four digit version numbers, with 2 being the major version
 			// if ((versionSegments.count == 4) && [versionSegments.firstObject isEqual:@"2"])
 
 			if ([serverVersion isEqual:@"0.0.0.0"] || [serverVersion isEqual:@"2.0.0.0"])
 			{
-				// ocis public beta exception
+				// OpenCloud public beta exception
 				return (nil);
 			}
 

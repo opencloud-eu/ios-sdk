@@ -386,7 +386,7 @@
 					{
 						if (inLocation.driveID == nil)
 						{
-							// Identical to ocis
+							// Identical to opencloud
 							// presentable.title = OCLocalizedString(@"Personal",nil);
 							// presentable.image = [OCSymbol iconForSymbolName:@"person"];
 

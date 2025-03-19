@@ -450,7 +450,7 @@ static OCUploadInfoTask OCUploadInfoTaskUpload = @"upload";
 
 		[request addHeaderFields:reqTusHeader.httpHeaderFields];
 
-		// TODO: clarify if conditions (If-Match / If-None-Match) are still relevant/supported with ocis
+		// TODO: clarify if conditions (If-Match / If-None-Match) are still relevant/supported with OpenCloud
 
 		// Add userInfo
 		request.userInfo = @{

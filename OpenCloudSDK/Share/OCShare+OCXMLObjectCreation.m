@@ -85,7 +85,7 @@
 					}
 					else
 					{
-						// OCIS (drive ID could be extracted from item_source, which follows format "[driveID]![fileID]")
+						// OpenCloud (drive ID could be extracted from item_source, which follows format "[driveID]![fileID]")
 						NSArray<NSString *> *itemSourceIDs = [itemSource componentsSeparatedByString:@"!"];
 
 						if (itemSourceIDs.count == 2)

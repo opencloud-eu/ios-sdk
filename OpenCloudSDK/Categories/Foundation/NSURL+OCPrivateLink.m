@@ -59,7 +59,7 @@
 		}
 		else if (core.useDrives)
 		{
-			// ocis-style, non-numeric File ID
+			// opencloud-style, non-numeric File ID
 			uniquePrefix = linkFileID;
 			isPrefix = NO;
 		}

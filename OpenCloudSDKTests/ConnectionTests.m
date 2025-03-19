@@ -1081,7 +1081,7 @@
 
 		if (error == nil)
 		{
-			// Unimplemented for now due to unavailability of Basic Auth on public ocis instance
+			// Unimplemented for now due to unavailability of Basic Auth on public instance
 		}
 
 		[expectConnect fulfill];

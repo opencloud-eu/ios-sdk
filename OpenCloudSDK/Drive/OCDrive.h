@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, OCDriveDetachedState)
 @property(strong,nullable) NSDate *detachedSinceDate;
 
 #pragma mark - Instantiation
-+ (instancetype)driveFromGADrive:(GADrive *)drive; //!< oCIS drive, initialized from a GADrive instance
++ (instancetype)driveFromGADrive:(GADrive *)drive; //!< OpenCloud drive, initialized from a GADrive instance
 
 #pragma mark - Comparison
 - (BOOL)isSubstantiallyDifferentFrom:(OCDrive *)drive;

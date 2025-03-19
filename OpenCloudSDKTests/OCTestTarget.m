@@ -28,7 +28,7 @@
 
 + (NSURL *)ocisTargetURL
 {
-	return ([NSURL URLWithString:@"https://ocis.ocis-wopi.latest.opencloud.works/"]);
+	return ([NSURL URLWithString:@"https://opencloud.woppy-bobbi.latest.opencloud.works/"]);
 }
 
 + (NSString *)adminLogin
