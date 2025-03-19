@@ -20,12 +20,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSError (OCISError)
+@interface NSError (OpenCloudError)
 
-+ (nullable NSError *)errorFromOCISErrorDictionary:(NSDictionary<NSString *, NSString *> *)ocisErrorDict underlyingError:(nullable NSError *)underlyingError;
++ (nullable NSError *)errorFromOpenCloudErrorDictionary:(NSDictionary<NSString *, NSString *> *)openCloudErrorDict underlyingError:(nullable NSError *)underlyingError;
 
 @end
 
-extern NSErrorUserInfoKey OCOcisErrorCodeKey;
+extern NSErrorUserInfoKey OCOpenCloudErrorCodeKey;
 
 NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  NSError+OCISError.m
+//  NSError+OpenCloudError.m
 //  OpenCloudSDK
 //
 //  Created by Felix Schwarz on 19.09.22.
@@ -16,45 +16,45 @@
  *
  */
 
-#import "NSError+OCISError.h"
+#import "NSError+OpenCloudError.h"
 #import "OCMacros.h"
 
-@implementation NSError (OCISError)
+@implementation NSError (OpenCloudError)
 
-+ (nullable NSError *)errorFromOCISErrorDictionary:(NSDictionary<NSString *, NSString *> *)ocisErrorDict underlyingError:(nullable NSError *)underlyingError
++ (nullable NSError *)errorFromOpenCloudErrorDictionary:(NSDictionary<NSString *, NSString *> *)openCloudErrorDict underlyingError:(nullable NSError *)underlyingError
 {
 	NSError *error = nil;
 
-	if ([ocisErrorDict isKindOfClass:NSDictionary.class])
+	if ([openCloudErrorDict isKindOfClass:NSDictionary.class])
 	{
-		NSString *ocisCode;
+		NSString *openCloudCode;
 
-		if ((ocisCode = OCTypedCast(ocisErrorDict[@"code"], NSString)) != nil)
+		if ((openCloudCode = OCTypedCast(openCloudErrorDict[@"code"], NSString)) != nil)
 		{
 			NSMutableDictionary<NSErrorUserInfoKey, id> *errorUserInfo = [NSMutableDictionary new];
 			NSString *message = nil;
 			OCError errorCode = OCErrorUnknown;
 
-			errorUserInfo[OCOcisErrorCodeKey] = ocisCode;
+			errorUserInfo[OCOpenCloudErrorCodeKey] = openCloudCode;
 
-			if ((message = OCTypedCast(ocisErrorDict[@"message"], NSString)) != nil)
+			if ((message = OCTypedCast(openCloudErrorDict[@"message"], NSString)) != nil)
 			{
 				errorUserInfo[NSLocalizedDescriptionKey] = message;
 			}
 
 			// via https://opencloud.dev/services/app-registry/apps/
-			if ([ocisCode isEqual:@"RESOURCE_NOT_FOUND"])
+			if ([openCloudCode isEqual:@"RESOURCE_NOT_FOUND"])
 			{
 				errorCode = OCErrorResourceNotFound;
 			}
 
 			// via https://opencloud.dev/services/app-registry/apps/
-			if ([ocisCode isEqual:@"INVALID_PARAMETER"])
+			if ([openCloudCode isEqual:@"INVALID_PARAMETER"])
 			{
 				errorCode = OCErrorInvalidParameter;
 			}
 
-			if ([ocisCode isEqual:@"TOO_EARLY"])
+			if ([openCloudCode isEqual:@"TOO_EARLY"])
 			{
 				errorCode = OCErrorItemProcessing;
 			}
@@ -78,4 +78,5 @@
 
 @end
 
-NSErrorUserInfoKey OCOcisErrorCodeKey = @"ocisErrorCode";
+// NOTE: There is also OCErrorDomain in another file.
+NSErrorUserInfoKey OCOpenCloudErrorCodeKey = @"openCloudErrorCode";

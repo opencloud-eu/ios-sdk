@@ -26,7 +26,7 @@
 	return ([NSURL URLWithString:@"https://demo.opencloud.eu/"]);
 }
 
-+ (NSURL *)ocisTargetURL
++ (NSURL *)openCloudTargetURL
 {
 	return ([NSURL URLWithString:@"https://opencloud.woppy-bobbi.latest.opencloud.works/"]);
 }
@@ -111,9 +111,9 @@
 	return ([self bookmarkWithURL:OCTestTarget.federatedTargetURL username:OCTestTarget.federatedLogin passphrase:OCTestTarget.federatedPassword]);
 }
 
-+ (OCBookmark *)ocisBookmark
++ (OCBookmark *)openCloudBookmark
 {
-	return ([self bookmarkWithURL:OCTestTarget.ocisTargetURL username:OCTestTarget.adminLogin passphrase:OCTestTarget.adminPassword]);
+	return ([self bookmarkWithURL:OCTestTarget.openCloudTargetURL username:OCTestTarget.adminLogin passphrase:OCTestTarget.adminPassword]);
 }
 
 @end

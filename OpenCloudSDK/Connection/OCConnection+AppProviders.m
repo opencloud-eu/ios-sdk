@@ -18,7 +18,7 @@
 
 #import "OCConnection.h"
 #import "NSError+OCError.h"
-#import "NSError+OCISError.h"
+#import "NSError+OpenCloudError.h"
 #import "OCMacros.h"
 #import "OCAppProviderApp.h"
 #import "NSDictionary+OCFormEncoding.h"
@@ -286,7 +286,7 @@
 
 				if (error == nil)
 				{
-					error = [NSError errorFromOCISErrorDictionary:jsonResponse underlyingError:fallbackError];
+					error = [NSError errorFromOpenCloudErrorDictionary:jsonResponse underlyingError:fallbackError];
 				}
 			}
 
@@ -406,7 +406,7 @@
 
 				if (error == nil)
 				{
-					error = [NSError errorFromOCISErrorDictionary:jsonResponse underlyingError:fallbackError];
+					error = [NSError errorFromOpenCloudErrorDictionary:jsonResponse underlyingError:fallbackError];
 				}
 			}
 

@@ -1069,7 +1069,7 @@
 {
 	XCTestExpectation *expectConnect = [self expectationWithDescription:@"Connected"];
 	OCConnection *connection = nil;
-	OCBookmark *bookmark = OCTestTarget.ocisBookmark;
+	OCBookmark *bookmark = OCTestTarget.openCloudBookmark;
 
 	connection = [[OCConnection alloc] initWithBookmark:bookmark];
 
