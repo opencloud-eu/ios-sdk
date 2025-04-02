@@ -98,7 +98,7 @@
 
 				if (share.itemLocation == nil)
 				{
-					// Fall back to OC10 legacy location
+					// Fall back to old server legacy location
 					share.itemLocation = [OCLocation legacyRootPath:sharePath];
 				}
 			}

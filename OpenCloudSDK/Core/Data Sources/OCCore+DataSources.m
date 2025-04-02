@@ -759,7 +759,7 @@
 
 				if (!self.useDrives)
 				{
-					// Only OC10 requires polling for favorites - OpenCloud propagates the change via regular PROPFIND update scanning
+					// Only old server requires polling for favorites - OpenCloud propagates the change via regular PROPFIND update scanning
 					[self subscribeToPollingDatasourcesTimer:OCCoreDataSourcePollTypeFavorites];
 				}
 			}
@@ -777,7 +777,7 @@
 
 			if (!self.useDrives)
 			{
-				// Only OC10 requires polling for favorites - OpenCloud propagates the change via regular PROPFIND update scanning
+				// Only old server requires polling for favorites - OpenCloud propagates the change via regular PROPFIND update scanning
 				[self unsubscribeFromPollingDatasourcesTimer:OCCoreDataSourcePollTypeFavorites withForcedStop:NO];
 			}
 		}

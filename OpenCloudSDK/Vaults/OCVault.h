@@ -77,7 +77,7 @@
 
 			"Erasure"/					- OCVault.wipeContainerFilesRootURL (folder whose contents should be erased)
 
-			*OC10/without drives*
+			*old server/without drives*
 			[Local ID]/					- OCVault.localFolderURLForItem
 				[filename.xyz]				- OCVault.localURLForItem
 

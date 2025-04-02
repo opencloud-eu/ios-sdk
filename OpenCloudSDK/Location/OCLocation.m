@@ -390,7 +390,7 @@
 							// presentable.title = OCLocalizedString(@"Personal",nil);
 							// presentable.image = [OCSymbol iconForSymbolName:@"person"];
 
-							// OC10 style
+							// old server style
 							presentable.title = OCLocalizedString(@"Files",nil);
 							presentable.image = [OCSymbol iconForSymbolName:@"folder"];
 						}

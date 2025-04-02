@@ -917,7 +917,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCCore)
 
 		if ((queryLocation = query.queryLocation) != nil)
 		{
-			// No drive ID? => legacy/OC10 location
+			// No drive ID? => legacy/old server location
 			if (queryLocation.driveID == nil)
 			{
 				// Find personal drive

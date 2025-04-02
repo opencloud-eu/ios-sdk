@@ -1078,7 +1078,7 @@
 	// Returns the root folder for the drive with ID driveID
 	if (driveID == nil)
 	{
-		// oC10 items have no drive ID, so just return the filesRootURL
+		// old server items have no drive ID, so just return the filesRootURL
 		return (self.filesRootURL);
 	}
 
@@ -1251,7 +1251,7 @@
 		}
 		else
 		{
-			// OC10 based: [storageRoot]/[LocalID]/…
+			// old server based: [storageRoot]/[LocalID]/…
 			returnURL = [[self storageRootURLForBookmarkUUID:location.bookmarkUUID] URLByAppendingPathComponent:location.localID isDirectory:YES];
 		}
 	}

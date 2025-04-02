@@ -38,7 +38,7 @@ typedef NSString* OCVFSItemID NS_TYPED_EXTENSIBLE_ENUM; // The Virtual File Syst
 
 	- OCItem:
 		I\[bookmarkUUID]\[driveID]\[localID]	// used for drive-based accounts
-		I\[bookmarkUUID]\[localID] 		// used for OC10 accounts
+		I\[bookmarkUUID]\[localID] 		// used for old server accounts
 
 	- OCVFSNode:
 		V\[nodeID]

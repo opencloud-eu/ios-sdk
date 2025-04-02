@@ -54,7 +54,7 @@
 
 		if ([[NSString stringWithFormat:@"%lu",fileIDInt] isEqual:linkFileID]) // Fully numeric ID
 		{
-			uniquePrefix = [NSString stringWithFormat:@"%08lu", fileIDInt]; // Prefix of OC10-style fileIDs (f.ex. 00000090ocxif4l0973a, where "00000090" is the numeric file ID and "ocxif4l0973a" is the host ID)
+			uniquePrefix = [NSString stringWithFormat:@"%08lu", fileIDInt]; // Prefix of old server-style fileIDs (f.ex. 00000090ocxif4l0973a, where "00000090" is the numeric file ID and "ocxif4l0973a" is the host ID)
 			isPrefix = YES;
 		}
 		else if (core.useDrives)

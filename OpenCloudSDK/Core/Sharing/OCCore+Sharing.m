@@ -629,7 +629,7 @@
 
 		if (isPrefix)
 		{
-			// ID Part is OC10-style File ID prefix
+			// ID Part is old server-style File ID prefix
 			[self.database retrieveCacheItemForFileIDUniquePrefix:idPart includingRemoved:NO completionHandler:^(OCDatabase *db, NSError *error, OCSyncAnchor syncAnchor, OCItem *item) {
 				HandleRetrievalResult(item);
 			}];

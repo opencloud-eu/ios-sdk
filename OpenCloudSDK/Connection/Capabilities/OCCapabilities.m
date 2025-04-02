@@ -301,7 +301,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 	NSNumber *minimumCharacters = nil;
 
 	if (self._passwordRequirements != nil) {
-		// OC10-style password policy
+		// old server-style password policy
 		minimumCharacters = OCTypedCast(self._passwordRequirements[@"minimum_characters"], NSNumber);
 	} else {
 		// OpenCloud-style password policy
@@ -333,7 +333,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 - (NSNumber *)passwordPolicyMinLowerCaseCharacters
 {
 	if (self._passwordRequirements != nil) {
-		// OC10-style password policy
+		// old server-style password policy
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"lower_case"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
@@ -344,7 +344,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 - (NSNumber *)passwordPolicyMinUpperCaseCharacters
 {
 	if (self._passwordRequirements != nil) {
-		// OC10-style password policy
+		// old server-style password policy
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"upper_case"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
@@ -355,7 +355,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 - (NSNumber *)passwordPolicyMinDigits
 {
 	if (self._passwordRequirements != nil) {
-		// OC10-style password policy
+		// old server-style password policy
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"numbers"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
@@ -366,7 +366,7 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 - (NSNumber *)passwordPolicyMinSpecialCharacters
 {
 	if (self._passwordRequirements != nil) {
-		// OC10-style password policy
+		// old server-style password policy
 		return (OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"special_characters"], NSDictionary)[@"minimum"], NSNumber));
 	}
 
@@ -387,10 +387,10 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 	}
 	else
 	{
-		// OC10 special characters, as per https://github.com/opencloud-eu/password_policy/blob/master/lib/Controller/SettingsController.php#L47
+		// old server special characters, as per https://github.com/opencloud-eu/password_policy/blob/master/lib/Controller/SettingsController.php#L47
 		if (self._passwordRequirements != nil)
 		{
-			// OC10-style password policy
+			// old server-style password policy
 			NSDictionary<NSString *, id> *specialCharactersGenerateFromDict;
 
 			if ((specialCharactersGenerateFromDict = OCTypedCast(OCTypedCast(OCTypedCast(self._passwordRequirements[@"configuration"], NSDictionary)[@"special_characters"], NSDictionary)[@"generate_from"], NSDictionary)) != nil)

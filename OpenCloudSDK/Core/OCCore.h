@@ -385,7 +385,7 @@ typedef id<NSObject> OCCoreItemTracking;
 - (nullable NSError *)renameDirectoryFromItem:(OCItem *)fromItem forItem:(OCItem *)toItem adjustLocalMetadata:(BOOL)adjustLocalMetadata; //!< Renames the directory of a (placeholder) item to be usable by another item
 
 #pragma mark - Drives
-@property(readonly,nonatomic) BOOL useDrives; //!< Returns YES if this account is drive-based (OpenCloud) rather than driven by a single WebDAV endpoint (OC10)
+@property(readonly,nonatomic) BOOL useDrives; //!< Returns YES if this account is drive-based (OpenCloud) rather than driven by a single WebDAV endpoint (old server)
 
 - (void)subscribeToDrive:(OCDrive *)drive; //!< Subscribes to a drive. The metadata for subscribed drives are actively kept up-to-date. [TBD]
 - (void)unsubscribeFromDrive:(OCDrive *)drive; //!< Unsubscribe from a drive. Metadata + files may be kept around, but are not kept up-to-date. [TBD]

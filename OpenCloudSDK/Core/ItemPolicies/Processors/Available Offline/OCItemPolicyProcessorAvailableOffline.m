@@ -91,7 +91,7 @@
 
 						if (policy.condition.operator == OCQueryConditionOperatorPropertyHasPrefix)
 						{
-							// Legacy / OC10 policy
+							// Legacy / old server policy
 							if (([policy.condition.property isEqual:OCItemPropertyNamePath]) &&
 						       	    ([policy.condition.value isEqual:policy.location.path]))
 							{
