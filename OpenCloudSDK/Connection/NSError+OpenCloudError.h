@@ -1,5 +1,5 @@
 //
-//  NSError+OCISError.h
+//  NSError+OpenCloudError.h
 //  OpenCloudSDK
 //
 //  Created by Felix Schwarz on 19.09.22.
