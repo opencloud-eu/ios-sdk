@@ -213,7 +213,6 @@
 		DC31816A2BDF882500E70392 /* OCSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3181602BDF882500E70392 /* OCSignal.m */; };
 		DC31816B2BDF882500E70392 /* OCSignalConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = DC3181612BDF882500E70392 /* OCSignalConsumer.h */; };
 		DC31816C2BDF882500E70392 /* OCSignalConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3181622BDF882500E70392 /* OCSignalConsumer.m */; };
-		DC31816D2BDF882500E70392 /* Signal Handling.md in Resources */ = {isa = PBXBuildFile; fileRef = DC3181632BDF882500E70392 /* Signal Handling.md */; };
 		DC31BAE22A82445200BFF393 /* OpenSSL.LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DC31BAE12A82445200BFF393 /* OpenSSL.LICENSE */; };
 		DC34227A217CAA0B00705508 /* OCIPNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DC342278217CAA0B00705508 /* OCIPNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC34227B217CAA0B00705508 /* OCIPNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC342279217CAA0B00705508 /* OCIPNotificationCenter.m */; };
@@ -1279,7 +1278,6 @@
 		DC3181602BDF882500E70392 /* OCSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSignal.m; sourceTree = "<group>"; };
 		DC3181612BDF882500E70392 /* OCSignalConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSignalConsumer.h; sourceTree = "<group>"; };
 		DC3181622BDF882500E70392 /* OCSignalConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSignalConsumer.m; sourceTree = "<group>"; };
-		DC3181632BDF882500E70392 /* Signal Handling.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Signal Handling.md"; sourceTree = "<group>"; };
 		DC31BAE12A82445200BFF393 /* OpenSSL.LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OpenSSL.LICENSE; sourceTree = "<group>"; };
 		DC342278217CAA0B00705508 /* OCIPNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCIPNotificationCenter.h; sourceTree = "<group>"; };
 		DC342279217CAA0B00705508 /* OCIPNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCIPNotificationCenter.m; sourceTree = "<group>"; };
@@ -2648,7 +2646,6 @@
 		DC3181642BDF882500E70392 /* Signals */ = {
 			isa = PBXGroup;
 			children = (
-				DC3181632BDF882500E70392 /* Signal Handling.md */,
 				DC31815E2BDF882500E70392 /* Manager */,
 				DC3181602BDF882500E70392 /* OCSignal.m */,
 				DC31815F2BDF882500E70392 /* OCSignal.h */,
@@ -5222,7 +5219,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC31816D2BDF882500E70392 /* Signal Handling.md in Resources */,
 				DCE0FEB02C77CEFA005E4423 /* Localizable.xcstrings in Resources */,
 				DCC8F9CA202853B300EB6701 /* LICENSE in Resources */,
 				DC446C8A206B8FBF00189B9A /* ISRunLoopThread.LICENSE in Resources */,
