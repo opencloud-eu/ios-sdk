@@ -1261,10 +1261,11 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 - (NSProgress *)connectWithCompletionHandler:(void(^)(NSError *error, OCIssue *issue))completionHandler
 {
 	/*
+	    // FIXME: can we delete this?! administration repo doesn't exist.
 		Follow the https://github.com/opencloud-eu/administration/tree/master/redirectServer playbook:
 
 		0) (not in the playback) Check authentication data availability
-			- if existant: proceed
+			- if existent: proceed
 			- if not: return error
 
 		1) Check status endpoint

@@ -381,13 +381,14 @@ static NSInteger _defaultSharingSearchMinLength = 2;
 		// OpenCloud special characters, as per:
 		// - https://doc.opencloud.eu/opencloud/next/deployment/services/s-list/frontend.html (general idea)
 		// - https://github.com/owncloud/ocis/pull/7195 (implementation description)
-		// - https://github.com/opencloud-eu/opencloud/blob/master/vendor/github.com/cs3org/reva/v2/pkg/password/password_policies.go#L12 (actual implementation) <= mirrored here
+		// - https://github.com/opencloud-eu/opencloud/blob/main/vendor/github.com/cs3org/reva/v2/pkg/password/password_policies.go#L12 (actual implementation) <= mirrored here
 		// - minus space, because that can lead to issues, especially if it is at the end
 		return (@"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 	}
 	else
 	{
-		// old server special characters, as per https://github.com/opencloud-eu/password_policy/blob/master/lib/Controller/SettingsController.php#L47
+	    // FIXME: delete this.
+		// old server special characters
 		if (self._passwordRequirements != nil)
 		{
 			// old server-style password policy
