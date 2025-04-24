@@ -219,6 +219,7 @@
 	NSURL *originalURL = [inOriginalURL absoluteURL];
 	NSURL *redirectionTargetURL = [inRedirectionTargetURL absoluteURL];
 
+    // FIXME: can we delete this?! administration repo doesn't exist.
 	// Find root from redirects based on https://github.com/opencloud-eu/administration/blob/master/redirectServer/Readme.md
 
 	if ((originalBaseURL!=nil) && (originalURL!=nil))

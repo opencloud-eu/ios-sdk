@@ -1,13 +1,9 @@
 #  OpenCloud iOS SDK
 
-## Introduction
-
-A new, modern OpenCloud iOS SDK.
+This is the OpenCloud iOS SDK.
 
 ## Architecture
 (this section is not entirely up-to-date)
-
-![New architecture](doc/new-architecture.png)
 
 The iOS SDK comes as a framework that is easy to integrate and encapsulates all needed code and resources.
 

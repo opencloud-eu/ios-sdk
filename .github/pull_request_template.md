@@ -1,9 +1,9 @@
 <!--
 Thanks for submitting a change to OpenCloud!
 
-To make it possible for us to get your change reviewed and merged please fill out below information carefully.
+To make it possible for us to get your change reviewed and merged, please carefully fill out the information below.
 
-Please note that any kind of change first has to be submitted to the master branch which holds the next major version of OpenCloud.
+Please note that any kind of change first has to be submitted to the main branch which holds the next major version of OpenCloud.
 -->
 
 ## Description
@@ -37,7 +37,6 @@ Please note that any kind of change first has to be submitted to the master bran
 - [ ] My code follows the code style of this project.
 - [ ] My change requires a change to the documentation.
 - [ ] I have updated the documentation accordingly.
-- [ ] I have read the [**CONTRIBUTING**](https://github.com/opencloud-eu/ios-app/blob/master/CONTRIBUTING.md) document.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
 
