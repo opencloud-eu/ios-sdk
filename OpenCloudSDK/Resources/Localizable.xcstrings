@@ -17,6 +17,15 @@
     "\"%@\" was modified locally before the download completed." : {
 
     },
+    "{{itemName}} can't be copied into itself." : {
+
+    },
+    "{{itemName}} can't be moved into itself." : {
+
+    },
+    "{{itemName}} is currently processed on the server and can't be downloaded until it finishes processing." : {
+
+    },
     "%@ already exists" : {
 
     },
@@ -133,6 +142,18 @@
         }
       }
     },
+    "At least {{min}} {{characterType}}" : {
+
+    },
+    "At least {{min}} special characters: {{specialCharacters}}" : {
+
+    },
+    "At most {{byteLength}} bytes." : {
+
+    },
+    "At most {{max}} {{characterType}}" : {
+
+    },
     "Auth Data" : {
 
     },
@@ -146,6 +167,9 @@
 
     },
     "Available Offline" : {
+
+    },
+    "Between {{min}} and {{max}} {{characterType}}" : {
 
     },
     "Can't build custom scheme URL from %@." : {
@@ -404,6 +428,9 @@
     "Login as user %@ required. Please retry." : {
 
     },
+    "Longer than {{byteLength}} bytes in {{encoding}} encoding." : {
+
+    },
     "lower-case characters" : {
 
     },
@@ -490,6 +517,9 @@
 
     },
     "Overwrite modified file" : {
+
+    },
+    "Password can't be converted to {{encoding}}." : {
 
     },
     "Pending" : {
@@ -671,6 +701,12 @@
 
     },
     "Timestamp" : {
+
+    },
+    "Too few {{localizedName}}" : {
+
+    },
+    "Too many {{localizedName}}" : {
 
     },
     "Total Items" : {
