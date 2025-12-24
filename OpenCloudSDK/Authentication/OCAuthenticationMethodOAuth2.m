@@ -401,6 +401,14 @@ OCAuthenticationMethodAutoRegister
 		NSURL *authorizationRequestURL;
 		NSArray<NSString *> *omitAuthorizationParameters;
 
+        NSMutableString * customScope = [NSMutableString stringWithString:self.scope];
+        if (self.scope != nil) {
+
+            if (connection.bookmark.customOIDCClaim && connection.bookmark.customOIDCClaim.length > 0) {
+                [customScope appendFormat:@" %@", connection.bookmark.customOIDCClaim];
+            }
+        }
+
 		// Generate Authorization Request URL
 		NSDictionary<NSString *,NSString *> *parameters = @{
 			// OAuth2
@@ -415,7 +423,7 @@ OCAuthenticationMethodAutoRegister
 			@"code_challenge_method" : (self.pkce.method != nil) ? self.pkce.method : ((NSString *)NSNull.null),
 
 			// OIDC
-			@"scope"	  	 : (self.scope != nil)  ? self.scope  : ((NSString *)NSNull.null),
+			@"scope"	  	 : (self.scope != nil)  ? customScope  : ((NSString *)NSNull.null),
 			@"prompt"		 : (self.prompt != nil) ? self.prompt : ((NSString *)NSNull.null)
 		};
 

@@ -57,6 +57,8 @@
 @synthesize authenticationDataStorage = _authenticationDataStorage;
 @synthesize authenticationValidationDate = _authenticationValidationDate;
 
+@synthesize customOIDCClaim = _customOIDCClaim;
+
 + (instancetype)bookmarkForURL:(NSURL *)url //!< Creates a bookmark for the OpenCloud server with the specified URL.
 {
 	OCBookmark *bookmark = [OCBookmark new];
@@ -503,6 +505,8 @@
 
 		_userInfo = [decoder decodeObjectOfClasses:OCEvent.safeClasses forKey:@"userInfo"];
 
+        _customOIDCClaim = [decoder decodeObjectForKey:_customOIDCClaimKey];
+
 		// _authenticationData is not stored in the bookmark
 	}
 	
@@ -546,6 +550,8 @@
 	{
 		[coder encodeObject:_userInfo forKey:@"userInfo"];
 	}
+    
+    [coder encodeObject:_customOIDCClaim forKey:_customOIDCClaimKey];
 
 	// _authenticationData is not stored in the bookmark
 }
@@ -556,7 +562,7 @@
 	NSData *authData = self.authenticationData;
 	NSString *lastDescription = _lastDescription;
 
-	_lastDescription = [NSString stringWithFormat:@"<%@: %p%@%@%@%@%@%@%@%@%@%@%@%@%@>", NSStringFromClass(self.class), self,
+	_lastDescription = [NSString stringWithFormat:@"<%@: %p%@%@%@%@%@%@%@%@%@%@%@%@%@%@>", NSStringFromClass(self.class), self,
 		((_name!=nil) ? [@", name: " stringByAppendingString:_name] : @""),
 		((_uuid!=nil) ? [@", uuid: " stringByAppendingString:_uuid.UUIDString] : @""),
 		((_databaseVersion!=OCDatabaseVersionUnknown) ? [@", databaseVersion: " stringByAppendingString:@(_databaseVersion).stringValue] : @""),
@@ -569,7 +575,8 @@
 		((_authenticationValidationDate!=nil) ? [@", authenticationValidationDate: " stringByAppendingString:_authenticationValidationDate.description] : @""),
 		((_userDisplayName!=nil) ? [@", userDisplayName: " stringByAppendingString:_userDisplayName] : @""),
 		((_user!=nil) ? [@", user: " stringByAppendingString:_user.description] : @""),
-		((_userInfo!=nil) ? [@", userInfo: " stringByAppendingString:_userInfo.description] : @"")
+		((_userInfo!=nil) ? [@", userInfo: " stringByAppendingString:_userInfo.description] : @""),
+        ((_customOIDCClaim!=nil) ? [@", OIDCScopes: " stringByAppendingString:_customOIDCClaim.description] : @"")
 	];
 
 	if ((lastDescription == nil) || ![lastDescription isEqual:_lastDescription]) {
