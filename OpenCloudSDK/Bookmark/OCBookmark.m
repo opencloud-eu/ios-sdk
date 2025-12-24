@@ -57,7 +57,7 @@
 @synthesize authenticationDataStorage = _authenticationDataStorage;
 @synthesize authenticationValidationDate = _authenticationValidationDate;
 
-@synthesize customOIDCClaim = _customOIDCClaim;
+@synthesize customOIDCScopes = _customOIDCScopes;
 
 + (instancetype)bookmarkForURL:(NSURL *)url //!< Creates a bookmark for the OpenCloud server with the specified URL.
 {
@@ -505,7 +505,7 @@
 
 		_userInfo = [decoder decodeObjectOfClasses:OCEvent.safeClasses forKey:@"userInfo"];
 
-        _customOIDCClaim = [decoder decodeObjectForKey:_customOIDCClaimKey];
+        _customOIDCScopes = [decoder decodeObjectForKey:_customOIDCScopesKey];
 
 		// _authenticationData is not stored in the bookmark
 	}
@@ -551,7 +551,7 @@
 		[coder encodeObject:_userInfo forKey:@"userInfo"];
 	}
     
-    [coder encodeObject:_customOIDCClaim forKey:_customOIDCClaimKey];
+    [coder encodeObject:_customOIDCScopes forKey:_customOIDCScopesKey];
 
 	// _authenticationData is not stored in the bookmark
 }
@@ -576,7 +576,7 @@
 		((_userDisplayName!=nil) ? [@", userDisplayName: " stringByAppendingString:_userDisplayName] : @""),
 		((_user!=nil) ? [@", user: " stringByAppendingString:_user.description] : @""),
 		((_userInfo!=nil) ? [@", userInfo: " stringByAppendingString:_userInfo.description] : @""),
-        ((_customOIDCClaim!=nil) ? [@", OIDCScopes: " stringByAppendingString:_customOIDCClaim.description] : @"")
+        ((_customOIDCScopes!=nil) ? [@", OIDCScopes: " stringByAppendingString:_customOIDCScopes.description] : @"")
 	];
 
 	if ((lastDescription == nil) || ![lastDescription isEqual:_lastDescription]) {

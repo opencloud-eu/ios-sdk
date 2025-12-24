@@ -69,9 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong,nonatomic) NSMutableDictionary<OCBookmarkUserInfoKey, id<NSObject,NSSecureCoding>> *userInfo; //!< Dictionary for storing app-specific / custom properties alongside the bookmark
 
-@property (nonatomic, copy, nullable) NSString *customOIDCClaim; //!< optional custom OIDC claim value provided by the user
+@property (nonatomic, copy, nullable) NSString *customOIDCScopes; //!< optional custom OIDC scopes value provided by the user
 
-@property (nonatomic, copy, nullable) NSString *customOIDCClaimKey; //!< optional custom OIDC claim key, default @"custom_claim"
+@property (nonatomic, copy, nullable) NSString *customOIDCScopesKey; //!< optional custom OIDC scopes key, default @"custom_scopes"
 
 
 #pragma mark - Creation
