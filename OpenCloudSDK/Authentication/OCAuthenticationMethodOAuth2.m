@@ -818,6 +818,9 @@ OCAuthenticationMethodAutoRegister
 
 						OCLogDebug(@"Authentication data updated: flush auth secret for bookmarkUUID=%@", connection.bookmark.uuid);
 						[self flushCachedAuthenticationSecret];
+
+						// Allow subclass to update bookmark metadata after successful token refresh
+						[self didRefreshTokenForConnectionBookmark:connection.bookmark];
 					}
 					else
 					{
@@ -1172,6 +1175,11 @@ OCAuthenticationMethodAutoRegister
 {
 	NSNumber *forcePostClientIDAndSecret = [self classSettingForOCClassSettingsKey:OCAuthenticationMethodOAuth2PostClientIDAndSecret];
 	return ((forcePostClientIDAndSecret != nil) && forcePostClientIDAndSecret.boolValue);
+}
+
+- (void)didRefreshTokenForConnectionBookmark:(OCBookmark *)bookmark
+{
+	// No-op in base class — subclasses can override to update bookmark metadata
 }
 
 @end
