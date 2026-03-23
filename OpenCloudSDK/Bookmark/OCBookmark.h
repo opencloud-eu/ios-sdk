@@ -69,6 +69,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong,nonatomic) NSMutableDictionary<OCBookmarkUserInfoKey, id<NSObject,NSSecureCoding>> *userInfo; //!< Dictionary for storing app-specific / custom properties alongside the bookmark
 
+@property (nonatomic, copy, nullable) NSString *customOIDCScopes; //!< optional custom OIDC scopes value provided by the user
+
+@property (nonatomic, copy, nullable) NSString *customOIDCScopesKey; //!< optional custom OIDC scopes key, default @"custom_scopes"
+
+
 #pragma mark - Creation
 + (instancetype)bookmarkForURL:(NSURL *)url; //!< Creates a bookmark for the OpenCloud server with the specified URL.
 
