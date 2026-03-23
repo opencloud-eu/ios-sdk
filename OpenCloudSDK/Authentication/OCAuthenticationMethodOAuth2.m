@@ -599,6 +599,13 @@ OCAuthenticationMethodAutoRegister
 				webAuthenticationSession.prefersEphemeralWebBrowserSession = prefersEphermalNumber.boolValue;
 			}
 
+			// Force ephemeral session for re-auth of a specific user, so a cached
+			// IDP session from a different account on the same server can't interfere
+			if (options[OCAuthenticationMethodRequiredUsernameKey] != nil)
+			{
+				webAuthenticationSession.prefersEphemeralWebBrowserSession = YES;
+			}
+
 			UIWindow *window = OCTypedCast(options[OCAuthenticationMethodPresentingViewControllerKey], UIViewController).view.window;
 
 			if (window == nil)
