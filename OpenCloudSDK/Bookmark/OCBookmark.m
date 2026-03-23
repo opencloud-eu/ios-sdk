@@ -627,6 +627,7 @@
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyStatusInfo = @"statusInfo";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyAllowHTTPConnection = @"OCAllowHTTPConnection";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyBookmarkCreation = @"bookmark-creation";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyPreferredUsername = @"preferred-username";
 
 OCBookmarkCapability OCBookmarkCapabilityDrives = @"drives";
 OCBookmarkCapability OCBookmarkCapabilityFavorites = @"favorites";

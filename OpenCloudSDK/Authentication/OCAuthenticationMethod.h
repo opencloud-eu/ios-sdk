@@ -118,6 +118,8 @@ extern OCAuthenticationMethodKey OCAuthenticationMethodWebFingerAlternativeIDPKe
 extern OCAuthenticationMethodKey OCAuthenticationMethodAuthenticationRefererURL; //!< If a WebFinger lookup provided the IDPs URL, the URL of the WebFinger server to be passed as Referer to the IDP, so an IDP can know what instance it is being asked to authenticate for - and can reject authentication if necessary.
 extern OCAuthenticationMethodKey OCAuthenticationMethodSkipWWWAuthenticateChecksKey; //!< If provided and true, skips WWW-Authenticate checks of the WebDAV endpoint when checking for available authentication methods.
 extern OCAuthenticationMethodKey OCAuthenticationMethodAllowedMethods; //!< If provided, an array of allowed OCAuthenticationMethodIdentifiers
+extern OCAuthenticationMethodKey OCAuthenticationMethodWebFingerClientIDKey; //!< If the WebFinger response provided an OIDC client_id via properties["http://opencloud.eu/ns/oidc/client_id"], it is passed here.
+extern OCAuthenticationMethodKey OCAuthenticationMethodWebFingerScopeKey; //!< If the WebFinger response provided OIDC scopes via properties["http://opencloud.eu/ns/oidc/scopes"], they are passed here as a space-separated string.
 
 extern NSString *OCAuthorizationMethodAlternativeServerURLKey; //!< Key for alternative server URL in -[NSError userInfo].
 extern NSString *OCAuthorizationMethodAlternativeServerURLOriginURLKey; //!< Key for the URL from where the alternative server URL was requested.
