@@ -715,6 +715,16 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 		[request addHeaderFields:_staticHeaderFields];
 	}
 
+	// Custom HTTP header from user settings
+	NSString *customHeaderName = [[NSUserDefaults standardUserDefaults] stringForKey:@"custom-http-header-name"];
+	NSString *customHeaderValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"custom-http-header-value"];
+
+	if ((customHeaderName != nil) && (customHeaderName.length > 0) &&
+	    (customHeaderValue != nil) && (customHeaderValue.length > 0))
+	{
+		[request setValue:customHeaderValue forHeaderField:customHeaderName];
+	}
+
 	return (request);
 }
 
