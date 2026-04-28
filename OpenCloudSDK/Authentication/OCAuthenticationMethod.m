@@ -404,6 +404,8 @@ OCAuthenticationMethodKey OCAuthenticationMethodWebFingerAlternativeIDPKey = @"w
 OCAuthenticationMethodKey OCAuthenticationMethodAuthenticationRefererURL = @"authenticationRefererURL";
 OCAuthenticationMethodKey OCAuthenticationMethodSkipWWWAuthenticateChecksKey = @"skipWWWAuthenticateChecks";
 OCAuthenticationMethodKey OCAuthenticationMethodAllowedMethods = @"allowedMethods";
+OCAuthenticationMethodKey OCAuthenticationMethodWebFingerClientIDKey = @"webFingerClientID";
+OCAuthenticationMethodKey OCAuthenticationMethodWebFingerScopeKey = @"webFingerScope";
 
 NSString *OCAuthorizationMethodAlternativeServerURLKey = @"alternativeServerURL";
 NSString *OCAuthorizationMethodAlternativeServerURLOriginURLKey = @"alternativeServerURLOriginURL";

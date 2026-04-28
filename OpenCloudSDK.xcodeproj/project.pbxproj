@@ -1599,7 +1599,6 @@
 		DC8556FA204F4F3000189B9A /* OCXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCXMLParser.m; sourceTree = "<group>"; };
 		DC8556FD204F597800189B9A /* OCXMLParserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCXMLParserNode.h; sourceTree = "<group>"; };
 		DC8556FE204F597800189B9A /* OCXMLParserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCXMLParserNode.m; sourceTree = "<group>"; };
-		DC855719204FEC0A00189B9A /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
 		DC85571A2050196000189B9A /* OCItem+OCXMLObjectCreation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCItem+OCXMLObjectCreation.h"; sourceTree = "<group>"; };
 		DC85571B2050196000189B9A /* OCItem+OCXMLObjectCreation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OCItem+OCXMLObjectCreation.m"; sourceTree = "<group>"; };
 		DC85980720D8F5BE00A433C6 /* OCCore+CommandCopyMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCCore+CommandCopyMove.m"; sourceTree = "<group>"; };
@@ -4021,7 +4020,6 @@
 				DCC8F9C72028535B00EB6701 /* LICENSE */,
 				DCC8F9C62028533000EB6701 /* README.md */,
 				DCD039432544D17E00F97534 /* class-settings-sdk */,
-				DC855719204FEC0A00189B9A /* doc */,
 				DCC8F9AD202852A200EB6701 /* OpenCloudSDK */,
 				DC3094852057358800189B9A /* OpenCloudUI */,
 				DCC8F9B8202852A200EB6701 /* OpenCloudSDKTests */,

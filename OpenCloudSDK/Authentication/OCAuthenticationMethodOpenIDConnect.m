@@ -23,6 +23,7 @@
 #import "OCMacros.h"
 #import "OCHTTPRequest+JSON.h"
 #import "NSError+OCError.h"
+#import "NSURL+OCURLQueryParameterExtensions.h"
 
 #pragma mark - Internal OA2 keys
 typedef NSString* OIDCDictKeyPath;
@@ -31,6 +32,11 @@ static OIDCDictKeyPath OIDCKeyPathClientRegistrationEndpointURL 	= @"clientRegis
 static OIDCDictKeyPath OIDCKeyPathClientRegistrationExpirationDate	= @"clientRegistrationExpirationDate";
 static OIDCDictKeyPath OIDCKeyPathClientID				= @"clientRegistrationClientID";
 static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSecret";
+static OIDCDictKeyPath OIDCKeyPathWebFingerClientID			= @"webFingerClientID";
+static OIDCDictKeyPath OIDCKeyPathWebFingerScope			= @"webFingerScope";
+static OIDCDictKeyPath OIDCKeyPathWebFingerIssuerURL			= @"webFingerIssuerURL";
+static OIDCDictKeyPath OIDCKeyPathPreferredUsername			= @"preferredUsername";
+static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 
 @implementation OCAuthenticationMethodOpenIDConnect
 {
@@ -41,6 +47,8 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 	NSString *_clientName;
 	NSString *_clientID;
 	NSString *_clientSecret;
+
+	BOOL _isPublicClientPersisted; // Persisted from OIDC discovery — survives token refresh when _openIDConfig is nil
 }
 
 #pragma mark - Class settings
@@ -141,7 +149,13 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 	NSMutableDictionary<NSString *, NSString *> *refreshParameters = [[super tokenRefreshParametersForRefreshToken:refreshToken connection:connection] mutableCopy];
 
 	refreshParameters[@"client_id"] = self.clientID;
-	refreshParameters[@"client_secret"] = self.clientSecret;
+
+	NSString *secret = self.clientSecret;
+	if (secret != nil)
+	{
+		refreshParameters[@"client_secret"] = secret;
+	}
+
 	refreshParameters[@"scope"] = self.scope;
 
 	return (refreshParameters);
@@ -149,6 +163,12 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 
 - (NSString *)tokenRequestAuthorizationHeaderForType:(OCAuthenticationOAuth2TokenRequestType)requestType connection:(OCConnection *)connection
 {
+	// Public client (auth method "none") — no Authorization header
+	if ([self _isPublicClient])
+	{
+		return (nil);
+	}
+
 	if (requestType == OCAuthenticationOAuth2TokenRequestTypeRefreshToken)
 	{
 		// Use the client_id and client_secret used when the token was issued
@@ -164,7 +184,7 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 		if (clientID == nil) { clientID = self.clientID; }
 		if (clientSecret == nil) { clientSecret = self.clientSecret; }
 
-		OCTLogDebug(@[@"ClientRegistration"], @"Sending token refrsh request with clientID=%@, clientSecret=%@", OCLogPrivate(clientID), OCLogPrivate(clientSecret));
+		OCTLogDebug(@[@"ClientRegistration"], @"Sending token refresh request with clientID=%@, clientSecret=%@", OCLogPrivate(clientID), OCLogPrivate(clientSecret));
 
 		return ([OCAuthenticationMethod basicAuthorizationValueForUsername:clientID passphrase:clientSecret]);
 	}
@@ -176,7 +196,39 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 {
 	NSURL *openidConfigURL;
 
-	if ((openidConfigURL = [self.class _openIDConfigurationURLForConnection:connection options:options]) != nil)
+	// Extract WebFinger values from options (initial login / re-auth)
+	if (options != nil)
+	{
+		NSString *wfClientID = OCTypedCast(options[OCAuthenticationMethodWebFingerClientIDKey], NSString);
+		if (wfClientID != nil)
+		{
+			_webFingerClientID = wfClientID;
+		}
+
+		NSString *wfScope = OCTypedCast(options[OCAuthenticationMethodWebFingerScopeKey], NSString);
+		if (wfScope != nil)
+		{
+			_webFingerScope = wfScope;
+		}
+
+		NSURL *wfIssuerURL = OCTypedCast(options[OCAuthenticationMethodWebFingerAlternativeIDPKey], NSURL);
+		if (wfIssuerURL != nil)
+		{
+			_webFingerIssuerURL = wfIssuerURL;
+		}
+	}
+
+	// Prefer stored issuer URL for OIDC discovery (critical for federated IDPs like Keycloak on a different domain)
+	if (_webFingerIssuerURL != nil)
+	{
+		openidConfigURL = [_webFingerIssuerURL URLByAppendingPathComponent:@".well-known/openid-configuration"];
+	}
+	else
+	{
+		openidConfigURL = [self.class _openIDConfigurationURLForConnection:connection options:options];
+	}
+
+	if (openidConfigURL != nil)
 	{
 		OCHTTPRequest *openidConfigRequest = [OCHTTPRequest requestWithURL:openidConfigURL];
 
@@ -194,6 +246,14 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 			if ((error == nil) && ((self->_openIDConfig = [response bodyConvertedDictionaryFromJSONWithError:&jsonError]) != nil))
 			{
 				self.pkce = [OCPKCE new]; // Enable PKCE
+
+				// Skip dynamic client registration if WebFinger provided a client_id
+				if (self->_webFingerClientID != nil)
+				{
+					OCTLogDebug(@[@"WebFinger"], @"Using WebFinger-provided client_id=%@, scope=%@", OCLogPrivate(self->_webFingerClientID), self->_webFingerScope);
+					completionHandler(nil);
+					return;
+				}
 
 				// Dynamic Client Registration support
 				if ([[self classSettingForOCClassSettingsKey:OCAuthenticationMethodOpenIDRegisterClient] boolValue])
@@ -257,6 +317,7 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 
 - (NSString *)scope
 {
+	if (_webFingerScope != nil) { return (_webFingerScope); }
 	return ([self classSettingForOCClassSettingsKey:OCAuthenticationMethodOpenIDConnectScope]);
 }
 
@@ -444,23 +505,33 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 
 - (NSDictionary<NSString *,id> *)postProcessAuthenticationDataDict:(NSDictionary<NSString *,id> *)authDataDict
 {
+	// Extract preferred_username from id_token JWT BEFORE super strips it from tokenResponse
+	// (super condenses tokenResponse to only access_token, refresh_token, expires_in, user_id)
+	NSString *preferredUsername = nil;
+	NSDictionary<NSString *, id> *originalTokenResponse = authDataDict[@"tokenResponse"];
+	NSString *idToken = OCTypedCast(originalTokenResponse[@"id_token"], NSString);
+	if (idToken != nil)
+	{
+		preferredUsername = [self _extractPreferredUsernameFromIDToken:idToken];
+	}
+
 	authDataDict = [super postProcessAuthenticationDataDict:authDataDict];
+
+	NSMutableDictionary<NSString *,id> *newAuthDataDict = nil;
 
 	if (_clientRegistrationResponse != nil)
 	{
-		NSMutableDictionary<NSString *,id> *newAuthDataDict = [authDataDict mutableCopy];
+		newAuthDataDict = [authDataDict mutableCopy];
 
-		if (_clientRegistrationResponse != nil)
+		NSError *error = nil;
+
+		newAuthDataDict[OIDCKeyPathClientRegistrationResponseSerialized] = [NSJSONSerialization dataWithJSONObject:_clientRegistrationResponse options:0 error:&error];
+
+		if (error != nil)
 		{
-			NSError *error = nil;
-
-			newAuthDataDict[OIDCKeyPathClientRegistrationResponseSerialized] = [NSJSONSerialization dataWithJSONObject:_clientRegistrationResponse options:0 error:&error];
-
-			if (error != nil)
-			{
-				OCTLogError(@[@"ClientRegistration"], @"Error %@ encoding to JSON: %@", error, _clientRegistrationResponse);
-			}
+			OCTLogError(@[@"ClientRegistration"], @"Error %@ encoding to JSON: %@", error, _clientRegistrationResponse);
 		}
+
 		if (_clientRegistrationEndpointURL != nil)
 		{
 			newAuthDataDict[OIDCKeyPathClientRegistrationEndpointURL] = _clientRegistrationEndpointURL.absoluteString;
@@ -477,11 +548,43 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 		{
 			newAuthDataDict[OIDCKeyPathClientSecret] = _clientSecret;
 		}
-
-		return (newAuthDataDict);
 	}
 
-	return (authDataDict);
+	// Persist WebFinger values
+	if (_webFingerClientID != nil || _webFingerScope != nil || _webFingerIssuerURL != nil)
+	{
+		if (newAuthDataDict == nil) { newAuthDataDict = [authDataDict mutableCopy]; }
+
+		if (_webFingerClientID != nil)
+		{
+			newAuthDataDict[OIDCKeyPathWebFingerClientID] = _webFingerClientID;
+		}
+		if (_webFingerScope != nil)
+		{
+			newAuthDataDict[OIDCKeyPathWebFingerScope] = _webFingerScope;
+		}
+		if (_webFingerIssuerURL != nil)
+		{
+			newAuthDataDict[OIDCKeyPathWebFingerIssuerURL] = _webFingerIssuerURL.absoluteString;
+		}
+	}
+
+	// Store preferred_username separately for login_hint on re-auth
+	// (NOT as user_id — user_id may be a UUID, preferred_username is what the user types at the IDP)
+	if (preferredUsername != nil)
+	{
+		if (newAuthDataDict == nil) { newAuthDataDict = [authDataDict mutableCopy]; }
+		newAuthDataDict[OIDCKeyPathPreferredUsername] = preferredUsername;
+	}
+
+	// Persist public client flag so token refresh works when _openIDConfig is nil
+	if (_isPublicClientPersisted)
+	{
+		if (newAuthDataDict == nil) { newAuthDataDict = [authDataDict mutableCopy]; }
+		newAuthDataDict[OIDCKeyPathIsPublicClient] = @YES;
+	}
+
+	return (newAuthDataDict != nil) ? newAuthDataDict : authDataDict;
 }
 
 - (id)loadCachedAuthenticationSecretForConnection:(OCConnection *)connection
@@ -527,7 +630,45 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 			_clientSecret = [authSecret valueForKeyPath:OIDCKeyPathClientSecret];
 		}
 
-		OCTLogDebug(@[@"ClientRegistration"], @"Loaded from secret: clientID=%@, clientSecret=%@", OCLogPrivate(_clientID), OCLogPrivate(_clientSecret));
+		// Restore WebFinger values
+		if (_webFingerClientID == nil)
+		{
+			_webFingerClientID = OCTypedCast(authSecret[OIDCKeyPathWebFingerClientID], NSString);
+		}
+
+		if (_webFingerScope == nil)
+		{
+			_webFingerScope = OCTypedCast(authSecret[OIDCKeyPathWebFingerScope], NSString);
+		}
+
+		if (_webFingerIssuerURL == nil)
+		{
+			NSString *issuerURLString = OCTypedCast(authSecret[OIDCKeyPathWebFingerIssuerURL], NSString);
+			if (issuerURLString != nil)
+			{
+				_webFingerIssuerURL = [NSURL URLWithString:issuerURLString];
+			}
+		}
+
+		if (_preferredUsername == nil)
+		{
+			_preferredUsername = OCTypedCast(authSecret[OIDCKeyPathPreferredUsername], NSString);
+		}
+
+		// Sync preferred_username from auth data to bookmark.userInfo so the
+		// app layer can copy it to temp bookmarks during re-auth
+		if (_preferredUsername != nil && connection.bookmark.userInfo[OCBookmarkUserInfoKeyPreferredUsername] == nil)
+		{
+			connection.bookmark.userInfo[OCBookmarkUserInfoKeyPreferredUsername] = _preferredUsername;
+		}
+
+		NSNumber *isPublicClientValue = OCTypedCast(authSecret[OIDCKeyPathIsPublicClient], NSNumber);
+		if (isPublicClientValue != nil)
+		{
+			_isPublicClientPersisted = isPublicClientValue.boolValue;
+		}
+
+		OCTLogDebug(@[@"ClientRegistration"], @"Loaded from secret: clientID=%@, clientSecret=%@, webFingerClientID=%@, webFingerIssuerURL=%@, isPublicClient=%d", OCLogPrivate(_clientID), OCLogPrivate(_clientSecret), OCLogPrivate(_webFingerClientID), _webFingerIssuerURL, _isPublicClientPersisted);
 	}
 
 	return (authSecret);
@@ -536,22 +677,9 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 
 - (NSString *)clientID
 {
-	if (self.hasClientRegistration)
-	{
-		return (_clientID);
-	}
-
+	if (_webFingerClientID != nil) { return (_webFingerClientID); }
+	if (self.hasClientRegistration) { return (_clientID); }
 	return ([super clientID]);
-}
-
-- (NSString *)clientSecret
-{
-	if (self.hasClientRegistration)
-	{
-		return (_clientSecret);
-	}
-
-	return ([super clientSecret]);
 }
 
 - (NSDictionary<NSString *, id> *)clientRegistrationResponse
@@ -587,6 +715,13 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 	_clientName = nil;
 	_clientID = nil;
 	_clientSecret = nil;
+
+	_webFingerClientID = nil;
+	_webFingerScope = nil;
+	_webFingerIssuerURL = nil;
+
+	_preferredUsername = nil;
+	_isPublicClientPersisted = NO;
 }
 
 #pragma mark - Authentication Method Detection
@@ -720,6 +855,29 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 	}];
 }
 
+- (BOOL)_isPublicClient
+{
+	// Public client detection based on OIDC discovery only.
+	// We do NOT infer public/confidential from WebFinger — the realm-wide
+	// token_endpoint_auth_methods_supported is the only reliable signal.
+	// For public PKCE clients, sending Basic auth with client_id and empty
+	// secret works fine (Keycloak ignores the empty secret for public clients).
+	if (_openIDConfig != nil)
+	{
+		NSArray<NSString *>* supportedEndpointAuthMethods = OCTypedCast(_openIDConfig[@"token_endpoint_auth_methods_supported"], NSArray);
+		BOOL supportsNone = [supportedEndpointAuthMethods containsObject:@"none"];
+		BOOL supportsBasicAuth = [supportedEndpointAuthMethods containsObject:@"client_secret_basic"];
+		BOOL supportsPost = [supportedEndpointAuthMethods containsObject:@"client_secret_post"];
+
+		BOOL isPublic = (supportsNone && !supportsBasicAuth && !supportsPost);
+		_isPublicClientPersisted = isPublic;
+		return (isPublic);
+	}
+
+	// When _openIDConfig is nil (token refresh path), use persisted flag
+	return (_isPublicClientPersisted);
+}
+
 - (BOOL)sendClientIDAndSecretInPOSTBody
 {
 	if (_openIDConfig != nil)
@@ -729,28 +887,66 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 		// Determine supported auth methods (reference: https://openid.net/specs/openid-connect-discovery-1_0.html)
 		BOOL supportsBasicAuth = [supportedEndpointAuthMethods containsObject:@"client_secret_basic"];
 		BOOL supportsPost = [supportedEndpointAuthMethods containsObject:@"client_secret_post"];
+		BOOL supportsNone = [supportedEndpointAuthMethods containsObject:@"none"];
 
-		if (!supportsBasicAuth && supportsPost)
+		if (supportsNone && !supportsBasicAuth && !supportsPost)
+		{
+			// Public client — send client_id in POST body without client_secret
+			return (YES);
+		}
+		else if (!supportsBasicAuth && supportsPost)
 		{
 			// Basic auth is not supported, only POST
 			return (YES);
 		}
-		else if (!supportsPost && !supportsBasicAuth)
+		else if (!supportsPost && !supportsBasicAuth && !supportsNone)
 		{
 			// None of the implemented methods is supported
 			OCLogWarning(@"OpenID configuration token_endpoint_auth_methods_supported does not contain any supported auth methods.")
 		}
 	}
+	else if (_isPublicClientPersisted)
+	{
+		// _openIDConfig is nil (token refresh path) — use persisted flag
+		return (YES);
+	}
 
 	return ([super sendClientIDAndSecretInPOSTBody]);
+}
+
+- (NSString *)clientSecret
+{
+	// Public client — no client_secret
+	if ([self _isPublicClient])
+	{
+		return (nil);
+	}
+
+	if (self.hasClientRegistration)
+	{
+		return (_clientSecret);
+	}
+
+	return ([super clientSecret]);
 }
 
 #pragma mark - Generate bookmark authentication data
 - (NSDictionary<NSString *,NSString *> *)prepareAuthorizationRequestParameters:(NSDictionary<NSString *,NSString *> *)parameters forConnection:(OCConnection *)connection options:(OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options
 {
-	NSString *username;
+	// Prefer preferred_username from JWT (what the user types at the IDP),
+	// fall back to value stored on bookmark (survives re-auth with temp bookmark),
+	// then to bookmark.userName
+	NSString *loginHint = _preferredUsername;
+	if (loginHint == nil)
+	{
+		loginHint = OCTypedCast(connection.bookmark.userInfo[OCBookmarkUserInfoKeyPreferredUsername], NSString);
+	}
+	if (loginHint == nil)
+	{
+		loginHint = connection.bookmark.userName;
+	}
 
-	if ((username = connection.bookmark.userName) != nil)
+	if (loginHint != nil)
 	{
 		NSMutableDictionary<NSString *,NSString *> *mutableParameters = [parameters mutableCopy];
 
@@ -760,7 +956,7 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 			OPTIONAL. Hint to the Authorization Server about the login identifier the End-User might use to log in (if necessary). This hint can be used by an RP if it first asks the End-User for their e-mail address (or other identifier) and then wants to pass that value as a hint to the discovered authorization service. It is RECOMMENDED that the hint value match the value used for discovery. This value MAY also be a phone number in the format specified for the phone_number Claim. The use of this parameter is left to the OP's discretion.
 		*/
 
-		mutableParameters[@"login_hint"] = username;
+		mutableParameters[@"login_hint"] = loginHint;
 
 		return (mutableParameters);
 	}
@@ -770,15 +966,181 @@ static OIDCDictKeyPath OIDCKeyPathClientSecret				= @"clientRegistrationClientSe
 
 - (void)generateBookmarkAuthenticationDataWithConnection:(OCConnection *)connection options:(OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options completionHandler:(void(^)(NSError *error, OCAuthenticationMethodIdentifier authenticationMethodIdentifier, NSData *authenticationData))completionHandler
 {
-	[self retrieveEndpointInformationForConnection:connection options:options completionHandler:^(NSError * _Nonnull error) {
-		if (error == nil)
+	// Wrap completionHandler to store preferredUsername on bookmark after successful auth
+	void(^wrappedCompletionHandler)(NSError *, OCAuthenticationMethodIdentifier, NSData *) = ^(NSError *error, OCAuthenticationMethodIdentifier identifier, NSData *authData) {
+		if (error == nil && self->_preferredUsername != nil)
 		{
-			[super generateBookmarkAuthenticationDataWithConnection:connection options:options completionHandler:completionHandler];
+			connection.bookmark.userInfo[OCBookmarkUserInfoKeyPreferredUsername] = self->_preferredUsername;
 		}
-		else
+		completionHandler(error, identifier, authData);
+	};
+
+	// Re-query WebFinger if options don't already contain WebFinger values (re-auth scenario)
+	BOOL hasWebFingerInOptions = (options[OCAuthenticationMethodWebFingerAlternativeIDPKey] != nil) ||
+	                             (options[OCAuthenticationMethodWebFingerClientIDKey] != nil);
+
+	if (!hasWebFingerInOptions && _webFingerClientID == nil && _webFingerIssuerURL == nil)
+	{
+		// Re-auth path: no WebFinger values from setup flow or memory — query WebFinger fresh
+		OCTLogDebug(@[@"WebFinger"], @"Re-querying WebFinger for re-authentication");
+		[self queryWebFingerForConnection:connection completionHandler:^(NSError * _Nullable wfError) {
+			if (wfError != nil)
+			{
+				OCTLogDebug(@[@"WebFinger"], @"WebFinger re-query failed (non-fatal): %@", wfError);
+				// Non-fatal: server may not support WebFinger, fall through to normal flow
+			}
+
+			[self retrieveEndpointInformationForConnection:connection options:options completionHandler:^(NSError * _Nonnull error) {
+				if (error == nil)
+				{
+					[super generateBookmarkAuthenticationDataWithConnection:connection options:options completionHandler:wrappedCompletionHandler];
+				}
+				else
+				{
+					completionHandler(error, nil, nil);
+				}
+			}];
+		}];
+	}
+	else
+	{
+		[self retrieveEndpointInformationForConnection:connection options:options completionHandler:^(NSError * _Nonnull error) {
+			if (error == nil)
+			{
+				[super generateBookmarkAuthenticationDataWithConnection:connection options:options completionHandler:wrappedCompletionHandler];
+			}
+			else
+			{
+				completionHandler(error, nil, nil);
+			}
+		}];
+	}
+}
+
+#pragma mark - Token refresh hook
+- (void)didRefreshTokenForConnectionBookmark:(OCBookmark *)bookmark
+{
+	// After a successful token refresh, postProcessAuthenticationDataDict: has
+	// already extracted preferred_username from the new id_token and stored it
+	// in _preferredUsername + the auth data dict.  Persist it on the bookmark's
+	// userInfo as well so the app layer can copy it to temp bookmarks for re-auth.
+	if (_preferredUsername != nil)
+	{
+		bookmark.userInfo[OCBookmarkUserInfoKeyPreferredUsername] = _preferredUsername;
+	}
+}
+
+#pragma mark - JWT id_token parsing
+- (nullable NSString *)_extractPreferredUsernameFromIDToken:(NSString *)idToken
+{
+	// JWT format: header.payload.signature — decode the base64url-encoded payload
+	NSArray<NSString *> *parts = [idToken componentsSeparatedByString:@"."];
+	if (parts.count < 2)
+	{
+		return nil;
+	}
+
+	NSString *payloadBase64 = parts[1];
+
+	// Base64URL → Base64: replace URL-safe chars and add padding
+	NSMutableString *base64 = [payloadBase64 mutableCopy];
+	[base64 replaceOccurrencesOfString:@"-" withString:@"+" options:0 range:NSMakeRange(0, base64.length)];
+	[base64 replaceOccurrencesOfString:@"_" withString:@"/" options:0 range:NSMakeRange(0, base64.length)];
+
+	NSUInteger remainder = base64.length % 4;
+	if (remainder > 0)
+	{
+		NSUInteger paddingLength = 4 - remainder;
+		for (NSUInteger i = 0; i < paddingLength; i++)
 		{
-			completionHandler(error, nil, nil);
+			[base64 appendString:@"="];
 		}
+	}
+
+	NSData *payloadData = [[NSData alloc] initWithBase64EncodedString:base64 options:0];
+	if (payloadData == nil) { return nil; }
+
+	NSDictionary *claims = [NSJSONSerialization JSONObjectWithData:payloadData options:0 error:nil];
+	if (![claims isKindOfClass:[NSDictionary class]]) { return nil; }
+
+	// Prefer preferred_username → email → sub
+	NSString *result = OCTypedCast(claims[@"preferred_username"], NSString);
+	if (result == nil) { result = OCTypedCast(claims[@"email"], NSString); }
+	if (result == nil) { result = OCTypedCast(claims[@"sub"], NSString); }
+
+	return result;
+}
+
+#pragma mark - WebFinger re-query
+- (void)queryWebFingerForConnection:(OCConnection *)connection completionHandler:(void(^)(NSError * _Nullable error))completionHandler
+{
+	NSURL *bookmarkURL = connection.bookmark.url;
+	if (bookmarkURL == nil)
+	{
+		completionHandler(OCError(OCErrorInsufficientParameters));
+		return;
+	}
+
+	NSURL *webFingerURL = [[bookmarkURL URLByAppendingPathComponent:@".well-known/webfinger" isDirectory:NO] urlByAppendingQueryParameters:@{
+		@"resource" : bookmarkURL.rootURL.absoluteString,
+		@"rel" : @"http://openid.net/specs/connect/1.0/issuer",
+		@"platform" : @"ios"
+	} replaceExisting:YES];
+
+	OCHTTPRequest *request = [OCHTTPRequest requestWithURL:webFingerURL];
+	request.redirectPolicy = OCHTTPRequestRedirectPolicyHandleLocally;
+
+	[connection sendRequest:request ephermalCompletionHandler:^(OCHTTPRequest * _Nonnull request, OCHTTPResponse * _Nullable response, NSError * _Nullable error) {
+		if (error != nil)
+		{
+			completionHandler(error);
+			return;
+		}
+
+		NSDictionary *jsonDict = [response bodyConvertedDictionaryFromJSONWithError:&error];
+		if (jsonDict == nil)
+		{
+			completionHandler(error ?: OCError(OCErrorInternal));
+			return;
+		}
+
+		// Parse properties
+		NSDictionary<NSString*,id> *propertiesDict = OCTypedCast(jsonDict[@"properties"], NSDictionary);
+		if (propertiesDict != nil)
+		{
+			NSString *clientIDValue = OCTypedCast(propertiesDict[@"http://opencloud.eu/ns/oidc/client_id"], NSString);
+			if (clientIDValue != nil)
+			{
+				self->_webFingerClientID = clientIDValue;
+			}
+
+			NSArray *scopesArray = OCTypedCast(propertiesDict[@"http://opencloud.eu/ns/oidc/scopes"], NSArray);
+			if (scopesArray != nil)
+			{
+				self->_webFingerScope = [scopesArray componentsJoinedByString:@" "];
+			}
+		}
+
+		// Parse issuer link
+		NSArray *linksArray = OCTypedCast(jsonDict[@"links"], NSArray);
+		if (linksArray != nil)
+		{
+			for (id link in linksArray)
+			{
+				NSDictionary<NSString*,id> *linkDict = OCTypedCast(link, NSDictionary);
+				if (linkDict != nil && [linkDict[@"rel"] isEqual:@"http://openid.net/specs/connect/1.0/issuer"])
+				{
+					NSString *urlString = OCTypedCast(linkDict[@"href"], NSString);
+					if (urlString != nil)
+					{
+						self->_webFingerIssuerURL = [NSURL URLWithString:urlString];
+						break;
+					}
+				}
+			}
+		}
+
+		completionHandler(nil);
 	}];
 }
 

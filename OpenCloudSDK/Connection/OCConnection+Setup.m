@@ -76,6 +76,8 @@
 	NSURL *webFingerAccountInfoURL = nil;
 	NSURL *webFingerAlternativeIDPBaseURL = nil;
 	NSURL *refererForIDPURL = nil;
+	NSString *webFingerClientID = nil;
+	NSString *webFingerScope = nil;
 
 	// Tools
 	void (^AddIssue)(OCIssue *issue) = ^(OCIssue *issue) {
@@ -437,7 +439,8 @@
 	if (webfingerRootURL != nil)
 	{
 		NSURL *webFingerLookupURL = [[url URLByAppendingPathComponent:@".well-known/webfinger" isDirectory:NO] urlByAppendingQueryParameters:@{
-			@"resource" : webfingerRootURL.absoluteString
+			@"resource" : webfingerRootURL.absoluteString,
+			@"platform" : @"ios"
 		} replaceExisting:YES];
 
 		NSURL *webFingerAccountMeURL = [[url URLByAppendingPathComponent:@".well-known/webfinger" isDirectory:NO] urlByAppendingQueryParameters:@{
@@ -460,6 +463,23 @@
 					if ([jsonDict[@"subject"] isEqual:webfingerRootURL.absoluteString])
 					{
 						NSArray<NSDictionary<NSString*,id> *> *linksArray;
+
+						// Extract OIDC auto-provisioning properties
+						NSDictionary<NSString*,id> *propertiesDict;
+						if ((propertiesDict = OCTypedCast(jsonDict[@"properties"], NSDictionary)) != nil)
+						{
+							NSString *clientIDValue;
+							if ((clientIDValue = OCTypedCast(propertiesDict[@"http://opencloud.eu/ns/oidc/client_id"], NSString)) != nil)
+							{
+								webFingerClientID = clientIDValue;
+							}
+
+							NSArray *scopesArray;
+							if ((scopesArray = OCTypedCast(propertiesDict[@"http://opencloud.eu/ns/oidc/scopes"], NSArray)) != nil)
+							{
+								webFingerScope = [scopesArray componentsJoinedByString:@" "];
+							}
+						}
 
 						// Look for first link with relation http://openid.net/specs/connect/1.0/issuer
 						if ((linksArray = OCTypedCast(jsonDict[@"links"], NSArray)) != nil)
@@ -649,6 +669,16 @@
 		if (webFingerAlternativeIDPBaseURL != nil)
 		{
 			detectionOptions[OCAuthenticationMethodWebFingerAlternativeIDPKey] = webFingerAlternativeIDPBaseURL;
+		}
+
+		if (webFingerClientID != nil)
+		{
+			detectionOptions[OCAuthenticationMethodWebFingerClientIDKey] = webFingerClientID;
+		}
+
+		if (webFingerScope != nil)
+		{
+			detectionOptions[OCAuthenticationMethodWebFingerScopeKey] = webFingerScope;
 		}
 
 		NSNumber *skipWWWAuthenticateChecks;

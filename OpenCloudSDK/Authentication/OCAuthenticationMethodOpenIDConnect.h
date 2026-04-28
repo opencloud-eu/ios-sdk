@@ -24,6 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OCAuthenticationMethodOpenIDConnect : OCAuthenticationMethodOAuth2
 {
 	NSDictionary<NSString *, id> *_openIDConfig;
+
+	NSString *_webFingerClientID;
+	NSString *_webFingerScope;
+	NSURL *_webFingerIssuerURL;
+
+	NSString *_preferredUsername;
 }
 
 @end
