@@ -172,6 +172,18 @@
     "Between {{min}} and {{max}} {{characterType}}" : {
 
     },
+    "Can edit" : {
+
+    },
+    "Can manage" : {
+
+    },
+    "Can upload" : {
+
+    },
+    "Can view" : {
+
+    },
     "Can't build custom scheme URL from %@." : {
 
     },
@@ -215,9 +227,6 @@
 
     },
     "Connection refused" : {
-
-    },
-    "Contributor" : {
 
     },
     "copy" : {
@@ -311,13 +320,7 @@
     "digits" : {
 
     },
-    "Download and preview" : {
-
-    },
     "Downloading %@…" : {
-
-    },
-    "Editor" : {
 
     },
     "Error" : {
@@ -454,9 +457,6 @@
         }
       }
     },
-    "Manager" : {
-
-    },
     "Moving %@ to %@…" : {
       "localizations" : {
         "en" : {
@@ -543,21 +543,6 @@
     "Process Sync Records" : {
 
     },
-    "Recipients can upload but existing contents are not revealed." : {
-
-    },
-    "Recipients can view and download contents." : {
-
-    },
-    "Recipients can view, download and edit contents." : {
-
-    },
-    "Recipients can view, download and upload contents." : {
-
-    },
-    "Recipients can view, download, edit, delete and upload contents." : {
-
-    },
     "Redirection" : {
 
     },
@@ -610,6 +595,9 @@
     "Scheduled folder scans" : {
 
     },
+    "Secret File Drop" : {
+
+    },
     "Server doesn't seem to support any authentication method supported by this app." : {
 
     },
@@ -622,7 +610,7 @@
     "Server software %@ not supported." : {
 
     },
-    "Set detailed permissions" : {
+    "Set detailed permissions." : {
 
     },
     "Shared with me" : {
@@ -724,10 +712,7 @@
     "Upgrading database…" : {
 
     },
-    "Upload, edit, delete, download and preview" : {
-
-    },
-    "Uploader" : {
+    "Upload only, existing content is not revealed." : {
 
     },
     "Uploading %@…" : {
@@ -757,7 +742,16 @@
     "Vacuum" : {
 
     },
-    "Viewer" : {
+    "View and download." : {
+
+    },
+    "View, download and upload." : {
+
+    },
+    "View, download, upload, edit, add and delete." : {
+
+    },
+    "View, download, upload, edit, add and delete.." : {
 
     },
     "Wait Conditions" : {
