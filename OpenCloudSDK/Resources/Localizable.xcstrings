@@ -709,6 +709,18 @@
         }
       }
     },
+    "Can edit" : {
+
+    },
+    "Can manage" : {
+
+    },
+    "Can upload" : {
+
+    },
+    "Can view" : {
+
+    },
     "Can't build custom scheme URL from %@." : {
       "localizations" : {
         "de" : {
@@ -1088,6 +1100,7 @@
       }
     },
     "Contributor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1662,6 +1675,7 @@
       }
     },
     "Download and preview" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1694,6 +1708,7 @@
       }
     },
     "Editor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2956,6 +2971,7 @@
       }
     },
     "Manager" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -3716,6 +3732,7 @@
       }
     },
     "Recipients can upload but existing contents are not revealed." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3732,6 +3749,7 @@
       }
     },
     "Recipients can view and download contents." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3748,6 +3766,7 @@
       }
     },
     "Recipients can view, download and edit contents." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3764,6 +3783,7 @@
       }
     },
     "Recipients can view, download and upload contents." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3780,6 +3800,7 @@
       }
     },
     "Recipients can view, download, edit, delete and upload contents." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4191,6 +4212,9 @@
         }
       }
     },
+    "Secret File Drop" : {
+
+    },
     "Server doesn't seem to support any authentication method supported by this app." : {
       "localizations" : {
         "de" : {
@@ -4256,6 +4280,7 @@
       }
     },
     "Set detailed permissions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4270,6 +4295,9 @@
           }
         }
       }
+    },
+    "Set detailed permissions." : {
+
     },
     "Shared with me" : {
       "localizations" : {
@@ -4861,7 +4889,11 @@
         }
       }
     },
+    "Upload only, existing content is not revealed." : {
+
+    },
     "Upload, edit, delete, download and preview" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4878,6 +4910,7 @@
       }
     },
     "Uploader" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5109,7 +5142,20 @@
         }
       }
     },
+    "View and download." : {
+
+    },
+    "View, download and upload." : {
+
+    },
+    "View, download, upload, edit, add and delete." : {
+
+    },
+    "View, download, upload, edit, add and delete.." : {
+
+    },
     "Viewer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
