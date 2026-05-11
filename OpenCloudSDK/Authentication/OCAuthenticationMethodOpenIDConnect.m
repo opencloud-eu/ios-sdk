@@ -894,9 +894,9 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 			// Public client — send client_id in POST body without client_secret
 			return (YES);
 		}
-		else if (!supportsBasicAuth && supportsPost)
+		else if (supportsPost)
 		{
-			// Basic auth is not supported, only POST
+			// Prefer client_secret_post over client_secret_basic (Android parity; Dex rejects Basic with empty secret for public clients, but accepts empty secret in body)
 			return (YES);
 		}
 		else if (!supportsPost && !supportsBasicAuth && !supportsNone)
