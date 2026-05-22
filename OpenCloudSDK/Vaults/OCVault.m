@@ -93,6 +93,8 @@
 
 - (instancetype)initWithBookmark:(OCBookmark *)bookmark
 {
+	if (bookmark.uuid == nil) { return nil; } // nil uuid would later crash rootURLForUUID: via URLByAppendingPathComponent:nil; reject the construction up front
+
 	if ((self = [super init]) != nil)
 	{
 		_bookmark = bookmark;
@@ -112,6 +114,8 @@
 
 + (NSURL *)rootURLForUUID:(NSUUID *)uuid
 {
+	if (uuid == nil) { return nil; } // rootPathRelativeToGroupContainerForVaultUUID: returns uuid.UUIDString which would be nil; URLByAppendingPathComponent:nil raises NSInvalidArgumentException → SIGABRT in FileProvider extension
+
 	return [[[[OCAppIdentity sharedAppIdentity] appGroupContainerURL] URLByAppendingPathComponent:OCVaultPathVaults] URLByAppendingPathComponent:[OCVault rootPathRelativeToGroupContainerForVaultUUID:uuid]];
 }
 
