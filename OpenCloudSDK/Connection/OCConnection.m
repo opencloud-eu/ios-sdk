@@ -715,12 +715,12 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 		[request addHeaderFields:_staticHeaderFields];
 	}
 
-	// Custom HTTP header from user settings
-	NSString *customHeaderName = [[NSUserDefaults standardUserDefaults] stringForKey:@"custom-http-header-name"];
-	NSString *customHeaderValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"custom-http-header-value"];
+	// Per-bookmark custom HTTP header (e.g. for reverse-proxy auth gating). See discussion opencloud-eu#2557.
+	NSString *customHeaderName = (NSString *)self.bookmark.userInfo[OCBookmarkUserInfoKeyCustomHTTPHeaderName];
+	NSString *customHeaderValue = (NSString *)self.bookmark.userInfo[OCBookmarkUserInfoKeyCustomHTTPHeaderValue];
 
-	if ((customHeaderName != nil) && (customHeaderName.length > 0) &&
-	    (customHeaderValue != nil) && (customHeaderValue.length > 0))
+	if ([customHeaderName isKindOfClass:NSString.class] && (customHeaderName.length > 0) &&
+	    [customHeaderValue isKindOfClass:NSString.class] && (customHeaderValue.length > 0))
 	{
 		[request setValue:customHeaderValue forHeaderField:customHeaderName];
 	}
