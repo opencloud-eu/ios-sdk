@@ -101,6 +101,8 @@ extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyStatusInfo; //!<  .userInfo ke
 extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyAllowHTTPConnection; //!< .userInfo key with a NSDate value. To be set to the date that the user was informed and allowed the usage of HTTP. To be removed otherwise.
 extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyBookmarkCreation; //!<  .userInfo key with a NSDictionary holding information on the creation of the bookmark.
 extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyPreferredUsername; //!< .userInfo key with an NSString holding the preferred_username from the OIDC id_token JWT, for use as login_hint on re-auth.
+extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderName; //!< .userInfo key with an NSString holding the name of a custom HTTP header to attach to every request for this account.
+extern OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderValue; //!< .userInfo key with an NSString holding the value of the custom HTTP header to attach to every request for this account.
 
 extern OCBookmarkCapability OCBookmarkCapabilityDrives; //!< This bookmark is drive-based.
 extern OCBookmarkCapability OCBookmarkCapabilityFavorites; //!< This bookmark supports favorites.

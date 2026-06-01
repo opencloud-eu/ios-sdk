@@ -628,6 +628,8 @@ OCBookmarkUserInfoKey OCBookmarkUserInfoKeyStatusInfo = @"statusInfo";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyAllowHTTPConnection = @"OCAllowHTTPConnection";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyBookmarkCreation = @"bookmark-creation";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyPreferredUsername = @"preferred-username";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderName = @"custom-http-header-name";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderValue = @"custom-http-header-value";
 
 OCBookmarkCapability OCBookmarkCapabilityDrives = @"drives";
 OCBookmarkCapability OCBookmarkCapabilityFavorites = @"favorites";
