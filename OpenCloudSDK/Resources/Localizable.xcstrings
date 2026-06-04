@@ -170,6 +170,12 @@
             "state" : "translated",
             "value" : "%@ уже существует"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ on jo olemassa"
+          }
         }
       }
     },
@@ -362,6 +368,12 @@
             "state" : "translated",
             "value" : "%1$@ wasn't found at %2$@."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ is niet gevonden op %2$@."
+          }
         }
       }
     },
@@ -377,6 +389,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lu files in %2$lu folders"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lu tiedostoa %2$lu kansiossa"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lu bestanden in %2$lu mappen"
           }
         }
       }
@@ -394,6 +418,12 @@
             "state" : "translated",
             "value" : "A modified, unsynchronized version of \"%@\" is present on your device. Downloading the file from the server will overwrite it and modifications be lost."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een aangepaste, niet-gesynchroniseerde versie van \"%@\" is aanwezig op uw apparaat. Als u het bestand van de server downloadt, wordt het overschreven en gaan wijzigingen verloren."
+          }
         }
       }
     },
@@ -409,6 +439,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Accepting share…"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyväksytään jakoa…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share accepteren…"
           }
         }
       }
@@ -431,6 +473,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actie"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toiminto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
           }
         }
       }
@@ -470,6 +524,12 @@
             "state" : "translated",
             "value" : "Allow cellular access"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobiele toegang toestaan"
+          }
         }
       }
     },
@@ -485,6 +545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "An error occured trying to validate the certificate for %@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is een fout opgetreden bij het valideren van het certificaat voor %@."
           }
         }
       }
@@ -502,6 +568,12 @@
             "state" : "translated",
             "value" : "An exception occured attempting to perform an action (\"%@\"). The action has been removed from the sync queue and may not have completed. If logging is enabled, the exception has been logged."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er deed zich een uitzondering voor bij een poging een actie uit te voeren (\"%@\"). De actie is verwijderd uit de synchronisatiewachtrij en is mogelijk niet voltooid. Als het logboek is ingeschakeld, is de uitzondering geregistreerd."
+          }
         }
       }
     },
@@ -517,6 +589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Another item named %1$@ already exists in %2$@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een ander item met de naam %1$@ bestaat al in %2$@."
           }
         }
       }
@@ -534,6 +612,12 @@
             "state" : "translated",
             "value" : "Another version of %1$@ already exists in %2$@."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een andere versie van %1$@ bestaat al in %2$@."
+          }
         }
       }
     },
@@ -549,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "At least {{min}} {{characterType}}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenminste {{min}} {{characterType}}"
           }
         }
       }
@@ -566,6 +656,12 @@
             "state" : "translated",
             "value" : "At least {{min}} special characters: {{specialCharacters}}"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenminste {{min}} speciale tekens: {{specialCharacters}}"
+          }
         }
       }
     },
@@ -581,6 +677,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "At most {{byteLength}} bytes."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoogstens {{byteLength}} bytes."
           }
         }
       }
@@ -598,6 +700,12 @@
             "state" : "translated",
             "value" : "At most {{max}} {{characterType}}"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoogstens {{max}} {{characterType}}"
+          }
         }
       }
     },
@@ -613,6 +721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auth Data"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auth-gegevens"
           }
         }
       }
@@ -630,6 +744,12 @@
             "state" : "translated",
             "value" : "Auth Method"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auth-methode"
+          }
         }
       }
     },
@@ -645,6 +765,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auth Validation Date"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auth-validatiedatum"
           }
         }
       }
@@ -668,6 +794,18 @@
             "state" : "translated",
             "value" : "Geauthenticeren…"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todennetaan…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authentification…"
+          }
         }
       }
     },
@@ -690,6 +828,12 @@
             "state" : "translated",
             "value" : "Offline beschikbaar"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disponible Hors-ligne"
+          }
         }
       }
     },
@@ -706,20 +850,540 @@
             "state" : "translated",
             "value" : "Between {{min}} and {{max}} {{characterType}}"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tussen {{min}} en {{max}} {{characterType}}"
+          }
         }
       }
     },
     "Can edit" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can edit"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pot editar"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan Redigere"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kann bearbeiten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δυνατότητα επεξεργασίας"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede editar"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "می تواند ویرایش کند"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voi muokata"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peut éditer"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ניתן לערוך"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztheti"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Può modificare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編集可"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집 가능"
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ສາມາດແກ້ໄຂໄດ້"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan bewerken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może edytować"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pode editar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Может редактировать"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan redigera"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може редагувати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có quyền chỉnh sửa"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可编辑"
+          }
+        }
+      }
     },
     "Can manage" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can manage"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pot gestionar"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kann verwalten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δυνατότητα διαχείρισης"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se puede gestionar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voi hallita"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peut gérer"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kezelheti"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Può gestire"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理可能"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "관리 가능"
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ສາມາດຈັດການໄດ້"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan beheren"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może zarządzać"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pode gerir"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Может управлять"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan hantera"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може керувати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có quyền quản lý"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可管理"
+          }
+        }
+      }
     },
     "Can upload" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can upload"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pot carregar"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kann hochladen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δυνατότητα μεταφόρτωσης"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se puede subir"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voi lähettää"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peut téléverser"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יכול להעלות"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feltölthet"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Può caricare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アップロード可能"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업로드 가능"
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ສາມາດອັບໂຫຼດໄດ້"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan uploaden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może przesyłać pliki"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pode enviar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Может загружать"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan ladda upp"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може вивантажувати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có quyền đăng tải"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可上传"
+          }
+        }
+      }
     },
     "Can view" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can view"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pot veure"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kann anzeigen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δυνατότητα προβολής"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se puede visualizar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voi nähdä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peut visualiser"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יכול לראות"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megtekintheti"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Può visualizzare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閲覧可能"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인 가능"
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ສາມາດເບິ່ງໄດ້"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan weergeven"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może oglądać"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pode ver"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Можно смотреть"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan visa"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може переглядати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có quyền xem"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可查看"
+          }
+        }
+      }
     },
     "Can't build custom scheme URL from %@." : {
       "localizations" : {
@@ -733,6 +1397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Can't build custom scheme URL from %@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan geen aangepaste schema-URL bouwen vanaf %@."
           }
         }
       }
@@ -749,6 +1419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Can't open custom scheme URL %@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan aangepaste schema-URL %@ niet openen."
           }
         }
       }
@@ -908,6 +1584,18 @@
             "state" : "translated",
             "value" : "Certificate"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenne"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaat"
+          }
         }
       }
     },
@@ -923,6 +1611,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Certificate changed"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenne vaihtui"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaat gewijzigd"
           }
         }
       }
@@ -940,6 +1640,18 @@
             "state" : "translated",
             "value" : "Certificate Date"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteen päiväys"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaatdatum"
+          }
         }
       }
     },
@@ -955,6 +1667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Certificate for %@ passed validation."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaat voor %@ geslaagd voor validatie."
           }
         }
       }
@@ -978,6 +1696,18 @@
             "state" : "translated",
             "value" : "Certificats"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaten"
+          }
         }
       }
     },
@@ -993,6 +1723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "characters"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tekens"
           }
         }
       }
@@ -1010,6 +1746,12 @@
             "state" : "translated",
             "value" : "Class"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasse"
+          }
         }
       }
     },
@@ -1025,6 +1767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Closing vault…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kluis sluiten…"
           }
         }
       }
@@ -1042,6 +1790,18 @@
             "state" : "translated",
             "value" : "Connected"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yhdistetty"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbonden"
+          }
         }
       }
     },
@@ -1057,6 +1817,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connecting"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yhdistetään"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion en cours"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinden"
           }
         }
       }
@@ -1080,6 +1858,18 @@
             "state" : "translated",
             "value" : "Connexion..."
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yhdistetään…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinden…"
+          }
         }
       }
     },
@@ -1095,6 +1885,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connection refused"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yhteys torjuttu"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinding geweigerd"
           }
         }
       }
@@ -1113,6 +1915,12 @@
             "state" : "translated",
             "value" : "Contributor"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bijdrager"
+          }
         }
       }
     },
@@ -1128,6 +1936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "copy"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kopiëren"
           }
         }
       }
@@ -1145,6 +1959,12 @@
             "state" : "translated",
             "value" : "Copying %1$@ to %2$@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ kopiëren naar %2$@…"
+          }
         }
       }
     },
@@ -1160,6 +1980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't copy %1$@ to %2$@, because an item called %3$@ already exists there."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %1$@ niet kopiëren naar %2$, omdat daar al een item bestaat met de naam %3$@."
           }
         }
       }
@@ -1177,6 +2003,18 @@
             "state" : "translated",
             "value" : "Couldn't create %@"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ei voitu luoda %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %@ niet aanmaken"
+          }
         }
       }
     },
@@ -1192,6 +2030,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't delete %@"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ei voitu poistaa %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %@ niet verwijderen"
           }
         }
       }
@@ -1209,6 +2059,18 @@
             "state" : "translated",
             "value" : "Couldn't download %@"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ei voitu ladata %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %@ niet downloaden"
+          }
         }
       }
     },
@@ -1224,6 +2086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't move %1$@ to %2$@, because an item called %3$@ already exists there."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %1$@ niet verplaatsen naar %2$@, omdat daar al een item bestaat met de naam %3$@."
           }
         }
       }
@@ -1241,6 +2109,12 @@
             "state" : "translated",
             "value" : "Couldn't rename %1$@ to %2$@, because another item with that name already exists."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %1$@ niet hernoemen naar %2$@, omdat daar al een item bestaat met de naam %3$@."
+          }
         }
       }
     },
@@ -1256,6 +2130,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't upload %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kon %@ niet uploaden"
           }
         }
       }
@@ -1273,6 +2153,12 @@
             "state" : "translated",
             "value" : "Creating folder %@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map %@ aanmaken…"
+          }
         }
       }
     },
@@ -1288,6 +2174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Creating share for %@…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share aanmaken voor %@…"
           }
         }
       }
@@ -1411,6 +2303,18 @@
             "state" : "translated",
             "value" : "Database size"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tietokannan koko"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Databasegrootte"
+          }
         }
       }
     },
@@ -1426,6 +2330,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Database Version"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tietokannan versio"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Databaseversie"
           }
         }
       }
@@ -1575,6 +2491,12 @@
             "state" : "translated",
             "value" : "删除"
           }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Izbriši"
+          }
         }
       }
     },
@@ -1590,6 +2512,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete Authentication Data"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer les données d'authentification"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authenticatiegegevens verwijderen"
           }
         }
       }
@@ -1607,6 +2541,18 @@
             "state" : "translated",
             "value" : "Delete Database"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poista tietokanta"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Database verwijderen"
+          }
         }
       }
     },
@@ -1622,6 +2568,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deleting %@…"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poistetaan %@…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ verwijderen…"
           }
         }
       }
@@ -1639,6 +2597,12 @@
             "state" : "translated",
             "value" : "Deleting share for %@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share verwijderen voor %@…"
+          }
         }
       }
     },
@@ -1655,6 +2619,12 @@
             "state" : "translated",
             "value" : "Deschedule (remove)"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planning verwijderen"
+          }
         }
       }
     },
@@ -1670,6 +2640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "digits"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cijfers"
           }
         }
       }
@@ -1688,6 +2664,18 @@
             "state" : "translated",
             "value" : "Download and preview"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lataa ja esikatsele"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloaden en weergeven"
+          }
         }
       }
     },
@@ -1704,6 +2692,18 @@
             "state" : "translated",
             "value" : "Downloading %@…"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ladataan %@…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ downloaden…"
+          }
         }
       }
     },
@@ -1717,6 +2717,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Editor"
@@ -1861,6 +2867,12 @@
             "state" : "translated",
             "value" : "Error copying %@"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het kopiëren van %@"
+          }
         }
       }
     },
@@ -1876,6 +2888,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error deleting %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het verwijderen van %@"
           }
         }
       }
@@ -1893,6 +2911,12 @@
             "state" : "translated",
             "value" : "Error moving %@"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het verplaatsen van %@"
+          }
         }
       }
     },
@@ -1908,6 +2932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error renaming %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het hernoemen van %@"
           }
         }
       }
@@ -1925,6 +2955,12 @@
             "state" : "translated",
             "value" : "Error updating %@ metadata"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het bijwerken van metagegevens %@"
+          }
         }
       }
     },
@@ -1940,6 +2976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error uploading %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fout bij het uploaden van %@"
           }
         }
       }
@@ -1957,6 +2999,12 @@
             "state" : "translated",
             "value" : "Events"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebeurtenissen"
+          }
         }
       }
     },
@@ -1972,6 +3020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exception occured performing action"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitzondering vond plaats tijdens het uitvoeren van actie"
           }
         }
       }
@@ -1989,6 +3043,12 @@
             "state" : "translated",
             "value" : "Failed"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mislukt"
+          }
         }
       }
     },
@@ -2005,6 +3065,12 @@
             "state" : "translated",
             "value" : "Fetching updates…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates ophalen…"
+          }
         }
       }
     },
@@ -2020,6 +3086,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fetching user information…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récupération des informations utilisateur..."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikersinformatie ophalen…"
           }
         }
       }
@@ -2161,6 +3239,12 @@
             "state" : "translated",
             "value" : "File modified locally"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestand lokaal gewijzigd"
+          }
         }
       }
     },
@@ -2284,6 +3368,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الملفات"
           }
         }
       }
@@ -2419,6 +3509,12 @@
             "state" : "translated",
             "value" : "Identifier"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identificatie"
+          }
         }
       }
     },
@@ -2434,6 +3530,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In progress since"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In uitvoering sinds"
           }
         }
       }
@@ -2451,6 +3553,24 @@
             "state" : "translated",
             "value" : "Insecure HTTP URL"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL HTTP non sécurisée"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onveilige HTTP-URL"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezabezpieczony URL HTTP"
+          }
         }
       }
     },
@@ -2466,6 +3586,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Insecure HTTP URL forbidden"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onveilige HTTP-URL verboden"
           }
         }
       }
@@ -2483,6 +3609,12 @@
             "state" : "translated",
             "value" : "Insufficient permissions"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onvoldoende machtigingen"
+          }
         }
       }
     },
@@ -2498,6 +3630,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invalid checksum"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldige controlesom"
           }
         }
       }
@@ -2515,6 +3653,12 @@
             "state" : "translated",
             "value" : "Invalid rule without minimum and maximum count"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldige regel zonder minimum en maximum aantal"
+          }
         }
       }
     },
@@ -2530,6 +3674,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invalidate"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldig maken"
           }
         }
       }
@@ -2547,6 +3697,12 @@
             "state" : "translated",
             "value" : "Invalidate Login Data"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login-gegevens ongeldig maken"
+          }
         }
       }
     },
@@ -2562,6 +3718,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invited persons"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genodigde personen"
           }
         }
       }
@@ -2579,6 +3741,12 @@
             "state" : "translated",
             "value" : "Issues were found while validating the certificate for %@."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er zijn problemen opgetreden bij het valideren van het certificaat voor %@."
+          }
         }
       }
     },
@@ -2591,6 +3759,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Item"
@@ -2689,6 +3863,12 @@
             "state" : "translated",
             "value" : "Behåll båda"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj oba"
+          }
         }
       }
     },
@@ -2704,6 +3884,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lane ID"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lane-ID"
           }
         }
       }
@@ -2721,6 +3907,12 @@
             "state" : "translated",
             "value" : "Local ID"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokale ID"
+          }
         }
       }
     },
@@ -2736,6 +3928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Localized Description"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gelokaliseerde beschrijving"
           }
         }
       }
@@ -2871,6 +4069,18 @@
             "state" : "translated",
             "value" : "Log HTTP requests and responses"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journaliser les requêtes et les réponses HTTP"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP-verzoeken en -reacties registreren"
+          }
         }
       }
     },
@@ -2886,6 +4096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Log internal file operations"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interne bestandsbewerkingen registreren"
           }
         }
       }
@@ -2903,6 +4119,12 @@
             "state" : "translated",
             "value" : "Login as user %@ required. Please retry."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login als gebruiker %@ vereist. Probeer het opnieuw."
+          }
         }
       }
     },
@@ -2918,6 +4140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Longer than {{byteLength}} bytes in {{encoding}} encoding."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langer dan {{byteLength}} bytes bij {{encoding}} codering."
           }
         }
       }
@@ -2935,6 +4163,12 @@
             "state" : "translated",
             "value" : "lower-case characters"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kleine letters"
+          }
         }
       }
     },
@@ -2951,6 +4185,12 @@
             "state" : "translated",
             "value" : "Making %1$@ available offline also covers %2$@, which was previously requested as being available offline."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het offline beschikbaar stellen van %1$@ dekt ook %2$@, dat eerder werd aangevraagd als offline beschikbaar."
+          }
         }
       }
     },
@@ -2966,6 +4206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Making %1$@ available offline also covers %2$@, whose offline availability has previously been requested."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het offline beschikbaar stellen van %1$@ dekt ook %2$@, waarvan de offline beschikbaarheid eerder is aangevraagd."
           }
         }
       }
@@ -3095,6 +4341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moving %1$@ to %2$@…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ verplaatsen naar %2$@…"
           }
         }
       }
@@ -3254,6 +4506,12 @@
             "state" : "translated",
             "value" : "Réseau indisponible"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Netwerk onbeschikbaar"
+          }
         }
       }
     },
@@ -3269,6 +4527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not enough space left on the server to upload %@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onvoldoende ruimte op de server om %@ te uploaden."
           }
         }
       }
@@ -3292,6 +4556,12 @@
             "state" : "translated",
             "value" : "Hors ligne"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline"
+          }
         }
       }
     },
@@ -3308,6 +4578,12 @@
             "state" : "translated",
             "value" : "Offline (no WiFi connection)"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline (geen WiFi-verbinding)"
+          }
         }
       }
     },
@@ -3323,6 +4599,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Offline availability of %1$@ is already ensured by having made %2$@ available offline."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline beschikbaarheid van %1$@ is al gerealiseerd door het offline beschikbaar stellen van %2$@."
           }
         }
       }
@@ -3342,6 +4624,18 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -3368,6 +4662,12 @@
             "state" : "translated",
             "value" : "En ligne"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Online"
+          }
         }
       }
     },
@@ -3383,6 +4683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Only invited persons have access. Login required."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alleen uitgenodigde personen hebben toegang. Login vereist."
           }
         }
       }
@@ -3400,6 +4706,12 @@
             "state" : "translated",
             "value" : "Opening vault…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kluis openen…"
+          }
         }
       }
     },
@@ -3415,6 +4727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Operation forbidden"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Operatie verboden"
           }
         }
       }
@@ -3432,6 +4750,12 @@
             "state" : "translated",
             "value" : "Origin Process"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oorspronkelijk proces"
+          }
         }
       }
     },
@@ -3447,6 +4771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Origin Process Valid"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oorspronkelijk proces valide"
           }
         }
       }
@@ -3464,6 +4794,12 @@
             "state" : "translated",
             "value" : "Origin URL"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oorspronkelijke URL"
+          }
         }
       }
     },
@@ -3479,6 +4815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Overwrite modified file"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewijzigd bestand overschrijven"
           }
         }
       }
@@ -3496,6 +4838,12 @@
             "state" : "translated",
             "value" : "Password can't be converted to {{encoding}}."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan wachtwoord niet converteren naar {{codering}}."
+          }
         }
       }
     },
@@ -3511,6 +4859,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pending"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En attente"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In behandeling"
           }
         }
       }
@@ -3648,6 +5008,12 @@
             "state" : "translated",
             "value" : "个人"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osobiste"
+          }
         }
       }
     },
@@ -3663,6 +5029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please check if you have sufficient permissions to delete %@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controleer of u voldoende machtigingen heeft om %@ te verwijderen."
           }
         }
       }
@@ -3680,6 +5052,12 @@
             "state" : "translated",
             "value" : "Populating database…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Database vullen…"
+          }
         }
       }
     },
@@ -3695,6 +5073,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Previous token refresh attempts indicated an invalid refresh token."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eerdere pogingen tot vernieuwing van tokens gaven een ongeldig vernieuwingstoken aan."
           }
         }
       }
@@ -3712,6 +5096,18 @@
             "state" : "translated",
             "value" : "Proceed"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exécuter"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doorgaan"
+          }
         }
       }
     },
@@ -3727,6 +5123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Process Sync Records"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisaties verwerken"
           }
         }
       }
@@ -3745,6 +5147,12 @@
             "state" : "translated",
             "value" : "Recipients can upload but existing contents are not revealed."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontvangers kunnen uploaden, maar bestaande inhoud wordt niet onthuld."
+          }
         }
       }
     },
@@ -3761,6 +5169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recipients can view and download contents."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontvangers kunnen inhoud bekijken en downloaden."
           }
         }
       }
@@ -3779,6 +5193,12 @@
             "state" : "translated",
             "value" : "Recipients can view, download and edit contents."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontvangers kunnen inhoud bekijken, downloaden en bewerken."
+          }
         }
       }
     },
@@ -3795,6 +5215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recipients can view, download and upload contents."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontvangers kunnen inhoud bekijken, downloaden en uploaden."
           }
         }
       }
@@ -3813,6 +5239,12 @@
             "state" : "translated",
             "value" : "Recipients can view, download, edit, delete and upload contents."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontvangers kunnen inhoud bekijken, downloaden, bewerken, verwijderen en uploaden."
+          }
         }
       }
     },
@@ -3828,6 +5260,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Redirection"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omleiding"
           }
         }
       }
@@ -3845,6 +5283,12 @@
             "state" : "translated",
             "value" : "Rejecting share…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share afwijzen…"
+          }
         }
       }
     },
@@ -3860,6 +5304,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove Database Version"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Databaseversie verwijderen"
           }
         }
       }
@@ -3877,6 +5327,12 @@
             "state" : "translated",
             "value" : "Removed Items"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijderde items"
+          }
         }
       }
     },
@@ -3893,6 +5349,12 @@
             "state" : "translated",
             "value" : "Removing local copy of %@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokale kopie van %@ verwijderen…"
+          }
         }
       }
     },
@@ -3908,6 +5370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Renaming %1$@ to %2$@…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ hernoemen naar %2$@…"
           }
         }
       }
@@ -4049,6 +5517,12 @@
             "state" : "translated",
             "value" : "Reschedule"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opnieuw plannen"
+          }
         }
       }
     },
@@ -4064,6 +5538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retrieving capabilities…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mogelijkheden ophalen…"
           }
         }
       }
@@ -4081,6 +5561,12 @@
             "state" : "translated",
             "value" : "Retrieving file list for %@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandenlijst ophalen voor %@…"
+          }
         }
       }
     },
@@ -4097,6 +5583,12 @@
             "state" : "translated",
             "value" : "Retrieving items for %@"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Items ophalen voor %@"
+          }
         }
       }
     },
@@ -4112,6 +5604,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retrieving metadata…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metagegevens ophalen…"
           }
         }
       }
@@ -4177,6 +5675,12 @@
             "state" : "translated",
             "value" : "Försök igen"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponów"
+          }
         }
       }
     },
@@ -4192,6 +5696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Running"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actief"
           }
         }
       }
@@ -4209,11 +5719,102 @@
             "state" : "translated",
             "value" : "Scheduled folder scans"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geplande mappenscans"
+          }
         }
       }
     },
     "Secret File Drop" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret File Drop"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caiguda de fitxers secrets"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Drop (geheim)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απόθεση μυστικού αρχείου (File Drop)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépôt d'un dossier secret"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תיקת חבירה סודית"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titkos fájlledobó"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rilascio di file segreti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " シークレットファイルドロップ"
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ບ່ອນຝາກໄຟລ໌ລັບ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geheime bestandsdropping"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrega secreta de ficheiros"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret File Drop"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hemlig filöverföring"
+          }
+        }
+      }
     },
     "Server doesn't seem to support any authentication method supported by this app." : {
       "localizations" : {
@@ -4227,6 +5828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Server doesn't seem to support any authentication method supported by this app."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server lijkt geen enkele authenticatiemethode te ondersteunen die door deze app wordt ondersteund."
           }
         }
       }
@@ -4244,6 +5851,12 @@
             "state" : "translated",
             "value" : "Server down for maintenance"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server is in onderhoudsmodus"
+          }
         }
       }
     },
@@ -4260,6 +5873,12 @@
             "state" : "translated",
             "value" : "Server returns status %ld"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server retourneert status %ld"
+          }
         }
       }
     },
@@ -4275,6 +5894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Server software %@ not supported."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server-software %@ wordt niet ondersteund."
           }
         }
       }
@@ -4293,11 +5918,36 @@
             "state" : "translated",
             "value" : "Set detailed permissions"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gedetailleerde machtigingen instellen"
+          }
         }
       }
     },
     "Set detailed permissions." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set detailed permissions."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detaillierte Berechtigungen festlegen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gedetailleerde machtigingen instellen."
+          }
+        }
+      }
     },
     "Shared with me" : {
       "localizations" : {
@@ -4424,6 +6074,18 @@
             "state" : "translated",
             "value" : "Sharing requires an active connection."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le partage nécessite une connexion active."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delen vereist een actieve verbinding."
+          }
         }
       }
     },
@@ -4439,6 +6101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "special characters"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "speciale tekens"
           }
         }
       }
@@ -4456,6 +6124,12 @@
             "state" : "translated",
             "value" : "Standard error output"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardfoutuitvoer"
+          }
         }
       }
     },
@@ -4471,6 +6145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "State"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Staat"
           }
         }
       }
@@ -4488,6 +6168,12 @@
             "state" : "translated",
             "value" : "Sync Record ID"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync-record-ID"
+          }
         }
       }
     },
@@ -4503,6 +6189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The certificate for %@ has previously been rejected by the user."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het certificaat voor %@ is eerder door de gebruiker afgewezen."
           }
         }
       }
@@ -4520,6 +6212,12 @@
             "state" : "translated",
             "value" : "The certificate for %1$@ passes TLS validation but doesn't pass the acceptance rule to replace the certificate for %2$@."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het certificaat voor %1$@ slaagt voor TLS-validatie, maar voldoet niet aan de acceptatieregel om het certificaat voor %2$@ te vervangen."
+          }
         }
       }
     },
@@ -4535,6 +6233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The connection is redirected from %1$@ to %2$@."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De verbinding wordt omgeleid van %1$@ naar %2$@."
           }
         }
       }
@@ -4552,6 +6256,12 @@
             "state" : "translated",
             "value" : "The contents of the file on the server has changed since initiating download - or the file is no longer available on the server."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De inhoud van het bestand op de server is gewijzigd sinds het starten van het downloaden - of het bestand is niet langer beschikbaar op de server."
+          }
         }
       }
     },
@@ -4567,6 +6277,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The downloaded file's checksum does not match the checksum provided by the server."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De controlesom van het gedownloade bestand komt niet overeen met de controlesom die door de server wordt verstrekt."
           }
         }
       }
@@ -4584,6 +6300,12 @@
             "state" : "translated",
             "value" : "The file no longer exists on the server in this location."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand bestaat niet meer op de server op deze locatie."
+          }
         }
       }
     },
@@ -4599,6 +6321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The target directory %@ doesn't seem to exist."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De doelmap %@ lijkt niet te bestaan."
           }
         }
       }
@@ -4616,6 +6344,12 @@
             "state" : "translated",
             "value" : "The URL you provided uses the HTTP rather than the HTTPS scheme, so your communication would not be encrypted."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De URL die u heeft opgegeven gebruikt HTTP in plaats van HTTPS, waarmee uw communicatie niet versleuteld is."
+          }
         }
       }
     },
@@ -4631,6 +6365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The URL you provided uses the HTTP rather than the HTTPS scheme. If you continue, your communication will not be encrypted."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De URL die u hebt opgegeven, gebruikt HTTP in plaats van HTTPS. Als u doorgaat, is uw communicatie niet versleuteld."
           }
         }
       }
@@ -4742,6 +6482,12 @@
             "state" : "translated",
             "value" : "This server runs an unsupported version (%1$@). Version %2$@ or later is required by this app."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze server draait een niet-ondersteunde versie (%1$@). Versie %2$@ of hoger is vereist door deze app."
+          }
         }
       }
     },
@@ -4757,6 +6503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thumbnail database size"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grootte van de miniatuurdatabase"
           }
         }
       }
@@ -4774,6 +6526,18 @@
             "state" : "translated",
             "value" : "Timestamp"
           }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aikaleima"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tijdstempel"
+          }
         }
       }
     },
@@ -4789,6 +6553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Too few {{localizedName}}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te weinig {{localizedName}}"
           }
         }
       }
@@ -4806,6 +6576,12 @@
             "state" : "translated",
             "value" : "Too many {{localizedName}}"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te veel {{localizedName}}"
+          }
         }
       }
     },
@@ -4821,6 +6597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total Items"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totaal aantal"
           }
         }
       }
@@ -4838,6 +6620,12 @@
             "state" : "translated",
             "value" : "Update failed with status code %lu"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update mislukt met statuscode %lu"
+          }
         }
       }
     },
@@ -4853,6 +6641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Updating metadata for '%@'…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metagegevens bijwerken voor '%@'…"
           }
         }
       }
@@ -4870,6 +6664,12 @@
             "state" : "translated",
             "value" : "Updating share…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share bijwerken…"
+          }
         }
       }
     },
@@ -4886,11 +6686,36 @@
             "state" : "translated",
             "value" : "Upgrading database…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Database bijwerken…"
+          }
         }
       }
     },
     "Upload only, existing content is not revealed." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload only, existing content is not revealed."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur hochladen, bestehende Inhalte werden nicht angezeigt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alleen uploaden, bestaande inhoud wordt niet onthuld."
+          }
+        }
+      }
     },
     "Upload, edit, delete, download and preview" : {
       "extractionState" : "stale",
@@ -4906,6 +6731,12 @@
             "state" : "translated",
             "value" : "Upload, edit, delete, download and preview"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploaden, bewerken, verwijderen, downloaden en bekijken"
+          }
         }
       }
     },
@@ -4919,6 +6750,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploader"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uploader"
@@ -4939,6 +6776,12 @@
             "state" : "translated",
             "value" : "Uploading %@…"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ uploaden…"
+          }
         }
       }
     },
@@ -4955,6 +6798,12 @@
             "state" : "translated",
             "value" : "Uploads to this folder are not allowed."
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploads naar deze map zijn niet toegestaan."
+          }
         }
       }
     },
@@ -4970,6 +6819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "upper-case characters"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hoofdletters"
           }
         }
       }
@@ -5035,6 +6890,12 @@
             "state" : "translated",
             "value" : "URL"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
         }
       }
     },
@@ -5050,6 +6911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use Origin URL as URL"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oorspronkelijke URL als URL gebruiken"
           }
         }
       }
@@ -5073,6 +6940,12 @@
             "state" : "translated",
             "value" : "ຊື່ຜູ້ໃຊ້"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikersnaam"
+          }
         }
       }
     },
@@ -5095,6 +6968,12 @@
             "state" : "translated",
             "value" : "ຂໍ້ມູນຜູ້ໃຊ້"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikersinfo"
+          }
         }
       }
     },
@@ -5113,6 +6992,12 @@
           }
         },
         "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "UUID"
@@ -5139,20 +7024,408 @@
             "state" : "translated",
             "value" : "ຈັດລະບຽບຖານຂໍ້ມູນ Vacuum"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vacuüm"
+          }
         }
       }
     },
     "View and download." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View and download."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualitza i descarrega."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ansehen und herunterladen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προβολή και λήψη."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver y descargar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näytä ja lataa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulter et télécharger."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megtekintés és letöltés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza e scarica."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閲覧とダウンロード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보기 및 다운로드."
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ເບິ່ງ ແລະ ດາວໂຫຼດ."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weergeven en downloaden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobacz i pobierz"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver e transferir."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть и скачать"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa och ladda ner."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може переглядати та завантажувати файли."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem và tải về."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看和下载。"
+          }
+        }
+      }
     },
     "View, download and upload." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View, download and upload."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualitza, descarrega i carrega."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ansehen, herunterladen und hochladen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προβολή, λήψη και μεταφόρτωση."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver, descargar y subir."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näytä, lataa ja lähetä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulter, télécharger et téléverser."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megtekintés, letöltés és feltöltés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza, scarica e carica."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閲覧、ダウンロード、アップロード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보기, 다운로드 및 업로드."
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ເບິ່ງ, ດາວໂຫຼດ ແລະ ອັບໂຫຼດ."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weergeven, downloaden en uploaden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyświetlanie, pobieranie i przesyłanie."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver, transferir e enviar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть, скачать и загрузить."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa, ladda ner och ladda upp."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може переглядати, завантажувати та вивантажувати файли."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem, tải về và tải lên."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看、下载和上传。"
+          }
+        }
+      }
     },
     "View, download, upload, edit, add and delete." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View, download, upload, edit, add and delete."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualitza, descarrega, carrega, edita, afegeix i suprimeix."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ansehen, herunterladen, hochladen, bearbeiten, hinzufügen, löschen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προβολή, λήψη, μεταφόρτωση, επεξεργασία, προσθήκη και διαγραφή."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver, descargar, subuir, editar, añadir y eliminar."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näytä, lataa lähetä, muokkaa, lisää ja poista."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulter, télécharger, téléverser, modifier, ajouter et supprimer."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megtekintés, letöltés, feltöltés, szerkesztés, hozzáadás és törlés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza, scarica, carica, modifica, aggiungi ed elimina."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閲覧、ダウンロード、アップロード、編集、追加、削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보기, 다운로드, 업로드, 편집, 추가 및 삭제."
+          }
+        },
+        "lo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ເບິ່ງ, ດາວໂຫຼດ, ອັບໂຫຼດ, ແກ້ໄຂ, ເພີ່ມ ແລະ ລຶບ."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weergeven, downloaden, uploaden, bewerken, toevoegen en verwijderen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyświetlanie, pobieranie,  przesyłanie, edycja, dodawanie i usuwanie."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver, transferir, enviar, editar, adicionar e eliminar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть, скачать, загрузить, редактировать, добавить и удалить."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa, ladda ner, ladda upp, redigera, lägg till och ta bort."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Може переглядати, завантажувати, вивантажувати, редагувати, додавати та видаляти файли."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem, tải về, tải lên, chỉnh sửa, thêm và xóa."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看、下载、上传、编辑、添加和删除。"
+          }
+        }
+      }
     },
     "View, download, upload, edit, add and delete.." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View, download, upload, edit, add and delete.."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ansehen, herunterladen, hochladen, bearbeiten, hinzufügen und löschen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bekijken, downloaden, uploaden, bewerken, toevoegen en verwijderen…"
+          }
+        }
+      }
     },
     "Viewer" : {
       "extractionState" : "stale",
@@ -5173,6 +7446,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ຜູ້ເບິ່ງ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viewer"
           }
         }
       }
@@ -5196,6 +7475,12 @@
             "state" : "translated",
             "value" : "ເງື່ອນໄຂການລໍຖ້າ"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wacht-voorwaarden"
+          }
         }
       }
     },
@@ -5217,6 +7502,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ກຳລັງລໍຖ້າການໂຫຼດຂໍ້ມູນເມຕາຄືນໃໝ່"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wachten op vernieuwing van metadata"
           }
         }
       }
@@ -5240,6 +7531,12 @@
             "state" : "translated",
             "value" : "ກຳລັງລໍຖ້າຜູ້ໃຊ້"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wachten op gebruiker"
+          }
         }
       }
     },
@@ -5262,6 +7559,12 @@
             "state" : "translated",
             "value" : "ກຳລັງລໍຖ້າເພື່ອລອງໃໝ່ (ຄັ້ງທີ %1$ld ຈາກ %2$ld)"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wachten om het opnieuw te proberen (%1$ld van %2$ld)"
+          }
         }
       }
     },
@@ -5283,6 +7586,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ທ່ານໄດ້ເຂົ້າສູ່ລະບົບໃນນາມຜູ້ໃຊ້ %1$@, ແຕ່ຕ້ອງເຂົ້າສູ່ລະບົບໃນນາມຜູ້ໃຊ້ %2$@. ກະລຸນາລອງໃໝ່."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U bent ingelogd als gebruiker %1$@, maar moet inloggen als gebruiker %2$@. Probeer het opnieuw."
           }
         }
       }

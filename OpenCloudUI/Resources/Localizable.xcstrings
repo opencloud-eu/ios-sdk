@@ -20,6 +20,18 @@
             "state" : "translated",
             "value" : "Autom. geaccepteerd."
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptat automàticament."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automaattisesti hyväksytty."
+          }
         }
       }
     },
@@ -41,6 +53,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Certificaatketen"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadena de certificats"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenneketju"
           }
         }
       }
@@ -70,6 +94,18 @@
             "state" : "translated",
             "value" : "Certificaatdetails"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalls del certificat"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteen yksityiskohdat"
+          }
         }
       }
     },
@@ -91,6 +127,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Er zijn problemen met het certificaat."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El certificat té problemes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteessa on ongelmia."
           }
         }
       }
@@ -220,6 +268,18 @@
             "state" : "translated",
             "value" : "Vingerafdrukken"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empremtes"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sormenjäljet"
+          }
         }
       }
     },
@@ -241,6 +301,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verbergen ±"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amaga ±"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piilota ±"
           }
         }
       }
@@ -264,6 +336,18 @@
             "state" : "translated",
             "value" : "Hostnaam"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom d'amfitrió"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isäntänimi"
+          }
         }
       }
     },
@@ -285,6 +369,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tussenliggend certificaat"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificat intermedi"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välivarmenne"
           }
         }
       }
@@ -308,6 +404,18 @@
             "state" : "translated",
             "value" : "Uitgever"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emissor"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myöntäjä"
+          }
         }
       }
     },
@@ -329,6 +437,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen problemen gevonden."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'han trobat problemes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongelmia ei löytynyt."
           }
         }
       }
@@ -352,6 +472,18 @@
             "state" : "translated",
             "value" : "Openbare sleutel"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clau pública"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julkinen avain"
+          }
         }
       }
     },
@@ -373,6 +505,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reden"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raó"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syy"
           }
         }
       }
@@ -396,6 +540,18 @@
             "state" : "translated",
             "value" : "Root-certificaat"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificat arrel"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juurivarmenne"
+          }
         }
       }
     },
@@ -417,6 +573,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weergeven ±"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra ±"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näytä ±"
           }
         }
       }
@@ -528,6 +696,18 @@
             "state" : "translated",
             "value" : "Gebruiker-geaccepteerd."
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptat per l'usuari."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käyttäjän hyväksymä."
+          }
         }
       }
     },
@@ -549,6 +729,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruiker-geweigerd."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rebutjat per l'usuari."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käyttäjän hylkäämä."
           }
         }
       }
@@ -572,6 +764,18 @@
             "state" : "translated",
             "value" : "Valideren…"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Validant…"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vahvistetaan…"
+          }
         }
       }
     },
@@ -594,6 +798,24 @@
             "state" : "translated",
             "value" : "Validatiefout"
           }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de validació"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vahvistusvirhe"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de Validation"
+          }
         }
       }
     },
@@ -615,6 +837,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Validatiestatus"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estat de validació"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vahvistuksen tila"
           }
         }
       }
