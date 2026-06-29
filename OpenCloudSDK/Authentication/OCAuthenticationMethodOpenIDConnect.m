@@ -812,23 +812,20 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 		{
 			OCHTTPResponse *response = wellKnownRequest.httpResponse;
 
-			if (response.status.isSuccess)
-			{
-				if ([response.contentType hasSuffix:@"/json"])
-				{
-					NSError *error = nil;
+			// Some IdPs serve the OpenID configuration without a proper Content-Type or 2xx status code, so don't
+			// require those here - accept it as long as the body parses into a configuration carrying the core OIDC endpoints.
+			NSError *error = nil;
+			NSDictionary<NSString *, id> *openIDConfig = [response bodyConvertedDictionaryFromJSONWithError:&error];
 
-					if ([response bodyConvertedDictionaryFromJSONWithError:&error] != nil)
-					{
-						// OIDC supported
-						completionHandler(OCAuthenticationMethodIdentifierOpenIDConnect, YES);
-						completeWithNotSupported = NO;
-					}
-					else
-					{
-						OCLogError(@"Error decoding OIDC configuration JSON: %@", OCLogPrivate(error));
-					}
-				}
+			if ((openIDConfig[@"authorization_endpoint"] != nil) && (openIDConfig[@"token_endpoint"] != nil))
+			{
+				// OIDC supported
+				completionHandler(OCAuthenticationMethodIdentifierOpenIDConnect, YES);
+				completeWithNotSupported = NO;
+			}
+			else
+			{
+				OCLogError(@"OpenID configuration not usable for OIDC detection (HTTP status %ld, content-type %@, parse error %@)", (long)response.status.code, response.contentType, OCLogPrivate(error));
 			}
 		}
 	}
