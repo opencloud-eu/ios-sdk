@@ -799,6 +799,21 @@ OCAuthenticationMethodAutoRegister
 	{
 		NSString *refreshToken;
 
+		// Double-checked locking: while waiting for the lock, a concurrent refresh (another thread or the File Provider process)
+		// may have already renewed the token. If it is valid again, skip the refresh - replaying the now-rotated refresh token
+		// would be rejected with invalid_grant by IdPs that rotate refresh tokens (e.g. Authelia, Nauthilus).
+		if (!_receivedUnauthorizedResponse)
+		{
+			NSTimeInterval timeLeftUntilExpiration = [((NSDate *)[authSecret valueForKeyPath:OA2ExpirationDate]) timeIntervalSinceNow];
+
+			if (timeLeftUntilExpiration > OA2RefreshSafetyMarginInSeconds)
+			{
+				OCLogDebug(@"Token already refreshed by a concurrent request (expires in %.0f secs) - skipping refresh", timeLeftUntilExpiration);
+				availabilityHandler(nil, YES);
+				return;
+			}
+		}
+
 		if ((refreshToken = [authSecret valueForKeyPath:OA2RefreshToken]) != nil)
 		{
 			OCLogDebug(@"Sending token refresh request for connection (expiry=%@)..", authSecret[OA2ExpirationDate]);
