@@ -458,7 +458,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 {
 	if ((self = [super init]) != nil)
 	{
-		_partitionID = bookmark.uuid.UUIDString;
+		_partitionID = bookmark.uuidString;
 
 		self.bookmark = bookmark;
 
@@ -2064,6 +2064,13 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 			if ((items.count == 0) && (errors.count > 0) && (event.error == nil))
 			{
 				event.error = errors.firstObject;
+			}
+			else if (items != nil)
+			{
+				OCBookmarkUUIDString bookmarkUUIDString = self.bookmark.uuidString;
+				for (OCItem *item in items) {
+					item.bookmarkUUID = bookmarkUUIDString;
+				}
 			}
 
 			switch (eventType)
