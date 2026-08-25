@@ -162,6 +162,7 @@ FOUNDATION_EXPORT const unsigned char OpenCloudSDKVersionString[];
 
 #import <OpenCloudSDK/OCVault.h>
 #import <OpenCloudSDK/OCVaultLocation.h>
+#import <OpenCloudSDK/NSString+OCFilesystemComponent.h>
 #import <OpenCloudSDK/OCDatabase.h>
 #import <OpenCloudSDK/OCDatabase+Versions.h>
 #import <OpenCloudSDK/OCDatabaseConsistentOperation.h>
