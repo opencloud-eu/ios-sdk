@@ -72,7 +72,8 @@
 
 	if (OCProcessManager.isProcessExtension)
 	{
-		if ((bundleName = [NSBundle.mainBundle objectForInfoDictionaryKey:(__bridge id)kCFBundleNameKey]) == nil)
+		// Use untranslated name! https://github.com/opencloud-eu/ios/issues/67
+		if ((bundleName = NSBundle.mainBundle.infoDictionary[(__bridge NSString *)kCFBundleNameKey]) == nil)
 		{
 			bundleName = NSBundle.mainBundle.bundlePath.lastPathComponent.stringByDeletingPathExtension;
 		}
