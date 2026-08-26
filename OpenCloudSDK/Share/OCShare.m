@@ -241,6 +241,8 @@ BIT_ACCESSOR(canShare,	setCanShare,	OCSharePermissionsMaskShare);
 			_itemType = itemType;
 		}
 
+		_itemIsSpaceRoot = [decoder decodeBoolForKey:@"itemIsSpaceRoot"];
+
 		_itemOwner = [decoder decodeObjectOfClass:[OCUser class] forKey:@"itemOwner"];
 		_itemMIMEType = [decoder decodeObjectOfClass:[NSString class] forKey:@"itemMIMEType"];
 
@@ -275,6 +277,7 @@ BIT_ACCESSOR(canShare,	setCanShare,	OCSharePermissionsMaskShare);
 
 	[coder encodeObject:_itemLocation forKey:@"itemLocation"];
 	[coder encodeInteger:_itemType forKey:@"itemLType"];
+	[coder encodeBool:_itemIsSpaceRoot forKey:@"itemIsSpaceRoot"];
 	[coder encodeObject:_itemOwner forKey:@"itemOwner"];
 	[coder encodeObject:_itemMIMEType forKey:@"itemMIMEType"];
 
@@ -376,7 +379,7 @@ BIT_ACCESSOR(canShare,	setCanShare,	OCSharePermissionsMaskShare);
 		break;
 	}
 
-	return ([NSString stringWithFormat:@"<%@: %p, identifier: %@, type: %@, category: %@, name: %@, itemLocation: %@, itemType: %@, itemMIMEType: %@, itemOwner: %@, creationDate: %@, expirationDate: %@, permissions: %@%@%@%@%@%@%@%@>", NSStringFromClass(self.class), self, _identifier, typeAsString, categoryAsString, _name, _itemLocation, itemTypeString, _itemMIMEType, _itemOwner, _creationDate, _expirationDate, permissionsString, ((_password!=nil) ? @", password: [redacted]" : (_protectedByPassword ? @", protectedByPassword" : @"")), ((_token!=nil)?[NSString stringWithFormat:@", token: %@", _token] : @""), ((_url!=nil)?[NSString stringWithFormat:@", url: %@", _url] : @""), ((_owner!=nil) ? [NSString stringWithFormat:@", owner: %@", _owner] : @""), ((_recipient!=nil) ? [NSString stringWithFormat:@", recipient: %@", _recipient] : @""), ((_accepted!=nil) ? [NSString stringWithFormat:@", accepted: %@", _accepted] : @""), ((_state!=nil) ? ([_state isEqual:OCShareStateAccepted] ? @", state: accepted" : ([_state isEqual:OCShareStateDeclined] ? @", state: declined" : [_state isEqual:OCShareStatePending] ? @", state: pending" : @", state: ?!")) : @"")]);
+	return ([NSString stringWithFormat:@"<%@: %p, identifier: %@, type: %@, category: %@, name: %@, itemLocation: %@, itemType: %@%@, itemMIMEType: %@, itemOwner: %@, creationDate: %@, expirationDate: %@, permissions: %@%@%@%@%@%@%@%@>", NSStringFromClass(self.class), self, _identifier, typeAsString, categoryAsString, _name, _itemLocation, itemTypeString, (_itemIsSpaceRoot ? @" (space root)" : @""), _itemMIMEType, _itemOwner, _creationDate, _expirationDate, permissionsString, ((_password!=nil) ? @", password: [redacted]" : (_protectedByPassword ? @", protectedByPassword" : @"")), ((_token!=nil)?[NSString stringWithFormat:@", token: %@", _token] : @""), ((_url!=nil)?[NSString stringWithFormat:@", url: %@", _url] : @""), ((_owner!=nil) ? [NSString stringWithFormat:@", owner: %@", _owner] : @""), ((_recipient!=nil) ? [NSString stringWithFormat:@", recipient: %@", _recipient] : @""), ((_accepted!=nil) ? [NSString stringWithFormat:@", accepted: %@", _accepted] : @""), ((_state!=nil) ? ([_state isEqual:OCShareStateAccepted] ? @", state: accepted" : ([_state isEqual:OCShareStateDeclined] ? @", state: declined" : [_state isEqual:OCShareStatePending] ? @", state: pending" : @", state: ?!")) : @"")]);
 }
 
 - (OCShareState)effectiveState
@@ -405,6 +408,7 @@ BIT_ACCESSOR(canShare,	setCanShare,	OCSharePermissionsMaskShare);
 
 	copiedShare->_itemLocation = _itemLocation;
 	copiedShare->_itemType = _itemType;
+	copiedShare->_itemIsSpaceRoot = _itemIsSpaceRoot;
 	copiedShare->_itemOwner = _itemOwner;
 	copiedShare->_itemMIMEType = _itemMIMEType;
 

@@ -77,22 +77,31 @@
 
 				if ((itemSource = shareNode.keyValues[@"item_source"]) != nil)
 				{
-					if ([itemSource containsString:@"!"] && [state isEqual:OCShareStateAccepted] && (share.category == OCShareCategoryWithMe))
+					// item_source format: "[storageID]$[spaceID]![itemID]"
+					NSArray<NSString *> *itemSourceIDs = [itemSource componentsSeparatedByString:@"!"];
+					OCDriveID itemDriveID = (itemSourceIDs.count == 2) ? itemSourceIDs.firstObject : nil;
+					NSString *itemID = (itemSourceIDs.count == 2) ? itemSourceIDs.lastObject : nil;
+
+					// itemID == spaceID identifies the space itself: a space membership rather than a share of
+					// an item inside it - and those are not mounted into the Shares Jail, but stay reachable
+					// through the space's own drive (via https://github.com/opencloud-eu/ios/issues/68)
+					if (itemDriveID != nil)
+					{
+						OCDriveID spaceID = [itemDriveID componentsSeparatedByString:@"$"].lastObject;
+
+						share.itemIsSpaceRoot = [itemID isEqual:spaceID];
+					}
+
+					if ([itemSource containsString:@"!"] && [state isEqual:OCShareStateAccepted] && (share.category == OCShareCategoryWithMe) && !share.itemIsSpaceRoot)
 					{
 						// Compute location and FileID in Shares Jail
 						share.itemFileID = [OCDriveIDSharesJail stringByAppendingFormat:@"!%@", shareID]; // Item ID in Shares Jail = OCDriveIDSharesJail + "!" + shareID (via https://github.com/opencloud-eu/web/blob/main/packages/web-client/src/helpers/space/functions.ts#L53 )
 						share.itemLocation = [[OCLocation alloc] initWithDriveID:OCDriveIDSharesJail path:[@"/" stringByAppendingString:sharePath.lastPathComponent]]; // Item is located in Shares Jail
 					}
-					else
+					else if (itemDriveID != nil)
 					{
-						// OpenCloud (drive ID could be extracted from item_source, which follows format "[driveID]![fileID]")
-						NSArray<NSString *> *itemSourceIDs = [itemSource componentsSeparatedByString:@"!"];
-
-						if (itemSourceIDs.count == 2)
-						{
-							share.itemFileID = itemSource;
-							share.itemLocation = [[OCLocation alloc] initWithDriveID:itemSourceIDs.firstObject path:sharePath];
-						}
+						share.itemFileID = itemSource;
+						share.itemLocation = [[OCLocation alloc] initWithDriveID:itemDriveID path:sharePath];
 					}
 				}
 
