@@ -93,6 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong,nonatomic) OCLocation *itemLocation; //!< Location of the shared item
 @property(strong,nullable) OCFileID itemFileID; //!< File ID of item
 @property(assign) OCLocationType itemType; //!< Type of the shared item
+@property(assign) BOOL itemIsSpaceRoot; //!< YES if the shared item is the root of a space (i.e. a project space membership rather than a share of a file or folder inside a space)
 @property(nullable,strong) OCUser *itemOwner; //!< Owner of the item
 @property(nullable,strong) NSString *itemMIMEType; //!< MIME-Type of the shared item
 

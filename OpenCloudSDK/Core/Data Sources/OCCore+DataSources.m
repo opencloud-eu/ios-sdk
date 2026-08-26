@@ -324,6 +324,15 @@
 
 				if ((share = OCTypedCast(record.item, OCShare)) != nil)
 				{
+					// Space memberships (f.ex. project spaces) are returned by the server alongside shares of
+					// files and folders, but are not shares of items: they are reachable through the space's own
+					// drive and can't meaningfully be accepted or declined. Web does not list them here either,
+					// so filter them out (via https://github.com/opencloud-eu/ios/issues/68).
+					if (share.itemIsSpaceRoot)
+					{
+						return (NO);
+					}
+
 					return ([share.effectiveState isEqual:shareState]);
 				}
 			}

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C7295E8228DAD6200FA4E68 /* OCLogFileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7295E7228DAD6200FA4E68 /* OCLogFileRecord.m */; };
 		4C7295EA228DB0A800FA4E68 /* OCLogFileRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7295E9228DAD8400FA4E68 /* OCLogFileRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		590BFCE46E1498CA3436087A /* ShareSpaceRootParsingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 860C496EDDAD4E6727220EAC /* ShareSpaceRootParsingTests.m */; };
 		5966C8D52195A11600C8875E /* OCCoreManager+OCMocking.h in Headers */ = {isa = PBXBuildFile; fileRef = 5966C8D32195A11600C8875E /* OCCoreManager+OCMocking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5966C8D62195A11600C8875E /* OCCoreManager+OCMocking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5966C8D42195A11600C8875E /* OCCoreManager+OCMocking.m */; };
 		599A45AA218C566C003CAB00 /* OCConnection+OCMocking.m in Sources */ = {isa = PBXBuildFile; fileRef = 599A45A8218C566C003CAB00 /* OCConnection+OCMocking.m */; };
@@ -1080,6 +1081,7 @@
 		599A45A9218C566C003CAB00 /* OCConnection+OCMocking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCConnection+OCMocking.h"; sourceTree = "<group>"; };
 		59F6476B219AD11600C016FD /* OCQuery+OCMocking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCQuery+OCMocking.h"; sourceTree = "<group>"; };
 		59F6476C219AD11600C016FD /* OCQuery+OCMocking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OCQuery+OCMocking.m"; sourceTree = "<group>"; };
+		860C496EDDAD4E6727220EAC /* ShareSpaceRootParsingTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareSpaceRootParsingTests.m; sourceTree = "<group>"; };
 		DC00DB1B219B120300C82737 /* OCHTTPDAVMultistatusResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCHTTPDAVMultistatusResponse.h; sourceTree = "<group>"; };
 		DC00DB1C219B120300C82737 /* OCHTTPDAVMultistatusResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCHTTPDAVMultistatusResponse.m; sourceTree = "<group>"; };
 		DC01969920F74FC700C41B78 /* OCAuthenticationMethodBasicAuth+OCMocking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCAuthenticationMethodBasicAuth+OCMocking.h"; sourceTree = "<group>"; };
@@ -4137,6 +4139,7 @@
 				DCC26FBB2B73978000904000 /* PasswordPolicyTests.m */,
 				DCFBACF621BAB35A00943F76 /* PerformanceTests.m */,
 				DC72E4342063DF5C00189B9A /* SettingsTests.m */,
+				860C496EDDAD4E6727220EAC /* ShareSpaceRootParsingTests.m */,
 				DC03AC4822295AA6006901DC /* SharingTests.m */,
 				DC4AFAAC206A7FDB00189B9A /* SQLTests.m */,
 				DC72E4362063DF7700189B9A /* customSettings.plist */,
@@ -5791,6 +5794,7 @@
 				DC2F6372223A39A40063C2DA /* CoreSharingTests.m in Sources */,
 				DC0AE4572310793100428681 /* KeyValueStoreTests.m in Sources */,
 				DCEEB2D52042312500189B9A /* ConnectionTests.m in Sources */,
+				590BFCE46E1498CA3436087A /* ShareSpaceRootParsingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
