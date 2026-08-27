@@ -151,6 +151,13 @@
 				}
 			} copy],
 
+			@"oc:has-preview" : [^(OCItem *item, NSString *key, id value) {
+				if ([value isKindOfClass:[NSString class]])
+				{
+					item.hasPreview = ((NSString *)value).boolValue ? (__bridge id)kCFBooleanTrue : (__bridge id)kCFBooleanFalse;
+				}
+			} copy],
+
 			@"oc:share-type" : [^(OCItem *item, NSString *key, id value) {
 				if ([value isKindOfClass:[NSString class]])
 				{

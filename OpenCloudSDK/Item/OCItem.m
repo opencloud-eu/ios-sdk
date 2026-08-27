@@ -123,6 +123,7 @@
 	[coder encodeObject:_lastUsed		forKey:@"lastUsed"];
 
 	[coder encodeObject:_isFavorite		forKey:@"isFavorite"];
+	[coder encodeObject:_hasPreview		forKey:@"hasPreview"];
 
 	[coder encodeInteger:_state 		forKey:@"state"];
 
@@ -190,6 +191,7 @@
 		_lastUsed = [decoder decodeObjectOfClass:NSDate.class forKey:@"lastUsed"];
 
 		_isFavorite = [decoder decodeObjectOfClass:NSNumber.class forKey:@"isFavorite"];
+		_hasPreview = [decoder decodeObjectOfClass:NSNumber.class forKey:@"hasPreview"];
 
 		_state = [decoder decodeIntegerForKey:@"state"];
 
@@ -322,16 +324,30 @@
 }
 
 #pragma mark - Thumbnails
+- (void)setHasPreview:(NSNumber *)hasPreview
+{
+	_hasPreview = hasPreview;
+	_thumbnailAvailability = OCItemThumbnailAvailabilityInternal; // Recompute thumbnail availability on next access
+}
+
 - (OCItemThumbnailAvailability)thumbnailAvailability
 {
 	if (_thumbnailAvailability == OCItemThumbnailAvailabilityInternal)
 	{
 		if (_type == OCItemTypeCollection)
 		{
+			// FIXME: Would server ever return a folder preview image, similar to what some desktop OSes can do?
 			_thumbnailAvailability = OCItemThumbnailAvailabilityNone;
+		}
+		else if (_hasPreview != nil)
+		{
+			// The server told us whether it can render a preview for this item (oc:has-preview), so
+			// take its word for it - and avoid requesting previews the server can only answer with a 404
+			_thumbnailAvailability = _hasPreview.boolValue ? OCItemThumbnailAvailabilityAvailable : OCItemThumbnailAvailabilityNone;
 		}
 		else
 		{
+			// No oc:has-preview provided by the server: guess from the MIME-Type
 			_thumbnailAvailability = OCItemThumbnailAvailabilityUnknown;
 
 			if (_mimeType != nil)
@@ -647,6 +663,8 @@
 	CloneMetadata(@"lastUsed");
 
 	CloneMetadata(@"isFavorite");
+
+	CloneMetadata(@"hasPreview");
 
 	CloneMetadata(@"state");
 

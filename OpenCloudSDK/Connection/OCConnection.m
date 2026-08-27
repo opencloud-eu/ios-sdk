@@ -1793,6 +1793,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 		[OCXMLNode elementWithName:@"oc:permissions"],
 		[OCXMLNode elementWithName:@"oc:favorite"],
 		[OCXMLNode elementWithName:@"oc:share-types"],
+		[OCXMLNode elementWithName:@"oc:has-preview"],
 
 		[OCXMLNode elementWithName:@"oc:owner-id"],
 		[OCXMLNode elementWithName:@"oc:owner-display-name"],
