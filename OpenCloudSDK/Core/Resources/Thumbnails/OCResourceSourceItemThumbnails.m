@@ -24,6 +24,7 @@
 #import "OCItem+OCThumbnail.h"
 #import "OCItem.h"
 #import "NSError+OCError.h"
+#import "OCLogger.h"
 
 @implementation OCResourceSourceItemThumbnails
 
@@ -73,6 +74,10 @@
 		if (item.thumbnailAvailability == OCItemThumbnailAvailabilityNone)
 		{
 			// Do not initiate a thumbnail request for items that indicate no thumbnail is available
+			//OCTLogDebug(@[@"Thumbnails"], @"No thumbnail requested for %@ (mimeType: %@): %@", OCLogPrivate(item.name), item.mimeType,
+			//	(item.hasPreview != nil) ? @"server reported oc:has-preview=0" :
+			//				   @"MIME-Type not covered by core.thumbnail-available-for-mime-type-prefixes");
+
 			resultHandler(nil, nil);
 			return;
 		}

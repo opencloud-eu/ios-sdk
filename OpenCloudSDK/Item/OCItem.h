@@ -167,6 +167,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nullable,strong) OCItemFavorite isFavorite; //!< @1 if this is a favorite, @0 or nil if it isn't
 
+@property(nullable,strong) NSNumber *hasPreview; //!< @1 if the server can provide a preview/thumbnail for this item, @0 if it can't - and nil if the server did not provide that information (via oc:has-preview)
+
 @property(strong,nullable) OCUser *owner; //!< The owner of the item
 @property(strong,nullable,nonatomic,readonly) NSString *ownerUserName; //!< Shortcut for owner.userName
 @property(assign) OCShareTypesMask shareTypesMask; //!< Mask indicating the type of shares (to third parties) for this item. OCShareTypesMaskNone if none.

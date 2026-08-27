@@ -157,6 +157,51 @@
 	XCTAssert((items[3].type == OCItemTypeFile), 	   @"Type match: %ld", (long)items[3].type);
 }
 
+- (void)testXMLDecodingHasPreview
+{
+	// Files with an oc:has-preview property, plus one without it (as sent by servers that do not support it)
+	NSString *xmlString = @"<?xml version=\"1.0\"?><d:multistatus xmlns:d=\"DAV:\" xmlns:oc=\"http://owncloud.org/ns\">"
+		@"<d:response><d:href>/remote.php/dav/files/admin/photo.jpg</d:href><d:propstat><d:prop><d:resourcetype/><d:getcontentlength>12345</d:getcontentlength><d:getcontenttype>image/jpeg</d:getcontenttype><d:getetag>&quot;etag-photo&quot;</d:getetag><oc:id>00000001ocnq90xhpk22</oc:id><oc:permissions>RDNVW</oc:permissions><oc:has-preview>1</oc:has-preview></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>"
+		@"<d:response><d:href>/remote.php/dav/files/admin/manual.pdf</d:href><d:propstat><d:prop><d:resourcetype/><d:getcontentlength>5094383</d:getcontentlength><d:getcontenttype>application/pdf</d:getcontenttype><d:getetag>&quot;etag-manual&quot;</d:getetag><oc:id>00000002ocnq90xhpk22</oc:id><oc:permissions>RDNVW</oc:permissions><oc:has-preview>0</oc:has-preview></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>"
+		@"<d:response><d:href>/remote.php/dav/files/admin/notes.txt</d:href><d:propstat><d:prop><d:resourcetype/><d:getcontentlength>512</d:getcontentlength><d:getcontenttype>text/plain</d:getcontenttype><d:getetag>&quot;etag-notes&quot;</d:getetag><oc:id>00000003ocnq90xhpk22</oc:id><oc:permissions>RDNVW</oc:permissions><oc:has-preview>1</oc:has-preview></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>"
+		@"<d:response><d:href>/remote.php/dav/files/admin/legacy.docx</d:href><d:propstat><d:prop><d:resourcetype/><d:getcontentlength>4711</d:getcontentlength><d:getcontenttype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</d:getcontenttype><d:getetag>&quot;etag-legacy&quot;</d:getetag><oc:id>00000004ocnq90xhpk22</oc:id><oc:permissions>RDNVW</oc:permissions></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>"
+		@"</d:multistatus>";
+
+	OCXMLParser *parser = [[OCXMLParser alloc] initWithData:[xmlString dataUsingEncoding:NSUTF8StringEncoding]];
+
+	parser.forceRetain = YES;
+	parser.options = [@{ @"basePath" : @"/remote.php/dav/files/admin" } mutableCopy];
+
+	[parser addObjectCreationClasses:@[ [OCItem class] ]];
+
+	[parser parse];
+
+	NSArray <OCItem *> *items = parser.parsedObjects;
+
+	XCTAssertEqual(items.count, 4);
+
+	XCTAssertEqualObjects(items[0].name, @"photo.jpg");
+	XCTAssertEqualObjects(items[1].name, @"manual.pdf");
+	XCTAssertEqualObjects(items[2].name, @"notes.txt");
+	XCTAssertEqualObjects(items[3].name, @"legacy.docx");
+
+	// oc:has-preview 1 => thumbnail available
+	XCTAssertEqualObjects(items[0].hasPreview, @(YES));
+	XCTAssertEqual(items[0].thumbnailAvailability, OCItemThumbnailAvailabilityAvailable);
+
+	// oc:has-preview 0 => no thumbnail available, so no request is made for it
+	XCTAssertEqualObjects(items[1].hasPreview, @(NO));
+	XCTAssertEqual(items[1].thumbnailAvailability, OCItemThumbnailAvailabilityNone);
+
+	// oc:has-preview 1 for a non-image file: the server can render it, even though a MIME-Type based guess wouldn't
+	XCTAssertEqualObjects(items[2].hasPreview, @(YES));
+	XCTAssertEqual(items[2].thumbnailAvailability, OCItemThumbnailAvailabilityAvailable);
+
+	// No oc:has-preview at all => fall back to the MIME-Type based guess (allowing all types by default)
+	XCTAssertNil(items[3].hasPreview);
+	XCTAssertEqual(items[3].thumbnailAvailability, OCItemThumbnailAvailabilityUnknown);
+}
+
 - (void)testXMLDAVExceptionDecoding
 {
 	NSString *xmlString=@"<?xml version='1.0' encoding='utf-8'?><d:error xmlns:d=\"DAV:\" xmlns:s=\"http://sabredav.org/ns\">  <s:exception>Sabre\\DAV\\Exception\\ServiceUnavailable</s:exception>  <s:message>System in maintenance mode.</s:message></d:error>";
