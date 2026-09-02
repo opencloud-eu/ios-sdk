@@ -60,7 +60,7 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 	[self registerOCClassSettingsDefaults:@{
 		OCAuthenticationMethodOpenIDConnectRedirectURI : @"oc://ios.opencloud.eu",
 		OCAuthenticationMethodOpenIDConnectScope       : @"openid offline_access email profile",
-		OCAuthenticationMethodOpenIDConnectPrompt      : @"select_account consent",
+		OCAuthenticationMethodOpenIDConnectPrompt      : @"login",
 		OCAuthenticationMethodOpenIDRegisterClient     : @(YES),
 		OCAuthenticationMethodOpenIDRegisterClientNameTemplate : @"OpenCloud/{{os.name}} {{app.version}}",
 		OCAuthenticationMethodOpenIDFallbackOnClientRegistrationFailure : @(YES)
