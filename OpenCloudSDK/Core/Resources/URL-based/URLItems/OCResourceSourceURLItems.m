@@ -53,8 +53,20 @@
 	    ((url = OCTypedCast(urlItemRequest.reference, NSURL)) != nil))
 	{
 		OCResourceSourceURLItems *weakSelf = self;
+		NSString *bookmarkHost = self.core.connection.bookmark.url.host;
 
 		[super provideResourceForRequest:urlItemRequest url:url eTag:nil customizeRequest:^OCHTTPRequest * _Nonnull(OCHTTPRequest * _Nonnull httpRequest) {
+			// URL item URLs are provided by the server and can point at any host, so only ever send
+			// credentials to the host of the account itself.
+			// App provider icons are a live example: https://demo.opencloud.eu/app/list
+			// e.g. CollaboraOnline goes to github static URLs.
+			if ((bookmarkHost == nil) || ([httpRequest.url.host caseInsensitiveCompare:bookmarkHost] != NSOrderedSame))
+			{
+				NSMutableSet<OCConnectionSignalID> *requiredSignals = [httpRequest.requiredSignals mutableCopy];
+				[requiredSignals removeObject:OCConnectionSignalIDAuthenticationAvailable];
+				httpRequest.requiredSignals = requiredSignals;
+			}
+
 			// Cancel connection on certificate errors, do not prompt user (addresses https://github.com/owncloud/core/issues/40953#issuecomment-1695979509)
 			// Temporary solution, to be superseded by implementation of https://github.com/owncloud/ios-app/issues/1176
 			httpRequest.ephermalRequestCertificateProceedHandler = ^(OCHTTPRequest * _Nonnull request, OCCertificate * _Nonnull certificate, OCCertificateValidationResult validationResult, NSError * _Nonnull certificateValidationError, OCConnectionCertificateProceedHandler  _Nonnull proceedHandler) {

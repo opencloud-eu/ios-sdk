@@ -465,6 +465,14 @@
 
 	if ([error isOCErrorWithCode:OCErrorResourceDoesNotExist])
 	{
+		if (job.latestResource == nil)
+		{
+			OCTLogDebug(@[@"ResMan"], @"Source %@: resource does not exist, not restarting job", source.identifier);
+
+			[self _queryNextSourceForJob:job];
+			return;
+		}
+
 		// Resource does not exist anymore: delete from cache + restart job
 		__weak OCResourceManager *weakSelf = self;
 		[self removeResourceOfType:job.primaryRequest.type identifier:job.primaryRequest.identifier completionHandler:^(NSError * _Nullable error) {
