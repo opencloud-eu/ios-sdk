@@ -3,6 +3,12 @@
   "strings" : {
     "Auto-accepted." : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptat automàticament."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15,62 +21,40 @@
             "value" : "Auto-accepted."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automaattisesti hyväksytty."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Autom. geaccepteerd."
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acceptat automàticament."
+            "value" : "Zaakceptowano automatycznie."
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automaattisesti hyväksytty."
-          }
-        }
-      }
-    },
-    "Certificate chain" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zertifikatskette"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Certificate chain"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Certificaatketen"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cadena de certificats"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Varmenneketju"
+            "value" : "Autoaccepterades."
           }
         }
       }
     },
     "Certificate Details" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalls del certificat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -81,6 +65,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Certificate Details"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteen yksityiskohdat"
           }
         },
         "fr" : {
@@ -95,22 +85,74 @@
             "value" : "Certificaatdetails"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szczegóły certyfikatu"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certifikatinformation"
+          }
+        }
+      }
+    },
+    "Certificate chain" : {
+      "localizations" : {
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls del certificat"
+            "value" : "Cadena de certificats"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zertifikatskette"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificate chain"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varmenteen yksityiskohdat"
+            "value" : "Varmenneketju"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificaatketen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Łańcuch certyfikatów"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certifikatkedja"
           }
         }
       }
     },
     "Certificate has issues." : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El certificat té problemes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,22 +165,28 @@
             "value" : "Certificate has issues."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmenteessa on ongelmia."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Er zijn problemen met het certificaat."
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El certificat té problemes."
+            "value" : "Certyfikat ma problemy."
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varmenteessa on ongelmia."
+            "value" : "Certifikatet har problem."
           }
         }
       }
@@ -251,6 +299,12 @@
     },
     "Fingerprints" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empremtes"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -263,28 +317,40 @@
             "value" : "Fingerprints"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sormenjäljet"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vingerafdrukken"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Empremtes"
+            "value" : "Odciski palców"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sormenjäljet"
+            "value" : "Fingeravtryck"
           }
         }
       }
     },
     "Hide ±" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amaga ±"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -297,28 +363,40 @@
             "value" : "Hide ±"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piilota ±"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verbergen ±"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Amaga ±"
+            "value" : "Ukryj ±"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Piilota ±"
+            "value" : "Dölj ±"
           }
         }
       }
     },
     "Hostname" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom d'amfitrió"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,28 +409,40 @@
             "value" : "Hostname"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isäntänimi"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hostnaam"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nom d'amfitrió"
+            "value" : "Nazwa hosta"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Isäntänimi"
+            "value" : "Värdnamn"
           }
         }
       }
     },
     "Intermediate Certificate" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificat intermedi"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,28 +455,40 @@
             "value" : "Intermediate Certificate"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välivarmenne"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tussenliggend certificaat"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Certificat intermedi"
+            "value" : "Certyfikat pośredni"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Välivarmenne"
+            "value" : "Mellanliggande certifikat"
           }
         }
       }
     },
     "Issuer" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emissor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -399,28 +501,40 @@
             "value" : "Issuer"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myöntäjä"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uitgever"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emissor"
+            "value" : "Wystawca"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Myöntäjä"
+            "value" : "Utfärdare"
           }
         }
       }
     },
     "No issues found." : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'han trobat problemes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,28 +547,40 @@
             "value" : "No issues found."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongelmia ei löytynyt."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen problemen gevonden."
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No s'han trobat problemes."
+            "value" : "Nie znaleziono problemów."
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ongelmia ei löytynyt."
+            "value" : "Inga problem hittades."
           }
         }
       }
     },
     "Public Key" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clau pública"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,28 +593,40 @@
             "value" : "Public Key"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julkinen avain"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Openbare sleutel"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clau pública"
+            "value" : "Klucz publiczny"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Julkinen avain"
+            "value" : "Offentlig nyckel"
           }
         }
       }
     },
     "Reason" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raó"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -501,28 +639,40 @@
             "value" : "Reason"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syy"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reden"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raó"
+            "value" : "Powód"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syy"
+            "value" : "Orsak"
           }
         }
       }
     },
     "Root Certificate" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificat arrel"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -535,28 +685,40 @@
             "value" : "Root Certificate"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juurivarmenne"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Root-certificaat"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Certificat arrel"
+            "value" : "Certyfikat główny"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Juurivarmenne"
+            "value" : "Rotcertifikat"
           }
         }
       }
     },
     "Show ±" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra ±"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -569,22 +731,28 @@
             "value" : "Show ±"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näytä ±"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weergeven ±"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra ±"
+            "value" : "Pokaż ±"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Näytä ±"
+            "value" : "Visa ±"
           }
         }
       }
@@ -674,11 +842,23 @@
             "state" : "translated",
             "value" : "Ämne"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podmiot"
+          }
         }
       }
     },
     "User-accepted." : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptat per l'usuari."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -691,28 +871,40 @@
             "value" : "User-accepted."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käyttäjän hyväksymä."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruiker-geaccepteerd."
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acceptat per l'usuari."
+            "value" : "Zaakceptowano przez użytkownika."
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Käyttäjän hyväksymä."
+            "value" : "Användaren accepterade."
           }
         }
       }
     },
     "User-rejected." : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rebutjat per l'usuari."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -725,28 +917,40 @@
             "value" : "User-rejected."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käyttäjän hylkäämä."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruiker-geweigerd."
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rebutjat per l'usuari."
+            "value" : "Odrzucono przez użytkownika."
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Käyttäjän hylkäämä."
+            "value" : "Användaren avvisade."
           }
         }
       }
     },
     "Validating…" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Validant…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -759,28 +963,40 @@
             "value" : "Validating…"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vahvistetaan…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valideren…"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Validant…"
+            "value" : "Weryfikowanie…"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vahvistetaan…"
+            "value" : "Validerar…"
           }
         }
       }
     },
     "Validation Error" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de validació"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -791,18 +1007,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Validation Error"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Validatiefout"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error de validació"
           }
         },
         "fi" : {
@@ -816,11 +1020,35 @@
             "state" : "translated",
             "value" : "Erreur de Validation"
           }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Validatiefout"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Błąd weryfikacji"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valideringsfel"
+          }
         }
       }
     },
     "Validation Status" : {
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estat de validació"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -833,22 +1061,28 @@
             "value" : "Validation Status"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vahvistuksen tila"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Validatiestatus"
           }
         },
-        "ca" : {
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estat de validació"
+            "value" : "Status weryfikacji"
           }
         },
-        "fi" : {
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vahvistuksen tila"
+            "value" : "Valideringsstatus"
           }
         }
       }
