@@ -241,16 +241,12 @@ static OCUploadInfoTask OCUploadInfoTaskUpload = @"upload";
 			{
 				NSNumber *capabilitiesTusMaxChunkSize;
 
-				if (OCPlatform.current.memoryConfiguration != OCPlatformMemoryConfigurationMinimum)
-				{
-					// Memory configuration is NOT minimum, so avoid splitting up files into chunks if
-					// possible, which requires additional memory and could mean going over a tight memory
-					// limit and lead to a crash eventually.
+				// Honor the server's max chunk size. Files below it still upload in a single
+				// request via creation-with-upload.
 
-					if ((capabilitiesTusMaxChunkSize = self.capabilities.tusMaxChunkSize) != nil)
-					{
-						tusJob.maxSegmentSize = capabilitiesTusMaxChunkSize.unsignedIntegerValue;
-					}
+				if ((capabilitiesTusMaxChunkSize = self.capabilities.tusMaxChunkSize) != nil)
+				{
+					tusJob.maxSegmentSize = capabilitiesTusMaxChunkSize.unsignedIntegerValue;
 				}
 			}
 
@@ -294,14 +290,6 @@ static OCUploadInfoTask OCUploadInfoTaskUpload = @"upload";
 		}];
 
 		return (nil);
-	}
-
-	if (OCPlatform.current.memoryConfiguration == OCPlatformMemoryConfigurationMinimum)
-	{
-		// Memory configuration is minimum, so use just Creation instead of Creation-With-Upload
-		// to avoid splitting up files into chunks if possible, which requires additional memory
-		// and could mean going over a tight memory limit and lead to a crash eventually.
-		useCreationWithUpload = NO;
 	}
 
 	// Set up progress
