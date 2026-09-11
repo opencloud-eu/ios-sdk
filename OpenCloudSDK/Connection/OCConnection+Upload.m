@@ -29,6 +29,9 @@
 #import "OCCore+SyncEngine.h"
 #import "OCPlatform.h"
 
+#import <mach/mach.h>
+#import <os/proc.h>
+
 typedef NSString* OCUploadInfoKey;
 typedef NSString* OCUploadInfoTask;
 
@@ -39,6 +42,19 @@ static OCUploadInfoKey OCUploadInfoKeySegmentSize = @"segmentSize";
 static OCUploadInfoTask OCUploadInfoTaskCreate = @"create";
 static OCUploadInfoTask OCUploadInfoTaskHead = @"head";
 static OCUploadInfoTask OCUploadInfoTaskUpload = @"upload";
+
+static uint64_t OCConnectionMemoryFootprint(void)
+{
+	task_vm_info_data_t vmInfo;
+	mach_msg_type_number_t count = TASK_VM_INFO_COUNT;
+
+	if (task_info(mach_task_self(), TASK_VM_INFO, (task_info_t)&vmInfo, &count) != KERN_SUCCESS)
+	{
+		return (0);
+	}
+
+	return (vmInfo.phys_footprint); // The figure jetsam compares against the process' memory limit
+}
 
 @implementation OCConnection (Upload)
 
@@ -691,7 +707,10 @@ static OCUploadInfoTask OCUploadInfoTaskUpload = @"upload";
 			if (tusHeader.uploadOffset != nil)
 			{
 				// Update upload offset to latest value and upload next part
-				OCTLogDebug(@[@"TUS"], @"TUS upload response indicates uploadOffset of %@ / %@", tusHeader.uploadOffset, tusJob.fileSize);
+				OCTLogDebug(@[@"TUS"], @"TUS upload response indicates uploadOffset of %@ / %@, memory footprint=%llu bytes, available=%llu bytes (device only)",
+					tusHeader.uploadOffset, tusJob.fileSize,
+					(unsigned long long)OCConnectionMemoryFootprint(),
+					(unsigned long long)os_proc_available_memory());
 
 				tusJob.uploadOffset = tusHeader.uploadOffset;
 				[self _continueTusJob:tusJob lastTask:task performCheck:YES];
