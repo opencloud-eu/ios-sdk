@@ -276,6 +276,30 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 			OCClassSettingsMetadataKeyFlags		: @(OCClassSettingsFlagDenyUserPreferences)
 		},
 
+		OCConnectionEndpointIDGraphMeDrives : @{
+			OCClassSettingsMetadataKeyType 		: OCClassSettingsMetadataTypeString,
+			OCClassSettingsMetadataKeyDescription 	: @"Endpoint to retrieve the drives of the logged in user.",
+			OCClassSettingsMetadataKeyStatus	: OCClassSettingsKeyStatusAdvanced,
+			OCClassSettingsMetadataKeyCategory	: @"Endpoints",
+			OCClassSettingsMetadataKeyFlags		: @(OCClassSettingsFlagDenyUserPreferences)
+		},
+
+		OCConnectionEndpointIDGraphDrives : @{
+			OCClassSettingsMetadataKeyType 		: OCClassSettingsMetadataTypeString,
+			OCClassSettingsMetadataKeyDescription 	: @"Endpoint to retrieve all drives.",
+			OCClassSettingsMetadataKeyStatus	: OCClassSettingsKeyStatusAdvanced,
+			OCClassSettingsMetadataKeyCategory	: @"Endpoints",
+			OCClassSettingsMetadataKeyFlags		: @(OCClassSettingsFlagDenyUserPreferences)
+		},
+
+		OCConnectionEndpointIDAvatars : @{
+			OCClassSettingsMetadataKeyType 		: OCClassSettingsMetadataTypeString,
+			OCClassSettingsMetadataKeyDescription 	: @"Endpoint to retrieve user avatars.",
+			OCClassSettingsMetadataKeyStatus	: OCClassSettingsKeyStatusAdvanced,
+			OCClassSettingsMetadataKeyCategory	: @"Endpoints",
+			OCClassSettingsMetadataKeyFlags		: @(OCClassSettingsFlagDenyUserPreferences)
+		},
+
 		OCConnectionEndpointIDStatus : @{
 			OCClassSettingsMetadataKeyType 		: OCClassSettingsMetadataTypeString,
 			OCClassSettingsMetadataKeyDescription 	: @"Endpoint to retrieve basic status information and detect an OpenCloud installation.",
