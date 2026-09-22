@@ -18,6 +18,8 @@
 
 #import "OCConnection+OData.h"
 #import "GAODataError.h"
+#import "NSError+OCError.h"
+#import "OCHTTPStatus.h"
 
 @implementation OCConnection (OData)
 
@@ -69,7 +71,14 @@
 		{
 			NSError *jsonError = nil;
 
-			if ((jsonDictionary = [response bodyConvertedDictionaryFromJSONWithError:&jsonError]) != nil)
+			if (!response.status.isSuccess)
+			{
+				// An error status code is a completed HTTP transaction, so it arrives here with error == nil.
+				// Its body is typically empty or not OData at all (f.ex. a 502 from a reverse proxy whose
+				// upstream is down), which would otherwise be indistinguishable from an empty result.
+				returnError = [response.status error];
+			}
+			else if ((jsonDictionary = [response bodyConvertedDictionaryFromJSONWithError:&jsonError]) != nil)
 			{
 				if (jsonDictionary[@"error"])
 				{
@@ -95,6 +104,13 @@
 				returnError = jsonError;
 			}
 
+		}
+
+		if ((returnError == nil) && (returnResult == nil))
+		{
+			// Never report success without a result: a response that yields neither an error nor a value
+			// is not an empty collection - an empty collection decodes into an empty, non-nil array.
+			returnError = OCError(OCErrorResponseUnknownFormat);
 		}
 
 		OCLogDebug(@"OData response: returnResult=%@, error=%@, json: %@", returnResult, returnError, jsonDictionary);
