@@ -1,0 +1,98 @@
+name: Run non-network tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Run non-network tests
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Test (offline tests only)
+        run: |
+          TESTS=(
+            # ---- running: ----
+            -only-testing:OpenCloudSDKTests/BookmarkTests
+            -only-testing:OpenCloudSDKTests/ChecksumTests
+            -only-testing:OpenCloudSDKTests/DAVRawResponseTests
+            -only-testing:OpenCloudSDKTests/DataSourceTests
+            -only-testing:OpenCloudSDKTests/DatabaseTests
+            -only-testing:OpenCloudSDKTests/ExtensionTests
+            -only-testing:OpenCloudSDKTests/KeyValueStoreTests
+            -only-testing:OpenCloudSDKTests/LockTests
+            -only-testing:OpenCloudSDKTests/ODataTests
+            -only-testing:OpenCloudSDKTests/PasswordPolicyTests
+            -only-testing:OpenCloudSDKTests/SQLTests
+            -only-testing:OpenCloudSDKTests/SettingsTests
+            -only-testing:OpenCloudSDKTests/ShareSpaceRootParsingTests
+
+            # ---- FIXME: flaky - pass alone, SIGKILLed when run alongside the rest ----
+            -skip-testing:OpenCloudSDKTests/KeyValueStoreTests/testKeyValueStoreHighVolume
+            -skip-testing:OpenCloudSDKTests/LockTests/testConcurrencyLock
+
+            # ---- FIXME: need a live server at demo.opencloud.eu (166 tests) ----
+            # -only-testing:OpenCloudSDKTests/AuthenticationTests
+            # -only-testing:OpenCloudSDKTests/BookmarkManagerTests
+            # -only-testing:OpenCloudSDKTests/CertificateTests
+            # -only-testing:OpenCloudSDKTests/ConnectionTests
+            # -only-testing:OpenCloudSDKTests/CoreManagerTests
+            # -only-testing:OpenCloudSDKTests/CoreRedirectTests
+            # -only-testing:OpenCloudSDKTests/CoreSharingTests
+            # -only-testing:OpenCloudSDKTests/CoreSyncTests
+            # -only-testing:OpenCloudSDKTests/CoreTests
+            # -only-testing:OpenCloudSDKTests/HTTPPipelineTests
+            # -only-testing:OpenCloudSDKTests/HostSimulatorTests
+            # -only-testing:OpenCloudSDKTests/ItemPolicyTests
+            # -only-testing:OpenCloudSDKTests/MiscTests
+            # -only-testing:OpenCloudSDKTests/SharingTests
+          )
+
+          # Run the regular offline tests, excluding the stress tests
+          xcodebuild test \
+            -project OpenCloudSDK.xcodeproj \
+            -scheme OpenCloudSDK \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -parallel-testing-enabled NO \
+            -resultBundlePath TestResults.xcresult \
+            "${TESTS[@]}" \
+            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighDistributedConcurrency \
+            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighLocalConcurrency
+
+          # Run the concurrency tests in an isolated invocation
+          xcodebuild test \
+            -project OpenCloudSDK.xcodeproj \
+            -scheme OpenCloudSDK \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -parallel-testing-enabled NO \
+            -resultBundlePath TestResults-concurrency.xcresult \
+            -only-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighDistributedConcurrency \
+            -only-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighLocalConcurrency
+
+      - name: Show test failures
+        if: failure()
+        run: |
+          for bundle in TestResults.xcresult TestResults-concurrency.xcresult; do
+            if [ -d "$bundle" ]; then
+              echo "===== $bundle ====="
+              xcrun xcresulttool get test-results summary --path "$bundle" || true
+            fi
+          done
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult
+          path: |
+            TestResults.xcresult
+            TestResults-concurrency.xcresult
+          retention-days: 1
+          if-no-files-found: ignore
