@@ -22,4 +22,3 @@ jobs:
           scheme: OpenCloudSDK
           action: build
           platform: iOS
-          platform-version: 18.2

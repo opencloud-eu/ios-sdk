@@ -23,3 +23,6 @@ xcshareddata/
 
 #CocoaPods
 Pods
+
+# Test result bundles produced by the CI workflow
+*.xcresult
