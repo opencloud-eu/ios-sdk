@@ -26,6 +26,8 @@
 #import "NSError+OCNetworkFailure.h"
 #import "OCCore+ItemList.h"
 
+static NSTimeInterval OCCoreNetworkFailureRetryDelay = 5.0;
+
 @implementation OCCore (ConnectionStatus)
 
 #pragma mark - Signal providers
@@ -416,6 +418,8 @@
 
 			if ([request.requiredSignals containsObject:OCConnectionSignalIDCoreOnline])
 			{
+				// Retry with a delay - without it, requests are rescheduled as fast as they fail
+				request.earliestBeginDate = [NSDate dateWithTimeIntervalSinceNow:OCCoreNetworkFailureRetryDelay];
 				return (OCHTTPRequestInstructionReschedule);
 			}
 		}
