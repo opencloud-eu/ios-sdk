@@ -19,6 +19,7 @@
 #import "OCCoreItemList.h"
 #import "NSString+OCPath.h"
 #import "OCDrive.h"
+#import "OCLogger.h"
 
 @implementation OCCoreItemList
 
@@ -73,7 +74,78 @@
 	_itemParentPaths = nil;
 	_itemListsByDriveID = nil;
 
+	// NB: Bring this back in as hotfix if ever https://github.com/opencloud-eu/ios/issues/69 happens again
+	// and we can't find the cause.
+	//_items = [self.class _itemsByRemovingDuplicateLocalIDs:items];
 	_items = items;
+}
+
+// Two cache rows can end up sharing an OCLocalID - observed in opencloud-eu/ios#69 as a sync action's
+// placeholder surviving alongside the server's version of the same item. Duplicates must not reach
+// consumers: UICollectionViewDiffableDataSource raises an uncatchable exception when two items carry
+// the same identifier, taking the app down every time that folder is opened.
+// This filters on read only - the duplicate row is still written and still stored, so it does not
+// replace a fix where the row is created.
++ (NSArray<OCItem *> *)_itemsByRemovingDuplicateLocalIDs:(NSArray<OCItem *> *)items
+{
+	if (items.count < 2) { return (items); }
+
+	NSMutableDictionary<OCLocalID, NSNumber *> *keptIndexByLocalID = [[NSMutableDictionary alloc] initWithCapacity:items.count];
+	__block NSMutableIndexSet *droppedIndexes = nil;
+
+	[items enumerateObjectsUsingBlock:^(OCItem *item, NSUInteger index, BOOL *stop) {
+		OCLocalID localID = item.localID;
+		NSNumber *keptIndexNumber;
+
+		if (localID == nil) { return; }
+
+		if ((keptIndexNumber = keptIndexByLocalID[localID]) == nil)
+		{
+			keptIndexByLocalID[localID] = @(index);
+			return;
+		}
+
+		// Duplicate: keep the item that reflects the server. A placeholder loses against a real item;
+		// between two real items the one modified last wins - the other is typically a row frozen by a
+		// sync record that no longer exists (opencloud-eu/ios#69).
+		NSUInteger keptIndex = keptIndexNumber.unsignedIntegerValue;
+		OCItem *keptItem = items[keptIndex];
+		BOOL replaceKept = NO;
+
+		if (keptItem.isPlaceholder != item.isPlaceholder)
+		{
+			replaceKept = keptItem.isPlaceholder;
+		}
+		else if ((item.lastModified != nil) && (keptItem.lastModified != nil))
+		{
+			replaceKept = ([item.lastModified compare:keptItem.lastModified] == NSOrderedDescending);
+		}
+
+		NSUInteger dropIndex = replaceKept ? keptIndex : index;
+
+		if (dropIndex == keptIndex)
+		{
+			keptIndexByLocalID[localID] = @(index);
+		}
+
+		if (droppedIndexes == nil) { droppedIndexes = [NSMutableIndexSet new]; }
+		[droppedIndexes addIndex:dropIndex];
+
+		OCLogError(@"Dropping item with duplicate localID %@ from item list: %@", localID, OCLogPrivate(items[dropIndex]));
+	}];
+
+	if (droppedIndexes == nil) { return (items); }
+
+	NSMutableArray<OCItem *> *deduplicatedItems = [[NSMutableArray alloc] initWithCapacity:items.count];
+
+	[items enumerateObjectsUsingBlock:^(OCItem *item, NSUInteger index, BOOL *stop) {
+		if (![droppedIndexes containsIndex:index])
+		{
+			[deduplicatedItems addObject:item];
+		}
+	}];
+
+	return (deduplicatedItems);
 }
 
 - (NSMutableDictionary<OCPath,OCItem *> *)itemsByPath
