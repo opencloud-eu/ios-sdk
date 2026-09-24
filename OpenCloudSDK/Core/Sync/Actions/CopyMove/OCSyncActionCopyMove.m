@@ -18,6 +18,7 @@
 
 #import "OCSyncActionCopyMove.h"
 #import "NSError+OCNetworkFailure.h"
+#import "OCMacros.h"
 #import "OCLocaleFilterVariables.h"
 
 @interface OCSyncActionCopyMove ()
@@ -308,6 +309,27 @@
 	}
 }
 
+// Returns the item's current state from the database, falling back to the passed item if it is no longer
+// in the cache. The items archived with this action reflect the moment it was created; other actions on the
+// same item may have completed since (f.ex. the folder creation a rename follows in the Files app), so the
+// archived sync record list, removal status and database row can be stale.
+- (OCItem *)_latestVersionOfItem:(OCItem *)item
+{
+	__block OCItem *latestItem = nil;
+
+	if (item.localID != nil)
+	{
+		OCSyncExec(cacheItemRetrieval, {
+			[self.core.vault.database retrieveCacheItemForLocalID:item.localID completionHandler:^(OCDatabase *db, NSError *error, OCSyncAnchor syncAnchor, OCItem *cacheItem) {
+				latestItem = cacheItem;
+				OCSyncExecDone(cacheItemRetrieval);
+			}];
+		});
+	}
+
+	return ((latestItem != nil) ? latestItem : item);
+}
+
 - (OCCoreSyncInstruction)handleResultWithContext:(OCSyncContext *)syncContext
 {
 	OCEvent *event = syncContext.event;
@@ -327,6 +349,8 @@
 
 			if ((placeholderItem = self.processingItem) != nil)
 			{
+				placeholderItem = [self _latestVersionOfItem:placeholderItem];
+
 				[placeholderItem removeSyncRecordID:syncContext.syncRecord.recordID activity:OCItemSyncActivityCreating];
 
 				[newItem prepareToReplace:placeholderItem];
@@ -349,9 +373,14 @@
 			OCItem *updatedItem = OCTypedCast(event.result, OCItem);
 			OCFileID updatedParentLocalID = updatedItem.parentLocalID;
 
-			[sourceItem removeSyncRecordID:syncContext.syncRecord.recordID activity:OCItemSyncActivityUpdating];
+			// Replace the item's *current* row, not the one archived with this action: carrying the archived
+			// state over resurrected an already retired placeholder row - with the completed creation's sync
+			// record still attached - next to the live row, leaving two rows with one localID (opencloud-eu/ios#69).
+			OCItem *latestSourceItem = [self _latestVersionOfItem:sourceItem];
 
-			[updatedItem prepareToReplace:self.localItem];
+			[latestSourceItem removeSyncRecordID:syncContext.syncRecord.recordID activity:OCItemSyncActivityUpdating];
+
+			[updatedItem prepareToReplace:latestSourceItem];
 			updatedItem.parentLocalID = updatedParentLocalID;
 
 			[self.core renameDirectoryFromItem:self.localItem forItem:updatedItem adjustLocalMetadata:YES];

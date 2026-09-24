@@ -605,6 +605,20 @@
 	}
 }
 
+// Returns YES if the task's .earliestBeginDate hasn't been reached yet, scheduling a new run for then.
+- (BOOL)_deferTask:(OCHTTPPipelineTask *)task
+{
+	NSTimeInterval delay = task.request.earliestBeginDate.timeIntervalSinceNow;
+
+	if (delay <= 0) { return (NO); }
+
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+		[self setPipelineNeedsScheduling];
+	});
+
+	return (YES);
+}
+
 - (void)_schedule
 {
 	__block NSUInteger remainingSlots = NSUIntegerMax;
@@ -747,6 +761,8 @@
 			{
 				case OCHTTPPipelineTaskStatePending:
 					// Task is pending
+					if ([self _deferTask:task]) { return; }
+
 					if (taskGroupID != nil)
 					{
 						NSMutableArray <OCHTTPPipelineTask *> *schedulableTasks = nil;
