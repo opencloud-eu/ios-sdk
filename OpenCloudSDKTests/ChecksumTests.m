@@ -18,7 +18,7 @@
 - (void)testChecksumComputationAndVerification
 {
 	NSURL *fakeCertURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"fake-demo_opencloud_org" withExtension:@"cer"];
-	NSString *fakeCertSHA1Checksum = @"4c0400b48c9935a47e38c35a2dbbe66d69d6c660";
+	NSString *fakeCertSHA1Checksum = @"cc912954573fba448983130336117c9157d5728f";
 	NSString *validHeaderString = [NSString stringWithFormat:@"%@:%@", OCChecksumAlgorithmIdentifierSHA1, fakeCertSHA1Checksum];
 
 	XCTestExpectation *computeExpectation = [self expectationWithDescription:@"Computation returned"];

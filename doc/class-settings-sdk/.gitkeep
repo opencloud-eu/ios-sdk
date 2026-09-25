@@ -1,0 +1,7 @@
+Placeholder so this folder exists in a clean checkout.
+
+OpenCloudSDKTests has a CopyFiles build phase referencing doc/class-settings-sdk, and the build
+fails with "lstat(.../doc/class-settings-sdk): No such file or directory" when it is absent.
+The folder holds optional external documentation consumed by
+SettingsTests/testUpdateConfigurationJSONFromMetadata via
+OCClassSettingsDocumentationOptionExternalDocumentationFolders.

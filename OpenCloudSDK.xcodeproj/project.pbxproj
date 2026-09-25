@@ -921,6 +921,7 @@
 		DCF00BF527E28A77001F2AFC /* OCDataSourceSubscription+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DCF00BF327E28A77001F2AFC /* OCDataSourceSubscription+Internal.h */; };
 		DCF00BF627E28A77001F2AFC /* OCDataSourceSubscription+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF00BF427E28A77001F2AFC /* OCDataSourceSubscription+Internal.m */; };
 		DCF00C1927E698A4001F2AFC /* DataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF00C1827E698A4001F2AFC /* DataSourceTests.m */; };
+		DCA1B2C327E698A4001F2B01 /* ODataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA1B2C227E698A4001F2B01 /* ODataTests.m */; };
 		DCF06B662CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = DCF06B642CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCF06B672CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF06B652CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.m */; };
 		DCF072E42798630900E0B01D /* OCResourceTextPlaceholder.h in Headers */ = {isa = PBXBuildFile; fileRef = DCF072E22798630900E0B01D /* OCResourceTextPlaceholder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2002,6 +2003,7 @@
 		DCF00BF327E28A77001F2AFC /* OCDataSourceSubscription+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCDataSourceSubscription+Internal.h"; sourceTree = "<group>"; };
 		DCF00BF427E28A77001F2AFC /* OCDataSourceSubscription+Internal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OCDataSourceSubscription+Internal.m"; sourceTree = "<group>"; };
 		DCF00C1827E698A4001F2AFC /* DataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataSourceTests.m; sourceTree = "<group>"; };
+		DCA1B2C227E698A4001F2B01 /* ODataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ODataTests.m; sourceTree = "<group>"; };
 		DCF06B642CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCQueryCondition+KQLBuilder.h"; sourceTree = "<group>"; };
 		DCF06B652CED34AB00B95D79 /* OCQueryCondition+KQLBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OCQueryCondition+KQLBuilder.m"; sourceTree = "<group>"; };
 		DCF072E22798630900E0B01D /* OCResourceTextPlaceholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCResourceTextPlaceholder.h; sourceTree = "<group>"; };
@@ -4129,6 +4131,7 @@
 				DC594B1C21EFD25000B882C4 /* CoreManagerTests.m */,
 				DC03650520AAEFBD00F62732 /* DatabaseTests.m */,
 				DCF00C1827E698A4001F2AFC /* DataSourceTests.m */,
+				DCA1B2C227E698A4001F2B01 /* ODataTests.m */,
 				DCB0A45B21B813A000FAC4E9 /* ExtensionTests.m */,
 				DC72E4202063BE9400189B9A /* HostSimulatorTests.m */,
 				DC61E930221423D2002889D6 /* HTTPPipelineTests.m */,
@@ -5765,6 +5768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF00C1927E698A4001F2AFC /* DataSourceTests.m in Sources */,
+				DCA1B2C327E698A4001F2B01 /* ODataTests.m in Sources */,
 				DC6DB88221C26F4D00189B21 /* XCTestCase+Tagging.m in Sources */,
 				DC594B1D21EFD25100B882C4 /* CoreManagerTests.m in Sources */,
 				DC72E4212063BE9400189B9A /* HostSimulatorTests.m in Sources */,
