@@ -16,7 +16,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+      # A cold process catches what a warmed-up one hides (ios-sdk#21). Later steps carry `if:`
+      # so they still run when this fails.
+      - name: Test (DatabaseTests in a cold process)
+        run: |
+          xcodebuild test \
+            -project OpenCloudSDK.xcodeproj \
+            -scheme OpenCloudSDK \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -parallel-testing-enabled NO \
+            -resultBundlePath TestResults-isolated.xcresult \
+            -only-testing:OpenCloudSDKTests/DatabaseTests \
+            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighDistributedConcurrency \
+            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighLocalConcurrency
+
       - name: Test (offline tests only)
+        if: ${{ !cancelled() }}
         run: |
           TESTS=(
             # ---- running: ----
@@ -33,10 +48,6 @@ jobs:
             -only-testing:OpenCloudSDKTests/SQLTests
             -only-testing:OpenCloudSDKTests/SettingsTests
             -only-testing:OpenCloudSDKTests/ShareSpaceRootParsingTests
-
-            # ---- FIXME: flaky - pass alone, SIGKILLed when run alongside the rest ----
-            -skip-testing:OpenCloudSDKTests/KeyValueStoreTests/testKeyValueStoreHighVolume
-            -skip-testing:OpenCloudSDKTests/LockTests/testConcurrencyLock
 
             # ---- FIXME: need a live server at demo.opencloud.eu (166 tests) ----
             # -only-testing:OpenCloudSDKTests/AuthenticationTests
@@ -55,31 +66,18 @@ jobs:
             # -only-testing:OpenCloudSDKTests/SharingTests
           )
 
-          # Run the regular offline tests, excluding the stress tests
           xcodebuild test \
             -project OpenCloudSDK.xcodeproj \
             -scheme OpenCloudSDK \
             -destination 'platform=iOS Simulator,name=iPhone 16' \
             -parallel-testing-enabled NO \
             -resultBundlePath TestResults.xcresult \
-            "${TESTS[@]}" \
-            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighDistributedConcurrency \
-            -skip-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighLocalConcurrency
-
-          # Run the concurrency tests in an isolated invocation
-          xcodebuild test \
-            -project OpenCloudSDK.xcodeproj \
-            -scheme OpenCloudSDK \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
-            -parallel-testing-enabled NO \
-            -resultBundlePath TestResults-concurrency.xcresult \
-            -only-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighDistributedConcurrency \
-            -only-testing:OpenCloudSDKTests/DatabaseTests/testCounterPrimitiveHighLocalConcurrency
+            "${TESTS[@]}"
 
       - name: Show test failures
         if: failure()
         run: |
-          for bundle in TestResults.xcresult TestResults-concurrency.xcresult; do
+          for bundle in TestResults-isolated.xcresult TestResults.xcresult; do
             if [ -d "$bundle" ]; then
               echo "===== $bundle ====="
               xcrun xcresulttool get test-results summary --path "$bundle" || true
@@ -92,7 +90,7 @@ jobs:
         with:
           name: xcresult
           path: |
+            TestResults-isolated.xcresult
             TestResults.xcresult
-            TestResults-concurrency.xcresult
           retention-days: 1
           if-no-files-found: ignore
