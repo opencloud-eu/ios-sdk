@@ -884,7 +884,9 @@
 {
 	if (self.rootURL != nil)
 	{
-		dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
+		// UTILITY, not BACKGROUND: callers wait on this, and background QoS added 70 ms - 1.4 s of
+		// dispatch latency for ~1 ms of work (ios-sdk#21).
+		dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
 			NSError *error = nil;
 
 			NSFileManager *fileManager = [NSFileManager new];

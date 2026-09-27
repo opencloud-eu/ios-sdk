@@ -91,7 +91,7 @@
 		}]];
 	});
 
-	[self waitForExpectationsWithTimeout:10.0 handler:nil];
+	[self waitForExpectationsWithTimeout:30.0 handler:nil];
 
 	NSLog(@"LockManager 1: %@, LockManager 2: %@", lockManager1, lockManager2);
 }

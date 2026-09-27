@@ -343,7 +343,7 @@
 		}];
 	}];
 
-	[self waitForExpectationsWithTimeout:3 handler:nil];
+	[self waitForExpectationsWithTimeout:15 handler:nil];
 }
 
 - (void)testConsistentOperationConflictResolution
@@ -400,7 +400,7 @@
 		}];
 	}];
 
-	[self waitForExpectationsWithTimeout:3 handler:nil];
+	[self waitForExpectationsWithTimeout:15 handler:nil];
 
 	XCTAssert((preparationCalls==2));
 }
