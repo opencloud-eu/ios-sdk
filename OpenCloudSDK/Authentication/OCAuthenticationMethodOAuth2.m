@@ -93,6 +93,7 @@ static Class sBrowserSessionClass;
 {
 	id _authenticationSession;
 	BOOL _receivedUnauthorizedResponse;
+	OCAuthenticationDataID _unauthorizedAuthenticationDataID;
 	BOOL _tokenRefreshFollowingUnauthorizedResponseFailed;
 }
 @end
@@ -681,6 +682,7 @@ OCAuthenticationMethodAutoRegister
 		{
 			// Ensure there wasn't a token refresh in the meantime we didn't get notified about (yet)
 			// - flush cached secret
+			[connection.bookmark considerAuthenticationDataFlush];
 			[self flushCachedAuthenticationSecret];
 
 			// - load secret from keychain
@@ -718,6 +720,9 @@ OCAuthenticationMethodAutoRegister
 	{
 		if (response.status.code == OCHTTPStatusCodeUNAUTHORIZED)
 		{
+			// Re-read from keychain: another process may have refreshed the token while this one was suspended
+			[connection.bookmark considerAuthenticationDataFlush];
+
 			// Check if the token has changed between sending the request and receiving the response
 			if (OCNANotEqual(response.authenticationDataID, connection.bookmark.authenticationDataID))
 			{
@@ -738,6 +743,7 @@ OCAuthenticationMethodAutoRegister
 					// Unexpected 401 response - request a retry that'll also invoke canSendAuthenticatedRequestsForConnection:withAvailabilityHandler:
 					// which will attempt a token refresh
 					_receivedUnauthorizedResponse = YES;
+					_unauthorizedAuthenticationDataID = response.authenticationDataID;
 					OCLogError(@"Received unexpected UNAUTHORIZED response. tokenRefreshFollowingUnauthorizedResponseFailed=%d (known invalid %@)", _tokenRefreshFollowingUnauthorizedResponseFailed, self.authenticationDataKnownInvalidDate);
 				}
 
@@ -793,6 +799,7 @@ OCAuthenticationMethodAutoRegister
 
 	OCLogDebug(@"Token refresh started");
 
+	[connection.bookmark considerAuthenticationDataFlush];
 	[self flushCachedAuthenticationSecret];
 
 	if ((authSecret = [self cachedAuthenticationSecretForConnection:connection]) != nil)
@@ -802,7 +809,20 @@ OCAuthenticationMethodAutoRegister
 		// Double-checked locking: while waiting for the lock, a concurrent refresh (another thread or the File Provider process)
 		// may have already renewed the token. If it is valid again, skip the refresh - replaying the now-rotated refresh token
 		// would be rejected with invalid_grant by IdPs that rotate refresh tokens (e.g. Authelia, Nauthilus).
-		if (!_receivedUnauthorizedResponse)
+		if (_receivedUnauthorizedResponse)
+		{
+			// After a 401 the expiration date says nothing, so compare token identity instead
+			if (OCNANotEqual(_unauthorizedAuthenticationDataID, _cachedAuthenticationDataID))
+			{
+				OCLogDebug(@"Token rotated by another process since the UNAUTHORIZED response - retrying with it instead of refreshing");
+				_receivedUnauthorizedResponse = NO;
+				_unauthorizedAuthenticationDataID = nil;
+				_tokenRefreshFollowingUnauthorizedResponseFailed = NO;
+				availabilityHandler(nil, YES);
+				return;
+			}
+		}
+		else
 		{
 			NSTimeInterval timeLeftUntilExpiration = [((NSDate *)[authSecret valueForKeyPath:OA2ExpirationDate]) timeIntervalSinceNow];
 
@@ -860,6 +880,7 @@ OCAuthenticationMethodAutoRegister
 						{
 							// Token refresh fixed the issue
 							self->_receivedUnauthorizedResponse = NO;
+							self->_unauthorizedAuthenticationDataID = nil;
 							self->_tokenRefreshFollowingUnauthorizedResponseFailed = NO;
 						}
 					}

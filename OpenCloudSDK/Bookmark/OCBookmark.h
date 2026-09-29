@@ -66,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign,nonatomic) OCBookmarkAuthenticationDataStorage authenticationDataStorage; //! Determines where to store authenticationData. Keychain by default. Changing the storage copies the data from the old to the new storage.
 @property(strong,nullable) NSDate *authenticationValidationDate; //!< The date that the authenticationData was last known to be in valid state (typically changed when editing/creating bookmarks, used to f.ex. automatically handle sync issues predating that date).
 
+- (void)considerAuthenticationDataFlush; //!< Drops the in-memory copy of .authenticationData, so the next access re-reads it from the keychain. Used to pick up changes made by other processes.
+
 @property(assign) OCDatabaseVersion databaseVersion; //!< The version of the database after the last update. A 0 value indicates a pre-11.6 bookmark.
 
 @property(strong,nonatomic) NSMutableDictionary<OCBookmarkUserInfoKey, id<NSObject,NSSecureCoding>> *userInfo; //!< Dictionary for storing app-specific / custom properties alongside the bookmark
