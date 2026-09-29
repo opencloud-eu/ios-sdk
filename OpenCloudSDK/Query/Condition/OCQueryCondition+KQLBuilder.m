@@ -195,7 +195,11 @@
 				}
 
 				if (targetContent & OCKQLSearchedContentContents) {
-					NSString *contentQuery = [[NSString alloc] initWithFormat:@"(content:%@)", kqlValue];
+					// No wildcards for content:, unlike name: - the server only runs a content value through the
+					// field's analyzer if it contains none (services/search/pkg/query/bleve/compiler.go), and the
+					// content field is indexed tokenized + lowercased, so a wildcard value never matches a term.
+					// Same form the web client sends: (name:"*term*" OR content:"term"). See ios#79.
+					NSString *contentQuery = [[NSString alloc] initWithFormat:@"(content:%@)", smartQuotedValue];
 
 					if (query == nil) {
 						query = contentQuery;
