@@ -282,40 +282,51 @@
 
 - (void)setPath:(OCPath)path
 {
-	_location = nil;
-	_path = path;
+	@synchronized(self)
+	{
+		_location = nil;
+		_path = path;
+	}
 }
 
 - (void)setDriveID:(OCDriveID)driveID
 {
-	_location = nil;
-	_driveID = driveID;
+	@synchronized(self)
+	{
+		_location = nil;
+		_driveID = driveID;
+	}
 }
 
 - (OCLocation *)location
 {
-	if (_location != nil)
+	// Synchronized: .path/.driveID can change on the core's queue - releasing the cached location - while another thread reads it
+	@synchronized(self)
 	{
+		if (_location == nil)
+		{
+			OCLocation *location = [[OCLocation alloc] initWithDriveID:_driveID path:(_type == OCItemTypeCollection) ? _path.normalizedDirectoryPath : _path];
+
+			if (self.bookmarkUUID != nil)
+			{
+				location.bookmarkUUID = [[NSUUID alloc] initWithUUIDString:self.bookmarkUUID];
+			}
+
+			_location = location;
+		}
+
 		return (_location);
 	}
-
-	OCLocation *location = [[OCLocation alloc] initWithDriveID:_driveID path:(_type == OCItemTypeCollection) ? _path.normalizedDirectoryPath : _path];
-
-	if (self.bookmarkUUID != nil)
-	{
-		location.bookmarkUUID = [[NSUUID alloc] initWithUUIDString:self.bookmarkUUID];
-	}
-
-	_location = location;
-
-	return (location);
 }
 
 - (void)setLocation:(OCLocation *)location
 {
-	_driveID = location.driveID;
-	_path = location.path;
-	_location = location;
+	@synchronized(self)
+	{
+		_driveID = location.driveID;
+		_path = location.path;
+		_location = location;
+	}
 }
 
 - (OCPath)parentPath
