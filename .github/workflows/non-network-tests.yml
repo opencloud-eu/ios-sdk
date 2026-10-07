@@ -41,6 +41,7 @@ jobs:
             -only-testing:OpenCloudSDKTests/DataSourceTests
             -only-testing:OpenCloudSDKTests/DatabaseTests
             -only-testing:OpenCloudSDKTests/ExtensionTests
+            -only-testing:OpenCloudSDKTests/KQLBuilderTests
             -only-testing:OpenCloudSDKTests/KeyValueStoreTests
             -only-testing:OpenCloudSDKTests/LockTests
             -only-testing:OpenCloudSDKTests/ODataTests

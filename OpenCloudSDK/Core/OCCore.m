@@ -256,7 +256,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCCore)
 
 		_preferredChecksumAlgorithm = OCChecksumAlgorithmIdentifierSHA1;
 
-		_eventHandlerIdentifier = [@"OCCore-" stringByAppendingString:_bookmark.uuid.UUIDString];
+		_eventHandlerIdentifier = [@"OCCore-" stringByAppendingString:_bookmark.uuidString];
 		_pendingThumbnailRequests = [NSMutableDictionary new];
 
 		_ipNotificationCenter = OCIPNotificationCenter.sharedNotificationCenter;
@@ -316,7 +316,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCCore)
 			}]);
 		}];
 
-		_activityManager = [[OCActivityManager alloc] initWithUpdateNotificationName:[@"OCCore.ActivityUpdate." stringByAppendingString:_bookmark.uuid.UUIDString]];
+		_activityManager = [[OCActivityManager alloc] initWithUpdateNotificationName:[@"OCCore.ActivityUpdate." stringByAppendingString:_bookmark.uuidString]];
 		_publishedActivitySyncRecordIDs = [NSMutableSet new];
 
 		_itemPolicies = [NSMutableArray new];

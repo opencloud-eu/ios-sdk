@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OCBookmark : NSObject <NSSecureCoding, NSCopying>
 
 @property(readonly) OCBookmarkUUID uuid; //!< UUID uniquely identifying the bookmark
+@property(readonly,nonatomic) OCBookmarkUUIDString uuidString; //!< String version of .uuid (cached!)
 
 @property(strong,nullable) NSString *name; //!< Name of the server
 @property(strong,nullable) NSURL *url; //!< URL to use to connect to the server
@@ -64,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly,nonatomic,nullable) OCAuthenticationDataID authenticationDataID; //!< Unique ID of the currently set authentication data. Backed by .authenticationData.
 @property(assign,nonatomic) OCBookmarkAuthenticationDataStorage authenticationDataStorage; //! Determines where to store authenticationData. Keychain by default. Changing the storage copies the data from the old to the new storage.
 @property(strong,nullable) NSDate *authenticationValidationDate; //!< The date that the authenticationData was last known to be in valid state (typically changed when editing/creating bookmarks, used to f.ex. automatically handle sync issues predating that date).
+
+- (void)considerAuthenticationDataFlush; //!< Drops the in-memory copy of .authenticationData, so the next access re-reads it from the keychain. Used to pick up changes made by other processes.
 
 @property(assign) OCDatabaseVersion databaseVersion; //!< The version of the database after the last update. A 0 value indicates a pre-11.6 bookmark.
 

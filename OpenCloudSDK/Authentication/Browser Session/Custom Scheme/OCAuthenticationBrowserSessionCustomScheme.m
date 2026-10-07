@@ -85,7 +85,11 @@ static OCAuthenticationBrowserSessionCustomSchemeBusyPresenter sBusyPresenter;
 {
 	OCAuthenticationBrowserSessionCustomScheme *activeSession;
 
-	if ((activeSession = self.activeSession) != nil)
+	activeSession = self.activeSession;
+
+	OCLogDebug(@"handleOpenURL: scheme=%@, activeSession=%@, sessionScheme=%@", url.scheme, activeSession, activeSession.scheme);
+
+	if (activeSession != nil)
 	{
 		if ([url.scheme isEqual:activeSession.scheme])
 		{
