@@ -42,6 +42,8 @@
 static BOOL sOCSQLiteDBAllowConcurrentFileAccess = NO;
 static NSMutableDictionary<NSString *, NSNumber *> *sOCSQliteDBSharedRunLoopThreadUsageCountByName;
 
+static NSTimeInterval OCSQLiteDBPassiveCheckpointMinimumInterval = 60.0;
+
 @implementation OCSQLiteDB
 
 @synthesize databaseURL = _databaseURL;
@@ -1095,12 +1097,36 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 	}
 }
 
+- (void)considerPassiveCheckpoint
+{
+	@synchronized(self)
+	{
+		if ((_lastPassiveCheckpoint != nil) && (-_lastPassiveCheckpoint.timeIntervalSinceNow < OCSQLiteDBPassiveCheckpointMinimumInterval))
+		{
+			return;
+		}
+
+		_lastPassiveCheckpoint = [NSDate new];
+	}
+
+	[self queueBlock:^{
+		[self _checkpointWithMode:SQLITE_CHECKPOINT_PASSIVE];
+	}];
+}
+
 - (void)_checkpoint
+{
+	[self _checkpointWithMode:SQLITE_CHECKPOINT_RESTART];
+}
+
+- (void)_checkpointWithMode:(int)mode
 {
 	int walReturn, pngLog = 0, pnCkpt = 0;
 
-	walReturn = sqlite3_wal_checkpoint_v2(_db, NULL, SQLITE_CHECKPOINT_RESTART, &pngLog, &pnCkpt);
-	OCLogVerbose(@"Checkpoint result=%d, pngLog=%d, pnCkpt=%d", walReturn, pngLog, pnCkpt);
+	if (_db == NULL) { return; }
+
+	walReturn = sqlite3_wal_checkpoint_v2(_db, NULL, mode, &pngLog, &pnCkpt);
+	OCLogVerbose(@"Checkpoint(mode=%d) result=%d, pngLog=%d, pnCkpt=%d", mode, walReturn, pngLog, pnCkpt);
 }
 
 #pragma mark - Background kill protection
@@ -1142,6 +1168,12 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 				self->_backgroundTask = nil;
 
 				// OCTLogDebug(@[@"SQLBackground"], @"OCSQLiteDB left background task");
+			}
+
+			if (self->_processingCount == 0)
+			{
+				// Nothing of this process is holding a transaction here, so a passive checkpoint can make progress
+				[self considerPassiveCheckpoint];
 			}
 		}];
 	}
