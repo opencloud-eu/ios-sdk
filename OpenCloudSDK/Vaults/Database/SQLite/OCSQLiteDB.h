@@ -71,6 +71,8 @@ typedef void(^OCSQLiteDBBusyStatusHandler)(NSProgress * _Nullable progress); //!
 	OCBackgroundTask *_backgroundTask;
 	NSInteger _processingCount;
 
+	NSDate *_lastPassiveCheckpoint;
+
 	NSTimeInterval _maxBusyRetryTimeInterval;
 	NSTimeInterval _firstBusyRetryTime;
 
@@ -135,7 +137,8 @@ typedef void(^OCSQLiteDBBusyStatusHandler)(NSProgress * _Nullable progress); //!
 - (void)executeQueryString:(NSString *)queryString; //!< Runs a query and logs the result. Meant to simplify debugging.
 
 #pragma mark - WAL checkpointing
-- (void)checkpoint;
+- (void)checkpoint; //!< Checkpoints the WAL, waiting for readers in other processes to finish. Blocks the calling thread.
+- (void)considerPassiveCheckpoint; //!< Asynchronously performs a passive WAL checkpoint (never waits for other processes), at most once per minute. Called when this process stops processing queries.
 
 #pragma mark - Background task interface
 - (void)enterProcessing;
