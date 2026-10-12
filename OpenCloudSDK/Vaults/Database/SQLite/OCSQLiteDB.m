@@ -362,10 +362,16 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 
 		[self releaseAllLiveStatementResources];
 
-		do
+		sqErr = sqlite3_close(_db);
+
+		if ((sqErr == SQLITE_BUSY) || (sqErr == SQLITE_LOCKED))
 		{
-			sqErr = sqlite3_close(_db);
-		}while((sqErr == SQLITE_BUSY) || (sqErr == SQLITE_LOCKED));
+			// Statements outlived releaseAllLiveStatementResources. Retrying can't change that, so let
+			// close_v2 defer deallocation until they are finalized - but this is a leak, so make noise.
+			OCLogError(@"Closing database with statements still outstanding (%d) - deferring deallocation", sqErr);
+
+			sqErr = sqlite3_close_v2(_db);
+		}
 
 		if (sqErr != SQLITE_OK)
 		{
