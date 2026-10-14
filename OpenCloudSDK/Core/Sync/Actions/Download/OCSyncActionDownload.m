@@ -23,6 +23,8 @@
 #import "OCCore+Claims.h"
 #import "OCWaitConditionMetaDataRefresh.h"
 #import "OCCellularManager.h"
+#import "OCAppIdentity.h"
+#import "NSError+OCNetworkFailure.h"
 
 static OCMessageTemplateIdentifier OCMessageTemplateIdentifierDownloadOverwrite = @"download.overwrite";
 static OCMessageTemplateIdentifier OCMessageTemplateIdentifierDownloadRetry = @"download.retry";
@@ -677,6 +679,28 @@ OCSYNCACTION_REGISTER_ISSUETEMPLATES
 
 					handledError = YES;
 				}
+			}
+
+			if (!handledError && [OCAppIdentity.sharedAppIdentity.componentIdentifier isEqual:OCAppComponentIdentifierFileProviderExtension])
+			{
+				// Fail the download, so the error reaches Files.app and the user can retry.
+				OCLogError(@"Failing download of %@ with %@ instead of raising an issue (no UI in the File Provider)", item, downloadError);
+
+				[item removeSyncRecordID:syncContext.syncRecord.recordID activity:OCItemSyncActivityDownloading];
+				syncContext.updatedItems = @[ item ];
+
+				[syncContext transitionToState:OCSyncRecordStateCompleted withWaitConditions:nil];
+				resultInstruction = OCCoreSyncInstructionDeleteLast;
+
+				// Files.app only displays the description of errors it gets in its own domains, so always wrap -
+				// a plain NSURLError is replaced by a generic "couldn't communicate with the helper app" message.
+				NSString *errorDescription = (downloadError.isNetworkFailureError || downloadError.isNetworkTimeoutError) ?
+					downloadError.localizedDescription :
+					[NSString stringWithFormat:OCLocalizedString(@"Couldn't download %@",nil), item.name];
+
+				[syncContext completeWithError:OCErrorWithDescriptionFromError(OCErrorRequestCompletedWithError, errorDescription, downloadError) core:self.core item:item parameter:nil];
+
+				handledError = YES;
 			}
 
 			if (!handledError)
