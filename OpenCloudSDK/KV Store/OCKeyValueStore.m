@@ -793,13 +793,14 @@ typedef NSMutableDictionary<OCKeyValueStoreKey, OCKeyValueRecord *> * OCKeyValue
 				else
 				{
 					// Make sure there's a copy at newWritingURL
-					if (![newReadingURL isEqual:newWritingURL])
+					// (/var is a symlink to /private/var, so resolve before comparing - or we'd copy the file onto itself)
+					if (![newReadingURL.URLByResolvingSymlinksInPath isEqual:newWritingURL.URLByResolvingSymlinksInPath])
 					{
 						NSError *error = nil;
 
 						if (![[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error])
 						{
-							OCLogError(@"Error copying file after not making changes: %@", error);
+							OCLogError(@"Error copying %@ to %@ after not making changes: %@", newReadingURL.path, newWritingURL.path, error);
 						}
 					}
 				}
