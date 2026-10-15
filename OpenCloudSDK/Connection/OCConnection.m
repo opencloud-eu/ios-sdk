@@ -740,13 +740,20 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 	}
 
 	// Per-bookmark custom HTTP header (e.g. for reverse-proxy auth gating). See discussion opencloud-eu#2557.
-	NSString *customHeaderName = (NSString *)self.bookmark.userInfo[OCBookmarkUserInfoKeyCustomHTTPHeaderName];
-	NSString *customHeaderValue = (NSString *)self.bookmark.userInfo[OCBookmarkUserInfoKeyCustomHTTPHeaderValue];
-
-	if ([customHeaderName isKindOfClass:NSString.class] && (customHeaderName.length > 0) &&
-	    [customHeaderValue isKindOfClass:NSString.class] && (customHeaderValue.length > 0))
+	for (NSArray<OCBookmarkUserInfoKey> *keyPair in @[
+		@[ OCBookmarkUserInfoKeyCustomHTTPHeaderName,  OCBookmarkUserInfoKeyCustomHTTPHeaderValue  ],
+		@[ OCBookmarkUserInfoKeyCustomHTTPHeaderName2, OCBookmarkUserInfoKeyCustomHTTPHeaderValue2 ],
+		@[ OCBookmarkUserInfoKeyCustomHTTPHeaderName3, OCBookmarkUserInfoKeyCustomHTTPHeaderValue3 ]
+	])
 	{
-		[request setValue:customHeaderValue forHeaderField:customHeaderName];
+		NSString *customHeaderName = (NSString *)self.bookmark.userInfo[keyPair.firstObject];
+		NSString *customHeaderValue = (NSString *)self.bookmark.userInfo[keyPair.lastObject];
+
+		if ([customHeaderName isKindOfClass:NSString.class] && (customHeaderName.length > 0) &&
+		    [customHeaderValue isKindOfClass:NSString.class] && (customHeaderValue.length > 0))
+		{
+			[request setValue:customHeaderValue forHeaderField:customHeaderName];
+		}
 	}
 
 	return (request);

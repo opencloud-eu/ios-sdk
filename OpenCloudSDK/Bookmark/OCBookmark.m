@@ -641,6 +641,10 @@ OCBookmarkUserInfoKey OCBookmarkUserInfoKeyBookmarkCreation = @"bookmark-creatio
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyPreferredUsername = @"preferred-username";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderName = @"custom-http-header-name";
 OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderValue = @"custom-http-header-value";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderName2 = @"custom-http-header-name-2";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderValue2 = @"custom-http-header-value-2";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderName3 = @"custom-http-header-name-3";
+OCBookmarkUserInfoKey OCBookmarkUserInfoKeyCustomHTTPHeaderValue3 = @"custom-http-header-value-3";
 
 OCBookmarkCapability OCBookmarkCapabilityDrives = @"drives";
 OCBookmarkCapability OCBookmarkCapabilityFavorites = @"favorites";
