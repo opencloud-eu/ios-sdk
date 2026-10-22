@@ -1027,12 +1027,16 @@ OCAuthenticationMethodAutoRegister
 
 						error = OCErrorWithInfo(OCErrorAuthorizationFailed, errorInfo);
 					}
-					else if ((jsonResponseDict[@"refresh_token"] == nil) && (previousRefreshToken == nil) && (requestType == OCAuthenticationOAuth2TokenRequestTypeRefreshToken))
+					else if ((jsonResponseDict[@"refresh_token"] == nil) && (requestType == OCAuthenticationOAuth2TokenRequestTypeAuthorizationCode))
 					{
-						// Token response did not contain a new refresh_token! Authentication refresh would fail with next token renewal.
-						OCLogError(@"Token response did not contain a new refresh_token! Next token refresh would fail. Returning authorization failed error.");
+						// No refresh_token at login: the session would die at access token expiry and the File Provider
+						// extension could not recover from it (it can't present a browser). Fail now rather than later.
+						// Checked on the token response rather than on the requested/published scopes, because a
+						// server may omit offline_access from its WebFinger scopes and the IDP still issue a
+						// refresh token - only the response says what actually happened.
+						OCLogError(@"Token response did not contain a refresh_token! Returning authorization failed error.");
 
-						error = OCErrorWithDescription(OCErrorAuthorizationFailed, @"The token refresh response did not contain a new refresh_token.");
+						error = OCErrorWithDescription(OCErrorAuthorizationFailed, OCLocalizedString(@"The server did not provide a refresh token, which this app requires to stay signed in",nil));
 					}
 					else
 					{
