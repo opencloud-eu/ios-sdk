@@ -25,6 +25,7 @@
 #import "OCAuthenticationMethodOAuth2.h"
 #import "OCAuthenticationMethod+OCTools.h"
 #import "OCConnection.h"
+#import "OCBookmarkManager.h"
 #import "NSError+OCError.h"
 #import "NSURL+OCURLQueryParameterExtensions.h"
 #import "OCLogger.h"
@@ -594,10 +595,21 @@ OCAuthenticationMethodAutoRegister
 		if (@available(iOS 13, *))
 		{
 			NSNumber *prefersEphermalNumber;
+			BOOL prefersEphermalConfigured = NO;
 
 			if ((prefersEphermalNumber = OCTypedCast([OCAuthenticationMethod classSettingForOCClassSettingsKey:OCAuthenticationMethodBrowserSessionPrefersEphermal], NSNumber)) != nil)
 			{
 				webAuthenticationSession.prefersEphemeralWebBrowserSession = prefersEphermalNumber.boolValue;
+				prefersEphermalConfigured = YES;
+			}
+			else if (OCBookmarkManager.sharedBookmarkManager.bookmarks.count > 0)
+			{
+				// Adding an account while others already exist: a shared browser session would let the IDP
+				// return the account that is already signed in - and unlike re-auth below, account creation
+				// has no required username to catch that. The first account keeps the shared session, so
+				// onboarding still benefits from an existing IDP session.
+				// Skipped when the setting is explicitly configured, so MDM stays in control.
+				webAuthenticationSession.prefersEphemeralWebBrowserSession = YES;
 			}
 
 			// Force ephemeral session for re-auth of a specific user, so a cached
@@ -606,6 +618,8 @@ OCAuthenticationMethodAutoRegister
 			{
 				webAuthenticationSession.prefersEphemeralWebBrowserSession = YES;
 			}
+
+			OCLogDebug(@"Auth session prefersEphemeralWebBrowserSession=%d (configured=%d, bookmarks=%lu, requiredUsername=%d)", webAuthenticationSession.prefersEphemeralWebBrowserSession, prefersEphermalConfigured, (unsigned long)OCBookmarkManager.sharedBookmarkManager.bookmarks.count, (options[OCAuthenticationMethodRequiredUsernameKey] != nil));
 
 			UIWindow *window = OCTypedCast(options[OCAuthenticationMethodPresentingViewControllerKey], UIViewController).view.window;
 
