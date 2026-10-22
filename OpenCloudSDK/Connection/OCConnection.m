@@ -3158,9 +3158,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 			@(size.width).stringValue, 	@"x",
 			@(size.height).stringValue,	@"y",
 			item.eTag, 			@"c",
-			@"1",				@"a", // Request resize respecting aspect ratio 
 			@"1", 				@"preview",
-
 			@"0",				@"scalingup", // do not scale up images (new in OpenCloud)
 		nil];
 	}
