@@ -61,7 +61,7 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 	[self registerOCClassSettingsDefaults:@{
 		OCAuthenticationMethodOpenIDConnectRedirectURI : @"oc://ios.opencloud.eu",
 		OCAuthenticationMethodOpenIDConnectScope       : @"openid offline_access email profile",
-		OCAuthenticationMethodOpenIDConnectPrompt      : @"login",
+		OCAuthenticationMethodOpenIDConnectPrompt      : @"consent", // "consent" over "login": some IDPs only issue a refresh_token when consent is explicitly requested (android#243). Safe because browser sessions are ephemeral wherever a wrong account could be returned silently - see +[OCAuthenticationMethodOAuth2 startAuthenticationSession:…]
 		OCAuthenticationMethodOpenIDRegisterClient     : @(YES),
 		OCAuthenticationMethodOpenIDRegisterClientNameTemplate : @"OpenCloud/{{os.name}} {{app.version}}",
 		OCAuthenticationMethodOpenIDFallbackOnClientRegistrationFailure : @(YES)
