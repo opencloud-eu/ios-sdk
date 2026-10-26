@@ -61,7 +61,27 @@
 	    ((driveItem = OCTypedCast(driveItemRequest.reference, GADriveItem)) != nil) &&
 	    ((url = driveItem.webDavUrl) != nil))
 	{
-		[super provideResourceForRequest:driveItemRequest url:url eTag:nil customizeRequest:nil resultHandler:resultHandler];
+		CGSize maxPixelSize = driveItemRequest.maxPixelSize;
+		OCFileETag eTag = driveItem.eTag;
+
+		[super provideResourceForRequest:driveItemRequest url:url eTag:nil customizeRequest:^OCHTTPRequest * _Nonnull(OCHTTPRequest * _Nonnull httpRequest) {
+			// Let the server scale the image down, instead of downloading it in full resolution (same parameters as thumbnails)
+			if ((maxPixelSize.width > 0) && (maxPixelSize.height > 0))
+			{
+				NSMutableDictionary<NSString *, NSString *> *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+					@(maxPixelSize.width).stringValue,	@"x",
+					@(maxPixelSize.height).stringValue,	@"y",
+					@"1",					@"preview",
+					@"0",					@"scalingup",
+				nil];
+
+				parameters[@"c"] = eTag;
+
+				httpRequest.parameters = parameters;
+			}
+
+			return (httpRequest);
+		} resultHandler:resultHandler];
 		return;
 	}
 
