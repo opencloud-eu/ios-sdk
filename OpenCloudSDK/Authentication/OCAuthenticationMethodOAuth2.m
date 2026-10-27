@@ -205,6 +205,11 @@ OCAuthenticationMethodAutoRegister
 }
 
 #pragma mark - Subclassing points
+- (NSString *)promptForBrowserSessionPrivacy:(OCAuthenticationBrowserSessionPrivacy)privacy
+{
+	return (self.prompt);
+}
+
 - (NSURL *)authorizationEndpointURLForConnection:(OCConnection *)connection options:(OCAuthenticationMethodDetectionOptions)options
 {
 	return ([connection URLForEndpointPath:[self classSettingForOCClassSettingsKey:OCAuthenticationMethodOAuth2AuthorizationEndpoint] withAlternativeURL:options[OCAuthenticationMethodWebFingerAlternativeIDPKey]]);
@@ -402,6 +407,7 @@ OCAuthenticationMethodAutoRegister
 	{
 		NSURL *authorizationRequestURL;
 		NSArray<NSString *> *omitAuthorizationParameters;
+		NSString *prompt = [self promptForBrowserSessionPrivacy:[self.class browserSessionPrivacyWithOptions:options]];
 
 		// Generate Authorization Request URL
 		NSDictionary<NSString *,NSString *> *parameters = @{
@@ -418,7 +424,7 @@ OCAuthenticationMethodAutoRegister
 
 			// OIDC
 			@"scope"	  	 : (self.scope != nil)  ? self.scope  : ((NSString *)NSNull.null),
-			@"prompt"		 : (self.prompt != nil) ? self.prompt : ((NSString *)NSNull.null)
+			@"prompt"		 : (prompt != nil) ? prompt : ((NSString *)NSNull.null)
 		};
 
 		parameters = [self prepareAuthorizationRequestParameters:parameters forConnection:connection options:options];
@@ -567,6 +573,41 @@ OCAuthenticationMethodAutoRegister
 	sBrowserSessionClass = browserSessionClass;
 }
 
++ (OCAuthenticationBrowserSessionPrivacy)browserSessionPrivacyWithOptions:(OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options
+{
+	if (self.browserSessionClass != Nil)
+	{
+		// A browser-session-class naming an external browser (f.ex. mandated by MDM or a branded build):
+		// shares that browser's cookies and has no ephemeral mode
+		return (OCAuthenticationBrowserSessionPrivacySharedBySettings);
+	}
+
+	NSNumber *prefersEphermalNumber;
+
+	if ((prefersEphermalNumber = OCTypedCast([OCAuthenticationMethod classSettingForOCClassSettingsKey:OCAuthenticationMethodBrowserSessionPrefersEphermal], NSNumber)) != nil)
+	{
+		// Explicitly configured (MDM, branding, user preferences or environment): respected as-is
+		return (prefersEphermalNumber.boolValue ? OCAuthenticationBrowserSessionPrivacyPrivate : OCAuthenticationBrowserSessionPrivacySharedBySettings);
+	}
+
+	// Private as soon as *other* accounts exist: with a shared session the IDP would reuse whoever is
+	// already signed in there without re-authenticating. When adding, the new account isn't in the list
+	// yet; when re-authenticating (required username set), the account itself is - so it doesn't count.
+	NSUInteger bookmarkCount = OCBookmarkManager.sharedBookmarkManager.bookmarks.count;
+	BOOL otherAccountsExist = (options[OCAuthenticationMethodRequiredUsernameKey] != nil) ? (bookmarkCount > 1) : (bookmarkCount > 0);
+
+	if (otherAccountsExist)
+	{
+		return (OCAuthenticationBrowserSessionPrivacyPrivate);
+	}
+
+	// Only account (or none yet): use Safari's session. An existing IDP session on the device is presumed
+	// to belong to this user, and this is where it saves the most (SSO, MFA already done) - both at first
+	// setup and at every re-auth later. Accepted trade-off: if Safari is signed in as someone else, the
+	// consent page is what shows it at setup, and re-auth fails with a "must log in as …" error.
+	return (OCAuthenticationBrowserSessionPrivacyShared);
+}
+
 + (BOOL)startAuthenticationSession:(__autoreleasing id *)authenticationSession forURL:(NSURL *)authorizationRequestURL scheme:(NSString *)scheme options:(nullable OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options completionHandler:(void(^)(NSURL *_Nullable callbackURL, NSError *_Nullable error))oauth2CompletionHandler
 {
 	BOOL authSessionDidStart = NO;
@@ -594,32 +635,12 @@ OCAuthenticationMethodAutoRegister
 		#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
 		if (@available(iOS 13, *))
 		{
-			NSNumber *prefersEphermalNumber;
-			BOOL prefersEphermalConfigured = NO;
+			// Single source of truth shared with the prompt decision in -generateBookmarkAuthenticationDataWithConnection:…
+			OCAuthenticationBrowserSessionPrivacy privacy = [self browserSessionPrivacyWithOptions:options];
 
-			if ((prefersEphermalNumber = OCTypedCast([OCAuthenticationMethod classSettingForOCClassSettingsKey:OCAuthenticationMethodBrowserSessionPrefersEphermal], NSNumber)) != nil)
-			{
-				webAuthenticationSession.prefersEphemeralWebBrowserSession = prefersEphermalNumber.boolValue;
-				prefersEphermalConfigured = YES;
-			}
-			else if (OCBookmarkManager.sharedBookmarkManager.bookmarks.count > 0)
-			{
-				// Adding an account while others already exist: a shared browser session would let the IDP
-				// return the account that is already signed in - and unlike re-auth below, account creation
-				// has no required username to catch that. The first account keeps the shared session, so
-				// onboarding still benefits from an existing IDP session.
-				// Skipped when the setting is explicitly configured, so MDM stays in control.
-				webAuthenticationSession.prefersEphemeralWebBrowserSession = YES;
-			}
+			webAuthenticationSession.prefersEphemeralWebBrowserSession = (privacy == OCAuthenticationBrowserSessionPrivacyPrivate);
 
-			// Force ephemeral session for re-auth of a specific user, so a cached
-			// IDP session from a different account on the same server can't interfere
-			if (options[OCAuthenticationMethodRequiredUsernameKey] != nil)
-			{
-				webAuthenticationSession.prefersEphemeralWebBrowserSession = YES;
-			}
-
-			OCLogDebug(@"Auth session prefersEphemeralWebBrowserSession=%d (configured=%d, bookmarks=%lu, requiredUsername=%d)", webAuthenticationSession.prefersEphemeralWebBrowserSession, prefersEphermalConfigured, (unsigned long)OCBookmarkManager.sharedBookmarkManager.bookmarks.count, (options[OCAuthenticationMethodRequiredUsernameKey] != nil));
+			OCLogDebug(@"Auth session privacy=%ld (configured=%@, bookmarks=%lu, requiredUsername=%d)", (long)privacy, [OCAuthenticationMethod classSettingForOCClassSettingsKey:OCAuthenticationMethodBrowserSessionPrefersEphermal], (unsigned long)OCBookmarkManager.sharedBookmarkManager.bookmarks.count, (options[OCAuthenticationMethodRequiredUsernameKey] != nil));
 
 			UIWindow *window = OCTypedCast(options[OCAuthenticationMethodPresentingViewControllerKey], UIViewController).view.window;
 

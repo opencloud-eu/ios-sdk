@@ -29,11 +29,19 @@ typedef NS_ENUM(NSInteger, OCAuthenticationOAuth2TokenRequestType)
 	OCAuthenticationOAuth2TokenRequestTypeRefreshToken
 };
 
+typedef NS_ENUM(NSInteger, OCAuthenticationBrowserSessionPrivacy)
+{
+	OCAuthenticationBrowserSessionPrivacyPrivate,		//!< Ephemeral ASWebAuthenticationSession: shares no cookies with Safari or other sessions. Used whenever *other* accounts exist - when adding one, or when re-authenticating one of several.
+	OCAuthenticationBrowserSessionPrivacyShared,		//!< Shares Safari's cookies as the automatic choice, because this is the only account (or none exists yet): an existing identity provider session is presumed to be this user's, so setup and re-auth can use it.
+	OCAuthenticationBrowserSessionPrivacySharedBySettings	//!< Shares cookies because class settings say so - `browser-session-prefers-ephermal` = false, or a `browser-session-class` naming an external browser. Either can come from MDM, branding, user preferences or the environment.
+} __attribute__((enum_extensibility(closed)));
+
 @interface OCAuthenticationMethodOAuth2 : OCAuthenticationMethod <OCClassSettingsSupport>
 
 @property(strong,nullable,class,nonatomic) Class browserSessionClass;
 
 + (BOOL)startAuthenticationSession:(__autoreleasing id _Nonnull * _Nullable)authenticationSession forURL:(NSURL *)authorizationRequestURL scheme:(NSString *)scheme options:(nullable OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options completionHandler:(void(^)(NSURL *_Nullable callbackURL, NSError *_Nullable error))oauth2CompletionHandler; //!< Starts a system authentication session for the provided URL, scheme and completionHandler. Used by OCAuthenticationMethodOAuth2 as interface to ASWebAuthenticationSession.
++ (OCAuthenticationBrowserSessionPrivacy)browserSessionPrivacyWithOptions:(nullable OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions)options; //!< How the browser session that -startAuthenticationSession:… opens relates to other sessions' cookies. See OCAuthenticationBrowserSessionPrivacy.
 
 #pragma mark - PKCE support
 @property(strong,nullable) OCPKCE *pkce; //!< pre-configured PKCE object to use for Proof Key for Code Exchange
@@ -51,6 +59,7 @@ typedef NS_ENUM(NSInteger, OCAuthenticationOAuth2TokenRequestType)
 - (void)retrieveEndpointInformationForConnection:(OCConnection *)connection options:(nullable OCAuthenticationMethodDetectionOptions)options completionHandler:(void(^)(NSError * _Nullable error))completionHandler;
 - (nullable NSString *)scope;
 - (nullable NSString *)prompt;
+- (nullable NSString *)promptForBrowserSessionPrivacy:(OCAuthenticationBrowserSessionPrivacy)privacy; //!< The `prompt` value to send in the authorization request. Default implementation returns -prompt. Subclasses can adapt it to the browser session's privacy (see +browserSessionPrivacyWithOptions:).
 - (NSString *)clientID;
 - (NSString *)clientSecret;
 - (NSString *)tokenRequestAuthorizationHeaderForType:(OCAuthenticationOAuth2TokenRequestType)requestType connection:(OCConnection *)connection;
