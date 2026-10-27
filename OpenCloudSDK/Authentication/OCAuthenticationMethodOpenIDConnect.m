@@ -61,7 +61,9 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 	[self registerOCClassSettingsDefaults:@{
 		OCAuthenticationMethodOpenIDConnectRedirectURI : @"oc://ios.opencloud.eu",
 		OCAuthenticationMethodOpenIDConnectScope       : @"openid offline_access email profile",
-		OCAuthenticationMethodOpenIDConnectPrompt      : @"consent", // "consent" over "login": some IDPs only issue a refresh_token when consent is explicitly requested (android#243). Safe because browser sessions are ephemeral wherever a wrong account could be returned silently - see +[OCAuthenticationMethodOAuth2 startAuthenticationSession:…]
+		// OCAuthenticationMethodOpenIDConnectPrompt deliberately has no default: unset means "decide from the
+		// browser session's privacy" (see -promptForBrowserSessionPrivacy:), and a registered default would be
+		// indistinguishable from it being set to the same value.
 		OCAuthenticationMethodOpenIDRegisterClient     : @(YES),
 		OCAuthenticationMethodOpenIDRegisterClientNameTemplate : @"OpenCloud/{{os.name}} {{app.version}}",
 		OCAuthenticationMethodOpenIDFallbackOnClientRegistrationFailure : @(YES)
@@ -78,7 +80,7 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 		},
 		OCAuthenticationMethodOpenIDConnectPrompt : @{
 			OCClassSettingsMetadataKeyType        : OCClassSettingsMetadataTypeString,
-			OCClassSettingsMetadataKeyDescription : @"OpenID Connect Prompt",
+			OCClassSettingsMetadataKeyDescription : @"OpenID Connect `prompt` parameter. A configured value is sent as-is. If not set, the app sends `consent` (some identity providers only issue a refresh token when consent is explicitly requested) - except when the browser session is shared because of class settings (`browser-session-prefers-ephermal` set to false, or a `browser-session-class` naming an external browser), where it sends `login`, because with shared cookies `consent` would let the identity provider sign in as whoever is already logged in there.",
 			OCClassSettingsMetadataKeyCategory    : @"OIDC"
 		},
 		OCAuthenticationMethodOpenIDRegisterClient : @{
@@ -325,6 +327,35 @@ static OIDCDictKeyPath OIDCKeyPathIsPublicClient			= @"isPublicClient";
 - (NSString *)prompt
 {
 	return ([self classSettingForOCClassSettingsKey:OCAuthenticationMethodOpenIDConnectPrompt]);
+}
+
+- (NSString *)promptForBrowserSessionPrivacy:(OCAuthenticationBrowserSessionPrivacy)privacy
+{
+	NSString *configuredPrompt;
+
+	if ((configuredPrompt = self.prompt) != nil)
+	{
+		// Configured (MDM, branding, user preferences or environment): an explicit choice, sent as-is
+		return (configuredPrompt);
+	}
+
+	if (privacy == OCAuthenticationBrowserSessionPrivacySharedBySettings)
+	{
+		// `consent` forces the consent screen, not re-authentication: with a shared browser session the
+		// IDP consents as whoever is already signed in there. Where settings made the session shared, the
+		// account switcher / re-authentication matters more than consent - without `login`, a second
+		// account can't be added at all through an external browser.
+		// Not applied to OCAuthenticationBrowserSessionPrivacyShared: that case deliberately uses the
+		// device's IDP session, and `login` would cost VoidAuth-like IDPs their refresh token (android#243).
+		// Known gap: such an IDP combined with a settings-shared session then yields no refresh_token and
+		// login fails - set `oidc-prompt` to `consent` there, which is honoured as-is above.
+		OCLogDebug(@"Browser session shared because of class settings - sending prompt=login");
+		return (@"login");
+	}
+
+	// Some IDPs only issue a refresh_token when consent is explicitly requested (android#243).
+	// Single value on purpose - two-value prompts broke Entra (AADSTS90023), Authentik and Pocket ID (ios#65).
+	return (@"consent");
 }
 
 #pragma mark - Dynamic Client Registration

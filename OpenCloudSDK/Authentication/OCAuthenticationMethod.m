@@ -342,8 +342,10 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCAuthenticationMethod)
 + (NSDictionary<NSString *,id> *)defaultSettingsForIdentifier:(OCClassSettingsIdentifier)identifier
 {
 	return (@{
-		OCAuthenticationMethodBrowserSessionClass	  	: @"operating-system",
-		OCAuthenticationMethodBrowserSessionPrefersEphermal	: @(NO)
+		OCAuthenticationMethodBrowserSessionClass	  	: @"operating-system"
+		// OCAuthenticationMethodBrowserSessionPrefersEphermal deliberately has no default: unset means
+		// "decide automatically" (see +[OCAuthenticationMethodOAuth2 browserSessionPrivacyWithOptions:]),
+		// and a registered default would be indistinguishable from it being set to the same value.
 	});
 }
 
@@ -367,7 +369,7 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCAuthenticationMethod)
 
 		OCAuthenticationMethodBrowserSessionPrefersEphermal : @{
 			OCClassSettingsMetadataKeyType 		: OCClassSettingsMetadataTypeBoolean,
-			OCClassSettingsMetadataKeyDescription 	: @"Indicates whether the app should ask iOS for a private authentication (web) session for OAuth2 or OpenID Connect. Private authentication sessions do not share cookies and other browsing data with the user's normal browser. Apple only promises that [this setting](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/3237231-prefersephemeralwebbrowsersessio) will be honored if the user has set Safari as default browser.",
+			OCClassSettingsMetadataKeyDescription 	: @"Indicates whether the app should ask iOS for a private authentication (web) session for OAuth2 or OpenID Connect. Private authentication sessions do not share cookies and other browsing data with the user's normal browser. If not set, the app decides: shared while it is the only account (so an existing identity provider session in Safari can be used), private as soon as other accounts exist (so the identity provider can't return the account already signed in). Setting it to `false` also makes the app send `prompt=login` instead of `consent`, unless `oidc-prompt` is set explicitly. Apple only promises that [this setting](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/3237231-prefersephemeralwebbrowsersessio) will be honored if the user has set Safari as default browser.",
 			OCClassSettingsMetadataKeyStatus	: OCClassSettingsKeyStatusSupported,
 			OCClassSettingsMetadataKeyCategory	: @"Authentication"
 		},
