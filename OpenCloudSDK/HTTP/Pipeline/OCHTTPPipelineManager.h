@@ -34,6 +34,9 @@ typedef void(^OCHTTPPipelineManagerRequestCompletionHandler)(OCHTTPPipeline * _N
 @property(strong,readonly,nonatomic) OCHTTPPipelineBackend *backend; //!< Backend that persists tasks via SQLite on-disk.
 @property(strong,readonly,nonatomic) OCHTTPPipelineBackend *ephermalBackend; //!< Backend storing tasks in an in-memory SQLite db.
 
+#pragma mark - Background URL session identity
+@property(strong,nullable,nonatomic) NSString *backgroundURLSessionIdentifierSuffix; //!< Suffix distinguishing this process' background URL session from that of other processes sharing the same bundle identifier. Must not contain ";" and must be stable across launches, since background sessions are recovered by identifier. Set it before the background pipeline is first requested - afterwards it has no effect. Needed where the same extension runs as several processes at once: a File Provider gets one process per domain, and without a suffix the second process' tasks fail with NSURLErrorBackgroundSessionInUseByAnotherProcess (-996).
+
 #pragma mark - Set up persistent pipelines
 + (void)setupPersistentPipelines; //!< Makes sure that the pipelines OCHTTPPipelineIDLocal and OCHTTPPipelineIDBackground stay around for the lifetime of the process.
 
