@@ -210,6 +210,42 @@
 	}
 }
 
+- (void)setBackgroundURLSessionIdentifierSuffix:(NSString *)backgroundURLSessionIdentifierSuffix
+{
+	if (OCNANotEqual(_backgroundURLSessionIdentifierSuffix, backgroundURLSessionIdentifierSuffix))
+	{
+		OCHTTPPipeline *existingBackgroundPipeline = nil;
+
+		@synchronized(_pipelineByIdentifier)
+		{
+			existingBackgroundPipeline = _pipelineByIdentifier[OCHTTPPipelineIDBackground];
+		}
+
+		if (existingBackgroundPipeline != nil)
+		{
+			// Too late: the session identifier was baked into the pipeline when it was built, so this
+			// process keeps using the identifier it already has - set the suffix earlier.
+			OCLogError(@"Background URL session identifier suffix set to %@ after the background pipeline was built with %@ - ignoring", backgroundURLSessionIdentifierSuffix, existingBackgroundPipeline.urlSessionIdentifier);
+			return;
+		}
+
+		_backgroundURLSessionIdentifierSuffix = backgroundURLSessionIdentifierSuffix;
+	}
+}
+
+- (NSString *)_backgroundURLSessionIdentifier
+{
+	NSString *identifier = [OCHTTPPipelineIDBackground stringByAppendingFormat:@";%@", self.backend.bundleIdentifier];
+	NSString *suffix = self.backgroundURLSessionIdentifierSuffix;
+
+	if (suffix.length > 0)
+	{
+		identifier = [identifier stringByAppendingFormat:@";%@", suffix];
+	}
+
+	return (identifier);
+}
+
 - (nullable NSURLSessionConfiguration *)_backgroundURLSessionConfigurationWithIdentifier:(NSString *)identifier
 {
 	NSURLSessionConfiguration *sessionConfiguration = nil;
@@ -255,7 +291,7 @@
 
 	if ([pipelineID isEqual:OCHTTPPipelineIDBackground])
 	{
-		sessionConfiguration = [self _backgroundURLSessionConfigurationWithIdentifier:[pipelineID stringByAppendingFormat:@";%@", self.backend.bundleIdentifier]];
+		sessionConfiguration = [self _backgroundURLSessionConfigurationWithIdentifier:self._backgroundURLSessionIdentifier];
 
 		backend = self.backend;
 	}
@@ -438,10 +474,11 @@
 
 	OCLogVerbose(@"Handling events for backgroundURLSession %@", sessionIdentifier);
 
-	if (((idComponents = [sessionIdentifier componentsSeparatedByString:@";"]) != nil) && (idComponents.count == 2))
+	// "<pipelineID>;<bundleIdentifier>" or "<pipelineID>;<bundleIdentifier>;<suffix>" (see .backgroundURLSessionIdentifierSuffix)
+	if (((idComponents = [sessionIdentifier componentsSeparatedByString:@";"]) != nil) && (idComponents.count >= 2) && (idComponents.count <= 3))
 	{
-		OCHTTPPipelineID pipelineID = [idComponents firstObject];
-		NSString *bundleIdentifier = [idComponents lastObject];
+		OCHTTPPipelineID pipelineID = idComponents[0];
+		NSString *bundleIdentifier = idComponents[1];
 		__weak OCHTTPPipelineManager *weakSelf = self;
 		dispatch_block_t returnPipelineAndCallCompletionHandlerBlock = ^{
 			OCLogVerbose(@"Done handling events for backgroundURLSession %@", sessionIdentifier);
