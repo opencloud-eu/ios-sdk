@@ -154,8 +154,12 @@
 									}
 									else
 									{
-										// Bookmark changed - use loaded copy
-										[reconstructedBookmarks addObject:loadedBookmark];
+										// Bookmark changed - update the existing instance instead of replacing it. Cores,
+										// connections and the File Provider hold on to it, and -handleBookmarkUpdatedNotification:
+										// only saves instances it recognises by identity. Replacing it left them reading
+										// stale values (opencloud-eu/ios#92) and silently dropped their updates.
+										[existingBookmark refreshValuesFrom:loadedBookmark];
+										[reconstructedBookmarks addObject:existingBookmark];
 									}
 								}
 							}
