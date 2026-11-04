@@ -257,6 +257,7 @@
 			}
 			else
 			{
+				OCLogWarning(@"Background task '%@' could not be started - no background time left", task.name);
 				task.started = NO;
 				[_tasks removeObjectIdenticalTo:task];
 			}
