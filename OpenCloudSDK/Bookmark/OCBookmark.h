@@ -81,6 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Data replacement
 - (void)setValuesFrom:(OCBookmark *)sourceBookmark; //!< Replaces all values in the receiving bookmark with those in the source bookmark.
+- (void)refreshValuesFrom:(OCBookmark *)sourceBookmark; //!< Updates the receiver in place from a freshly loaded copy of the same bookmark. Unlike -setValuesFrom:, keeps the keychain-backed authentication data and never moves authenticationValidationDate backwards.
 - (void)setLastUserName:(nullable NSString *)userName; //!< Replaces the internally stored fallback user name returned by .userName for when no authentication data is available.
 
 #pragma mark - Capabilities
