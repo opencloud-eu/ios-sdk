@@ -214,9 +214,10 @@
 		{
 			_userInfo = [NSMutableDictionary new];
 		}
-	}
 
-	return (_userInfo);
+		// Read inside the lock: -refreshValuesFrom: replaces _userInfo under the same lock
+		return (_userInfo);
+	}
 }
 
 #pragma mark - Convenience
@@ -454,6 +455,43 @@
 	_userDisplayName = sourceBookmark->_userDisplayName;
 
 	_userInfo = sourceBookmark.userInfo;
+}
+
+- (void)refreshValuesFrom:(OCBookmark *)sourceBookmark
+{
+	// Atomic properties go through their setters, so readers on other threads never see a torn value
+	self.databaseVersion = sourceBookmark.databaseVersion;
+
+	self.name      = sourceBookmark.name;
+	self.url       = sourceBookmark.url;
+	self.originURL = sourceBookmark.originURL;
+
+	self.certificateStore               = sourceBookmark.certificateStore;
+	self.authenticationMethodIdentifier = sourceBookmark.authenticationMethodIdentifier;
+	self.userDisplayName                = sourceBookmark.userDisplayName;
+
+	// Never backwards: OCCore+MessageAutoresolver compares sync issue dates against it
+	NSDate *validationDate = sourceBookmark.authenticationValidationDate;
+
+	if ((validationDate != nil) &&
+	    ((self.authenticationValidationDate == nil) || ([validationDate compare:self.authenticationValidationDate] == NSOrderedDescending)))
+	{
+		self.authenticationValidationDate = validationDate;
+	}
+
+	@synchronized(self) // same lock as the -userInfo getter, which is read for every request
+	{
+		_userInfo     = sourceBookmark.userInfo;
+		_capabilities = sourceBookmark.capabilities;
+
+		// Direct ivar copies, as in -setValuesFrom: - -setAvatar: has side effects
+		_avatar       = sourceBookmark->_avatar;
+		_avatarData   = sourceBookmark->_avatarData;
+		_lastUsername = sourceBookmark->_lastUsername;
+	}
+
+	// Deliberately not copied: authenticationData / authenticationDataStorage are keychain-backed and kept
+	// current by -considerAuthenticationDataFlush. Overwriting them from storage can resurrect a rotated token.
 }
 
 - (void)setLastUserName:(NSString *)userName
