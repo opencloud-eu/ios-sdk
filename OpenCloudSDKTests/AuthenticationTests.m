@@ -140,6 +140,8 @@
 
 - (void)testBasicAuthenticationSuccess
 {
+	XCTSkip(@"demo.opencloud.eu does not accept Basic Auth for the test account (HTTP 401) - needs a server with Basic Auth enabled");
+
 	[self _performBasicAuthenticationTestWithURL:OCTestTarget.insecureTargetURL user:OCTestTarget.userLogin password:OCTestTarget.userPassword allowUpgrades:YES expectsSuccess:YES];
 }
 
@@ -156,6 +158,8 @@
 #pragma mark - OAuth2
 - (void)testOAuth2TokenGeneration
 {
+	XCTSkip(@"Written for ownCloud 10's built-in OAuth2 app (index.php/apps/oauth2/...), which OpenCloud doesn't have; also passes unsimulated requests through to demo.opencloud.eu");
+
 	XCTestExpectation *expectAuthControllerInvocation = [self expectationWithDescription:@"Auth controller invocation"];
 	XCTestExpectation *expectAuthCodeGrantRequest = [self expectationWithDescription:@"Auth code grant request sent"];
 	XCTestExpectation *expectBookmarkDataCompletenHandlerCall = [self expectationWithDescription:@"Bookmark data completion handler called"];
@@ -293,6 +297,8 @@
 
 - (void)testOAuth2TokenRefresh
 {
+	XCTSkip(@"Written for ownCloud 10's built-in OAuth2 app (index.php/apps/oauth2/...), which OpenCloud doesn't have; also passes unsimulated requests through to demo.opencloud.eu");
+
 	// Create expectations
 	__block XCTestExpectation *expectFirstRequestWithRefreshedAccessToken = [self expectationWithDescription:@"received first PROPFIND request with refreshed refresh token"];
 	__block XCTestExpectation *expectSecondRequestWithRefreshedAccessToken = [self expectationWithDescription:@"received second PROPFIND request with refreshed twice refresh token"];
@@ -446,7 +452,7 @@
 {
 	// Ensure OIDC test target is available
 	OCBookmark *bookmark = OCTestTarget.oidcBookmark;
-	if (bookmark == nil) { return; }
+	if (bookmark == nil) { XCTSkip(@"No OIDC test target configured (OCTestTarget.oidcBookmark returns nil)"); }
 
 	XCTestExpectation *detectionExpectation = [self expectationWithDescription:@"OIDC detected"];
 	OCConnection *connection;
