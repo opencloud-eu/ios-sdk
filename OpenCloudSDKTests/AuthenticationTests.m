@@ -474,6 +474,166 @@
 	[self waitForExpectationsWithTimeout:60 handler:nil];
 }
 
+// opencloud-eu/ios#99: with token_endpoint_auth_methods_supported = ["none"] (public client,
+// PKCE) there is no client_secret, but client_id still has to be sent - Kanidm answers the code
+// exchange with HTTP 401 otherwise. Offline: OCHostSimulator IDP, browser session mocked away.
+- (void)testOpenIDConnectPublicClientSendsClientIDInTokenRequest
+{
+	NSString *idpClientID = @"opencloud-web";					// what WebFinger hands us, as in the issue
+	NSURL *idpIssuerURL = [NSURL URLWithString:@"https://idm.kanidm.test/oauth2/openid/opencloud-web"];
+	NSString *tokenEndpointPath = @"/oauth2/token";
+
+	// Kanidm 1.12's .well-known/openid-configuration, trimmed to the keys the SDK reads
+	NSDictionary<NSString *, id> *openIDConfiguration = @{
+		@"issuer" 				: idpIssuerURL.absoluteString,
+		@"authorization_endpoint" 		: @"https://idm.kanidm.test/ui/oauth2",
+		@"token_endpoint" 			: [@"https://idm.kanidm.test" stringByAppendingString:tokenEndpointPath],
+		@"userinfo_endpoint" 			: [idpIssuerURL.absoluteString stringByAppendingString:@"/userinfo"],
+		@"jwks_uri" 				: [idpIssuerURL.absoluteString stringByAppendingString:@"/public_key.jwk"],
+		@"response_types_supported" 		: @[ @"code" ],
+		@"grant_types_supported" 		: @[ @"authorization_code" ],
+		@"subject_types_supported" 		: @[ @"public" ],
+		@"id_token_signing_alg_values_supported": @[ @"ES256" ],
+		@"scopes_supported" 			: @[ @"openid", @"profile", @"email", @"groups", @"offline_access" ],
+		@"code_challenge_methods_supported" 	: @[ @"S256" ],
+		@"token_endpoint_auth_methods_supported": @[ @"none" ]	// <- this is what makes us a public client
+	};
+
+	XCTestExpectation *expectConfigurationRequest = [self expectationWithDescription:@"openid-configuration requested"];
+	XCTestExpectation *expectAuthSession = [self expectationWithDescription:@"Browser session started"];
+	XCTestExpectation *expectTokenRequest = [self expectationWithDescription:@"Authorization code exchanged"];
+	XCTestExpectation *expectUserRequest = [self expectationWithDescription:@"Logged in user retrieved"];
+	XCTestExpectation *expectCompletion = [self expectationWithDescription:@"Authentication data generated"];
+
+	OCBookmark *bookmark = [OCBookmark bookmarkForURL:[NSURL URLWithString:@"https://files.kanidm.test/"]];
+	OCConnection *connection = [[OCConnection alloc] initWithBookmark:bookmark];
+
+	XCTAssertNotNil(connection);
+
+	connection.delegate = self;
+
+	__block NSString *authorizationRequestRedirectURI = nil;
+
+	OCHostSimulator *hostSimulator = [OCHostSimulator new];
+
+	hostSimulator.requestHandler = ^BOOL(OCConnection *simulatedConnection, OCHTTPRequest *request, OCHostSimulatorResponseHandler responseHandler) {
+		if ([request.url.path hasSuffix:@"/.well-known/openid-configuration"])
+		{
+			[expectConfigurationRequest fulfill];
+
+			responseHandler(nil, [OCHostSimulatorResponse responseWithURL:request.url statusCode:OCHTTPStatusCodeOK headers:@{} contentType:@"application/json" bodyData:[NSJSONSerialization dataWithJSONObject:openIDConfiguration options:0 error:NULL]]);
+
+			return (YES);
+		}
+
+		if ([request.url.path isEqual:tokenEndpointPath])
+		{
+			// Decode the form-encoded POST body as it goes on the wire
+			NSURLComponents *bodyComponents = [NSURLComponents new];
+			bodyComponents.query = [[NSString alloc] initWithData:request.bodyData encoding:NSUTF8StringEncoding];
+
+			NSMutableDictionary<NSString *, NSString *> *body = [NSMutableDictionary new];
+
+			for (NSURLQueryItem *queryItem in bodyComponents.queryItems)
+			{
+				if (queryItem.value != nil)
+				{
+					body[queryItem.name] = queryItem.value;
+				}
+			}
+
+			// The actual regression (opencloud-eu/ios#99): no client_id anywhere in the request
+			XCTAssertEqualObjects(body[@"client_id"], idpClientID, @"a public client still has to identify itself with client_id in the token request body");
+			XCTAssertNil(body[@"client_secret"], @"a public client has no secret to send");
+			XCTAssertNil(request.headerFields[OCHTTPHeaderFieldNameAuthorization], @"a public client must not fall back to Basic auth");
+
+			// … and the remainder of the code exchange is still well-formed
+			XCTAssertEqualObjects(body[@"grant_type"], @"authorization_code");
+			XCTAssertEqualObjects(body[@"code"], @"kanidmAuthCode");
+			XCTAssertEqualObjects(body[@"redirect_uri"], authorizationRequestRedirectURI, @"redirect_uri has to match the one from the authorization request");
+			XCTAssertNotNil(body[@"code_verifier"], @"PKCE code_verifier missing");
+
+			[expectTokenRequest fulfill];
+
+			responseHandler(nil, [OCHostSimulatorResponse responseWithURL:request.url statusCode:OCHTTPStatusCodeOK headers:@{} contentType:@"application/json" body:@"{\"access_token\":\"kanidmAccessToken\",\"token_type\":\"bearer\",\"expires_in\":900,\"refresh_token\":\"kanidmRefreshToken\",\"scope\":\"openid profile email offline_access\"}"]);
+
+			return (YES);
+		}
+
+		// Right after the code exchange the SDK resolves the user name through the server
+		// (the token response carries no user_id), so that has to be answered as well
+		if ([request.url.path hasSuffix:@"ocs/v2.php/cloud/user"])
+		{
+			XCTAssertEqualObjects(request.headerFields[OCHTTPHeaderFieldNameAuthorization], @"Bearer kanidmAccessToken");
+
+			[expectUserRequest fulfill];
+
+			responseHandler(nil, [OCHostSimulatorResponse responseWithURL:request.url statusCode:OCHTTPStatusCodeOK headers:@{} contentType:@"application/json" body:@"{\"ocs\":{\"meta\":{\"status\":\"ok\",\"statuscode\":200,\"message\":\"OK\"},\"data\":{\"id\":\"kanidmuser\",\"display-name\":\"Kanidm User\",\"email\":null}}}"]);
+
+			return (YES);
+		}
+
+		return (NO);
+	};
+
+	connection.hostSimulator = hostSimulator;
+
+	// Stand in for ASWebAuthenticationSession: check the authorization request, hand back the callback URL
+	OCMockAuthenticationMethodOAuth2StartAuthenticationSessionForURLSchemeCompletionHandlerBlock mockBlock;
+
+	mockBlock = ^(__autoreleasing id *authenticationSession, NSURL *authorizationRequestURL, NSString *scheme, OCAuthenticationMethodBookmarkAuthenticationDataGenerationOptions options, void(^completionHandler)(NSURL *_Nullable callbackURL, NSError *_Nullable error)) {
+		NSDictionary<NSString *, NSString *> *authorizationParameters = authorizationRequestURL.queryParameters;
+
+		XCTAssertEqualObjects(authorizationParameters[@"response_type"], @"code");
+		XCTAssertEqualObjects(authorizationParameters[@"client_id"], idpClientID);
+		XCTAssertEqualObjects(authorizationParameters[@"code_challenge_method"], @"S256");
+		XCTAssertNotNil(authorizationParameters[@"code_challenge"]);
+
+		authorizationRequestRedirectURI = authorizationParameters[@"redirect_uri"];
+		XCTAssertNotNil(authorizationRequestRedirectURI);
+
+		[expectAuthSession fulfill];
+
+		NSURLComponents *callbackComponents = [NSURLComponents componentsWithString:authorizationRequestRedirectURI];
+		NSMutableArray<NSURLQueryItem *> *callbackQueryItems = [NSMutableArray arrayWithObject:[NSURLQueryItem queryItemWithName:@"code" value:@"kanidmAuthCode"]];
+		NSString *state;
+
+		if ((state = authorizationParameters[@"state"]) != nil)
+		{
+			[callbackQueryItems addObject:[NSURLQueryItem queryItemWithName:@"state" value:state]];
+		}
+
+		callbackComponents.queryItems = callbackQueryItems;
+
+		completionHandler(callbackComponents.URL, nil);
+
+		return (YES);
+	};
+
+	[OCMockManager.sharedMockManager addMockingBlocks:@{
+		OCMockLocationAuthenticationMethodOAuth2StartAuthenticationSessionForURLSchemeCompletionHandler : mockBlock
+	}];
+
+	// WebFinger values are passed in as the setup flow would, which also skips dynamic client registration
+	[connection generateAuthenticationDataWithMethod:OCAuthenticationMethodIdentifierOpenIDConnect options:@{
+		OCAuthenticationMethodPresentingViewControllerKey : [UIViewController new],
+		OCAuthenticationMethodWebFingerAlternativeIDPKey : idpIssuerURL,
+		OCAuthenticationMethodWebFingerClientIDKey : idpClientID,
+		OCAuthenticationMethodWebFingerScopeKey : @"openid profile email offline_access"
+	} completionHandler:^(NSError *error, OCAuthenticationMethodIdentifier authenticationMethodIdentifier, NSData *authenticationData) {
+		XCTAssertNil(error, @"the code exchange must succeed");
+		XCTAssertNotNil(authenticationData);
+		XCTAssertEqualObjects(authenticationMethodIdentifier, OCAuthenticationMethodIdentifierOpenIDConnect);
+		XCTAssertEqualObjects([OCAuthenticationMethodOpenIDConnect userNameFromAuthenticationData:authenticationData], @"kanidmuser");
+
+		[expectCompletion fulfill];
+	}];
+
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+
+	[OCMockManager.sharedMockManager removeAllMockingBlocks];
+}
+
 #pragma mark - Detection
 - (void)testAuthenticationMethodDetection
 {

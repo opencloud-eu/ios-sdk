@@ -1020,12 +1020,15 @@ OCAuthenticationMethodAutoRegister
 
 			NSString *clientID = self.clientID, *clientSecret = self.clientSecret;
 
-			if ((clientID != nil) && (clientSecret != nil))
+			// Public clients (auth method "none") have no secret, but still need to identify themselves (opencloud-eu/ios#99)
+			if (clientID != nil)
 			{
-				[tokenRequest addParameters:@{
-					@"client_id" : clientID,
-					@"client_secret" : clientSecret
-				}];
+				[tokenRequest addParameters:@{ @"client_id" : clientID }];
+
+				if (clientSecret != nil)
+				{
+					[tokenRequest addParameters:@{ @"client_secret" : clientSecret }];
+				}
 			}
 		}
 		else
@@ -1222,12 +1225,12 @@ OCAuthenticationMethodAutoRegister
 					if (jsonDecodeError == nil)
 					{
 						// Empty response
-						error = OCErrorWithDescription(OCErrorAuthorizationFailed, @"The token refresh response was empty.");
+						error = OCErrorWithDescription(OCErrorAuthorizationFailed, ([NSString stringWithFormat:@"The token response was empty (HTTP %lu).", (unsigned long)response.status.code]));
 					}
 					else
 					{
 						// Malformed response
-						error = OCErrorWithDescription(OCErrorAuthorizationFailed, @"Malformed token refresh response.");
+						error = OCErrorWithDescription(OCErrorAuthorizationFailed, ([NSString stringWithFormat:@"Malformed token response (HTTP %lu).", (unsigned long)response.status.code]));
 					}
 				}
 			}
