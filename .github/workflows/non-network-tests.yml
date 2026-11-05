@@ -50,8 +50,7 @@ jobs:
             -only-testing:OpenCloudSDKTests/SettingsTests
             -only-testing:OpenCloudSDKTests/ShareSpaceRootParsingTests
 
-            # ---- FIXME: need a live server at demo.opencloud.eu (166 tests) ----
-            # -only-testing:OpenCloudSDKTests/AuthenticationTests
+            # ---- FIXME: need a live server at demo.opencloud.eu (151 tests) ----
             # -only-testing:OpenCloudSDKTests/BookmarkManagerTests
             # -only-testing:OpenCloudSDKTests/CertificateTests
             # -only-testing:OpenCloudSDKTests/ConnectionTests
@@ -75,10 +74,23 @@ jobs:
             -resultBundlePath TestResults.xcresult \
             "${TESTS[@]}"
 
+      # Separate step: 6 of these tests talk to demo.opencloud.eu, so a server outage shows up here
+      # and not as an offline failure. Stale tests are skipped with their reason in the test source.
+      - name: Test (AuthenticationTests, partly against demo.opencloud.eu)
+        if: ${{ !cancelled() }}
+        run: |
+          xcodebuild test \
+            -project OpenCloudSDK.xcodeproj \
+            -scheme OpenCloudSDK \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -parallel-testing-enabled NO \
+            -resultBundlePath TestResults-auth.xcresult \
+            -only-testing:OpenCloudSDKTests/AuthenticationTests
+
       - name: Show test failures
         if: failure()
         run: |
-          for bundle in TestResults-isolated.xcresult TestResults.xcresult; do
+          for bundle in TestResults-isolated.xcresult TestResults.xcresult TestResults-auth.xcresult; do
             if [ -d "$bundle" ]; then
               echo "===== $bundle ====="
               xcrun xcresulttool get test-results summary --path "$bundle" || true
@@ -93,5 +105,6 @@ jobs:
           path: |
             TestResults-isolated.xcresult
             TestResults.xcresult
+            TestResults-auth.xcresult
           retention-days: 1
           if-no-files-found: ignore
