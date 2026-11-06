@@ -29,6 +29,7 @@
 #import "OCCoreManager.h"
 #import "OCSQLiteCollationLocalized.h"
 #import "OCPlatform.h"
+#import "OCBackgroundManager.h"
 
 #import "OCExtension+License.h"
 
@@ -840,6 +841,11 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 	// Begin transaction
 	if (_transactionNestingLevel == 1)
 	{
+		@synchronized(self)
+		{
+			_rootTransactionOpen = YES;
+		}
+
 		// Transaction at root level
 		switch (transaction.type)
 		{
@@ -959,6 +965,21 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 
 	// Decrease transaction nesting level
 	_transactionNestingLevel--;
+
+	if (savePointName == nil)
+	{
+		// Root transaction committed or rolled back: the write lock is released
+		@synchronized(self)
+		{
+			_rootTransactionOpen = NO;
+
+			if (_rootTransactionEndSemaphore != nil)
+			{
+				dispatch_semaphore_signal(_rootTransactionEndSemaphore);
+				_rootTransactionEndSemaphore = nil;
+			}
+		}
+	}
 
 	if (transaction.completionHandler != nil)
 	{
@@ -1145,7 +1166,58 @@ static void collationProvider(void *dbObj, sqlite3 *db, int eTextRep, const char
 
 		if ((_backgroundTask = [[OCBackgroundTask backgroundTaskWithName:@"OCSQLiteDB query" expirationHandler:^(OCBackgroundTask * _Nonnull task) {
 			// Task needs to end in the expiration handler - or the app will be terminated by iOS
-			OCWTLogError(@[@"SQLBackground"], @"OCSQLiteDB background task expired!");
+			OCSQLiteDB *strongSelf = weakSelf;
+			dispatch_semaphore_t rootTransactionEnded = nil;
+
+			if (strongSelf != nil)
+			{
+				@synchronized(strongSelf)
+				{
+					if (strongSelf->_rootTransactionOpen)
+					{
+						rootTransactionEnded = strongSelf->_rootTransactionEndSemaphore = dispatch_semaphore_create(0);
+					}
+				}
+			}
+
+			OCWTLogError(@[@"SQLBackground"], @"OCSQLiteDB background task expired! (%.1f s left, transaction open: %d)", OCBackgroundManager.sharedBackgroundManager.backgroundTimeRemaining, (rootTransactionEnded != nil));
+
+			if (rootTransactionEnded != nil)
+			{
+				// Suspending while holding the write lock gets the app killed (0xdead10cc), so give the transaction a moment to finish.
+				// Expiration handlers run one after the other on the main thread, so all databases share one wait budget.
+				// TODO: This only covers the transaction open right now. New work keeps starting within ms (e.g. a folder scan of
+				// 1000+ folders runs for minutes) until iOS suspends the app. To make it effective:
+				// - Folder scan (12 of 16 app crashes): don't start new jobs in -[OCCore scheduleNextItemListTask] when
+				//   backgroundTimeRemaining is low. Check the remaining time, not isBackgrounded: background fetch launches are
+				//   backgrounded but have valid time. Running jobs (max. parallelItemListTaskCount) still finish and write.
+				// - Resuming the scan: queued jobs stay in memory and in the database (removed only when done, kept on network
+				//   errors, reloaded by -recoverPendingUpdateJobs on core start), so nothing is lost. Call
+				//   -scheduleNextItemListTask again via -[OCBackgroundManager scheduleBlock:inBackground:NO] on foreground.
+				//   A new background fetch does NOT resume it by itself: -fetchUpdatesWithCompletionHandler: only queues its
+				//   completion handler while a scan is ongoing, so it must call -scheduleNextItemListTask there too. Even then a
+				//   long scan won't finish in one fetch window, so the fetch completion never fires in time; it should report
+				//   back when its time runs out instead of waiting for the whole scan.
+				// - Sync records (4 of 16 app crashes): same gate, see the disabled check in -[OCCore processSyncRecordsIfNeeded].
+				// - File Provider: OCBackgroundManager has no delegate in extensions, so no expiration handler runs at all.
+				//   Needs -[NSProcessInfo performExpiringActivityWithReason:usingBlock:].
+				// - App and File Provider appear to both run the directory update jobs from the shared database (both recover
+				//   them), doubling the scan and the time the write lock is held. Not verified.
+				// - _backgroundTask stays set after expiry, so work arriving later doesn't even try to start a new task.
+				static NSTimeInterval sExpiryWaitDeadline = 0;
+				NSDate *waitStart = [NSDate new];
+
+				if (waitStart.timeIntervalSinceReferenceDate > (sExpiryWaitDeadline + 10.0))
+				{
+					sExpiryWaitDeadline = waitStart.timeIntervalSinceReferenceDate + 1.0;
+				}
+
+				NSTimeInterval waitTime = MAX(0, sExpiryWaitDeadline - waitStart.timeIntervalSinceReferenceDate);
+				BOOL ended = (dispatch_semaphore_wait(rootTransactionEnded, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(waitTime * NSEC_PER_SEC))) == 0);
+
+				OCWTLogWarning(@[@"SQLBackground"], @"Transaction %@ after %.0f ms", (ended ? @"ended" : @"still open"), (-waitStart.timeIntervalSinceNow * 1000.0));
+			}
+
 			[task end];
 		}] start]) != nil)
 		{
