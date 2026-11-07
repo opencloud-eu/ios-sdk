@@ -290,6 +290,27 @@
 	return (item);
 }
 
+- (BOOL)isVaultDriveRootItemID:(OCVFSItemID)itemID
+{
+	OCVaultLocation *vaultLocation;
+	BOOL isVault = NO;
+
+	if (((vaultLocation = [[OCVaultLocation alloc] initWithVFSItemID:itemID]) != nil) &&
+	    vaultLocation.isVirtual && (vaultLocation.vfsNodeID == nil) && (vaultLocation.driveID != nil))
+	{
+		OCCore *core;
+
+		if ((core = [self _acquireCoreForVaultLocation:vaultLocation error:NULL]) != nil)
+		{
+			isVault = [core driveWithIdentifier:vaultLocation.driveID attachedOnly:NO].isVault;
+
+			[self _relinquishCore:core];
+		}
+	}
+
+	return (isVault);
+}
+
 - (void)provideContentForContainerItemID:(nullable OCVFSItemID)containerItemID changesFromSyncAnchor:(nullable OCSyncAnchor)sinceSyncAnchor completionHandler:(void(^)(NSError * _Nullable error, OCVFSContent * _Nullable content))completionHandler
 {
 	OCVFSNode *containerNode = nil;

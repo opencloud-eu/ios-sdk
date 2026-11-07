@@ -33,6 +33,8 @@
 
 #import "OCResourceRequestDriveItem.h"
 
+static NSString *OCDriveContentTypeVault = @"application/vnd.opencloud.vault";
+
 @implementation OCDrive
 
 + (instancetype)driveFromGADrive:(GADrive *)gDrive
@@ -190,6 +192,16 @@
 - (BOOL)isDeactivated
 {
 	return ([_gaDrive.root.deleted.state isEqual:GADeletedStateTrashed]);
+}
+
+- (BOOL)isVault
+{
+	return ([_gaDrive.libreGraphContentType isEqual:OCDriveContentTypeVault]);
+}
+
+- (NSURL *)webURL
+{
+	return (_gaDrive.webUrl);
 }
 
 #pragma mark - Secure coding

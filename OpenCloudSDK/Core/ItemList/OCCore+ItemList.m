@@ -581,6 +581,7 @@ static OCHTTPRequestGroupID OCCoreItemListTaskGroupBackgroundTasks = @"backgroun
 							    (retrievedItem.shareTypesMask != cacheItem.shareTypesMask) ||			// Share types mismatch
 							    (retrievedItem.permissions != cacheItem.permissions) ||				// Permissions mismatch
 							    (retrievedItem.isFavorite != cacheItem.isFavorite) ||				// Favorite mismatch
+							    (retrievedItem.isVault != cacheItem.isVault) ||					// Vault mismatch
 							    (retrievedItem.state != cacheItem.state))						// State mismatch
 							{
 								// Update item in the cache if the server has a different version
@@ -795,6 +796,17 @@ static OCHTTPRequestGroupID OCCoreItemListTaskGroupBackgroundTasks = @"backgroun
 				}
 			}
 
+			// Remove cached contents of vault folders (retrieved before the folder became a vault, or before vaults were detected)
+			for (OCItem *changedItem in changedCacheItems)
+			{
+				if (changedItem.isVault)
+				{
+					[self.database retrieveCacheItemsRecursivelyBelowLocation:changedItem.location includingPathItself:NO includingRemoved:NO completionHandler:^(OCDatabase *db, NSError *error, OCSyncAnchor syncAnchor, NSArray<OCItem *> *items) {
+						[deletedCacheItems addObjectsFromArray:items];
+					}];
+				}
+			}
+
 			// Export sync anchor value
 			querySyncAnchor = newSyncAnchor;
 
@@ -824,7 +836,7 @@ static OCHTTPRequestGroupID OCCoreItemListTaskGroupBackgroundTasks = @"backgroun
 				// Determine refreshPaths if automatic item list updates are enabled
 				for (OCItem *item in newItems)
 				{
-					if ((item.type == OCItemTypeCollection) && (item.path != nil) && (item.fileID!=nil) && (item.eTag!=nil) && OCDriveIDIsIdentical(item.driveID, taskLocationDriveID) && ![item.path isEqual:taskLocationPath])
+					if ((item.type == OCItemTypeCollection) && !item.isVault && (item.path != nil) && (item.fileID!=nil) && (item.eTag!=nil) && OCDriveIDIsIdentical(item.driveID, taskLocationDriveID) && ![item.path isEqual:taskLocationPath])
 					{
 						// Moved items are removed from newItems, updated and moved to changedCacheItems above, so that
 						// such items should not end up ending up their item.path to refreshPaths here. Only truly new-
@@ -838,7 +850,7 @@ static OCHTTPRequestGroupID OCCoreItemListTaskGroupBackgroundTasks = @"backgroun
 
 				for (OCItem *item in changedCacheItems)
 				{
-					if ((item.type == OCItemTypeCollection) && (item.path != nil) && (item.fileID!=nil) && (item.eTag!=nil) && OCDriveIDIsIdentical(item.driveID, taskLocationDriveID) && ![item.path isEqual:taskLocationPath])
+					if ((item.type == OCItemTypeCollection) && !item.isVault && (item.path != nil) && (item.fileID!=nil) && (item.eTag!=nil) && OCDriveIDIsIdentical(item.driveID, taskLocationDriveID) && ![item.path isEqual:taskLocationPath])
 					{
 						__block OCItem *cacheItem = cacheItemsByFileID[item.fileID];
 
@@ -1378,6 +1390,12 @@ static OCHTTPRequestGroupID OCCoreItemListTaskGroupBackgroundTasks = @"backgroun
 									{
 										for (OCDrive *subscribedDrive in strongSelf.vault.subscribedDrives)
 										{
+											if (subscribedDrive.isVault)
+											{
+												// Vault spaces are encrypted, don't scan them
+												continue;
+											}
+
 											OCDriveID subscribedDriveID = subscribedDrive.identifier;
 											OCFileETag subscribedDriveETag = subscribedDrive.rootETag;
 

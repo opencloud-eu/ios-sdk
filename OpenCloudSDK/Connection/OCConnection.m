@@ -1829,6 +1829,9 @@ INCLUDE_IN_CLASS_SETTINGS_SNAPSHOTS(OCConnection)
 		[OCXMLNode elementWithName:@"oc:owner-id"],
 		[OCXMLNode elementWithName:@"oc:owner-display-name"],
 
+		// Vault folder marker set by the web vault app (see OCItem.isVault)
+		[OCXMLNode elementWithName:@"integrity-id" attributes:@[[OCXMLNode namespaceWithName:nil stringValue:@"ocrclone"]]],
+
 		// [OCXMLNode elementWithName:@"D:creationdate"],
 		// [OCXMLNode elementWithName:@"D:displayname"],
 

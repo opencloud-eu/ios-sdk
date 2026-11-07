@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nullable) NSArray<GADriveItem *> *items; //!< All items contained in the drive. Read-only. Nullable.
 @property(strong, nullable) GADriveItem *root; //!< Drive item describing the drive's root. Read-only.
 @property(strong, nullable) NSArray<GADriveItem *> *special; //!< A collection of special drive resources.
+@property(strong, nullable) NSString *libreGraphContentType; //!< Specifier for the web client that a drive is of a certain content type that could potentially be opened by a specific web app. Example: `application/vnd.opencloud.vault`.
 
 // occgen: type protected {"locked":true}
 - (nullable GADriveItem *)specialDriveItemFor:(GASpecialFolderName)name;
