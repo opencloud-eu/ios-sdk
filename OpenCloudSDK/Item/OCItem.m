@@ -134,6 +134,7 @@
 	[coder encodeObject:_owner 		forKey:@"owner"];
 
 	[coder encodeObject:_privateLink 	forKey:@"privateLink"];
+	[coder encodeBool:_isVault		forKey:@"isVault"];
 
 	[coder encodeInt64:(int64_t)_tusInfo	forKey:@"tusInfo"];
 
@@ -202,6 +203,7 @@
 		_owner = [decoder decodeObjectOfClass:OCUser.class forKey:@"owner"];
 
 		_privateLink = [decoder decodeObjectOfClass:NSURL.class forKey:@"privateLink"];
+		_isVault = [decoder decodeBoolForKey:@"isVault"];
 
 		_tusInfo = (UInt64)[decoder decodeInt64ForKey:@"tusInfo"];
 
@@ -687,6 +689,7 @@
 	CloneMetadata(@"owner");
 
 	CloneMetadata(@"privateLink");
+	CloneMetadata(@"isVault");
 
 	CloneMetadata(@"tusInfo");
 

@@ -49,6 +49,7 @@ jobs:
             -only-testing:OpenCloudSDKTests/SQLTests
             -only-testing:OpenCloudSDKTests/SettingsTests
             -only-testing:OpenCloudSDKTests/ShareSpaceRootParsingTests
+            -only-testing:OpenCloudSDKTests/VaultParsingTests
 
             # ---- FIXME: need a live server at demo.opencloud.eu (151 tests) ----
             # -only-testing:OpenCloudSDKTests/BookmarkManagerTests

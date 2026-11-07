@@ -220,6 +220,13 @@
 				}
 			} copy],
 
+			@"integrity-id" : [^(OCItem *item, NSString *key, id value) { // Vault folder marker: returned without prefix as <integrity-id xmlns="ocrclone">
+				if ([value isKindOfClass:NSString.class])
+				{
+					item.isVault = ([((NSString *)value) stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].length > 0);
+				}
+			} copy],
+
 			@"oc:meta-path-for-user" : [^(OCItem *item, NSString *key, id value) {
 				if ([value isKindOfClass:[NSString class]])
 				{

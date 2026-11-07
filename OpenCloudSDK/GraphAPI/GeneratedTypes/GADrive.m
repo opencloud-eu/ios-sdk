@@ -50,6 +50,7 @@
 	GA_SET(items, GADriveItem, NSArray.class);
 	GA_SET(root, GADriveItem, Nil);
 	GA_SET(special, GADriveItem, NSArray.class);
+	GA_MAP(libreGraphContentType, "@libre.graph.contentType", NSString, Nil);
 
 	return (instance);
 }
@@ -75,6 +76,7 @@
 	GA_ENC_ADD(_items, "items", NO);
 	GA_ENC_ADD(_root, "root", NO);
 	GA_ENC_ADD(_special, "special", NO);
+	GA_ENC_ADD(_libreGraphContentType, "@libre.graph.contentType", NO);
 	GA_ENC_RETURN
 }
 
@@ -105,6 +107,7 @@
 		_items = [decoder decodeObjectOfClasses:[NSSet setWithObjects: GADriveItem.class, NSArray.class, nil] forKey:@"items"];
 		_root = [decoder decodeObjectOfClass:GADriveItem.class forKey:@"root"];
 		_special = [decoder decodeObjectOfClasses:[NSSet setWithObjects: GADriveItem.class, NSArray.class, nil] forKey:@"special"];
+		_libreGraphContentType = [decoder decodeObjectOfClass:NSString.class forKey:@"libreGraphContentType"];
 	}
 
 	return (self);
@@ -130,6 +133,7 @@
 	[coder encodeObject:_items forKey:@"items"];
 	[coder encodeObject:_root forKey:@"root"];
 	[coder encodeObject:_special forKey:@"special"];
+	[coder encodeObject:_libreGraphContentType forKey:@"libreGraphContentType"];
 }
 
 // occgen: type debug description

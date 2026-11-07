@@ -19,6 +19,8 @@
 #import "OCCore+Search.h"
 #import "OCConnection.h"
 #import "NSError+OCError.h"
+#import "NSArray+OCFiltering.h"
+#import "OCMacros.h"
 
 @implementation OCCore (Search)
 
@@ -32,7 +34,19 @@
 	}
 	else
 	{
+		__weak OCCore *weakSelf = self;
+
 		OCProgress *progress = [self.connection searchFilesWithPattern:pattern limit:limit options:options resultTarget:[OCEventTarget eventTargetWithEphermalEventHandlerBlock:^(OCEvent * _Nonnull event, id  _Nonnull sender) {
+			NSArray<OCItem *> *items;
+
+			if ((items = OCTypedCast(event.result, NSArray)) != nil)
+			{
+				// Vault spaces are encrypted by the web vault app, so their contents are not shown
+				event.result = [items filteredArrayUsingBlock:^BOOL(OCItem * _Nonnull item, BOOL * _Nonnull stop) {
+					return ((item.driveID == nil) || ![weakSelf driveWithIdentifier:item.driveID attachedOnly:NO].isVault);
+				}];
+			}
+
 			[searchResult _handleResultEvent:event];
 		} userInfo:nil ephermalUserInfo:nil]];
 

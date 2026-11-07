@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(weak,nullable) id<OCVFSCoreDelegate> delegate;
 
+- (BOOL)isVaultDriveRootItemID:(OCVFSItemID)itemID; //!< Returns YES if the item is the root folder of an encrypted vault space
+
 #pragma mark - Public interface
 - (void)addNodes:(NSArray<OCVFSNode *> *)nodes; //!< Adds nodes
 - (void)removeNodes:(NSArray<OCVFSNode *> *)nodes; //!< Removes nodes
