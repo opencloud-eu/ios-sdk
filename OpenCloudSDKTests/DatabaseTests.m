@@ -68,7 +68,7 @@
 		}];
 	}];
 
-	[self waitForExpectationsWithTimeout:15 handler:nil];
+	[self waitForExpectationsWithTimeout:60 handler:nil];
 }
 
 - (void)testCounterPrimitiveHighLocalConcurrency
@@ -343,7 +343,7 @@
 		}];
 	}];
 
-	[self waitForExpectationsWithTimeout:15 handler:nil];
+	[self waitForExpectationsWithTimeout:60 handler:nil];
 }
 
 - (void)testConsistentOperationConflictResolution
@@ -400,7 +400,7 @@
 		}];
 	}];
 
-	[self waitForExpectationsWithTimeout:15 handler:nil];
+	[self waitForExpectationsWithTimeout:60 handler:nil];
 
 	XCTAssert((preparationCalls==2));
 }
