@@ -103,7 +103,11 @@
 {
 	OCQueryCondition *biggerThan = [OCQueryCondition where:OCItemPropertyNameSize isGreaterThan:@(1024)];
 
-	XCTAssertEqualObjects([self kqlForCondition:biggerThan targetContent:OCKQLSearchedContentItemName], @"(size:>1024)");
+	OCQueryCondition *smallerThan = [OCQueryCondition where:OCItemPropertyNameSize isLessThan:@(1024)];
+
+	// No ":" before an inequality operator: in KQL ":" is an operator itself
+	XCTAssertEqualObjects([self kqlForCondition:biggerThan targetContent:OCKQLSearchedContentItemName], @"(size>1024)");
+	XCTAssertEqualObjects([self kqlForCondition:smallerThan targetContent:OCKQLSearchedContentItemName], @"(size<1024)");
 }
 
 - (void)testTypeAliasIsMappedToMediatype
