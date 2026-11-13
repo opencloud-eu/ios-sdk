@@ -82,6 +82,9 @@ typedef void(^OCSQLiteDBBusyStatusHandler)(NSProgress * _Nullable progress); //!
 	NSInteger _transactionNestingLevel;
 	NSUInteger _savepointCounter;
 
+	BOOL _rootTransactionOpen; // guarded by @synchronized(self)
+	dispatch_semaphore_t _rootTransactionEndSemaphore; // guarded by @synchronized(self)
+
 	NSMutableArray <OCSQLiteTableSchema *> *_tableSchemas;
 	NSMutableDictionary <OCSQLiteCollationName, OCSQLiteCollation *> *_collationsByName;
 
