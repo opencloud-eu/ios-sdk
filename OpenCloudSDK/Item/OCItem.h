@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly,nonatomic) BOOL isShareable; //!< YES if this item can be shared (convenience accessor to check if .permissions has OCItemPermissionShareable set)
 @property(readonly,nonatomic) BOOL isSharedWithUser; //!< YES if this item has been shared with the user (convenience accessor to check if .permissions has OCItemPermissionShared set)
 
-@property(assign) BOOL isVault; //!< YES for a folder encrypted by the web vault app (has the ocrclone integrity-id property). Its contents can't be used by this client.
+@property(assign) BOOL isVault; //!< YES for a folder encrypted by the web vault app (has the ocrclone integrity-id property). Its contents can't be used by this client. Unrelated to OCVault (this account's local storage).
 
 @property(strong,nullable) NSURL *privateLink; //!< Private link for the item. This property is used as a cache. Please use -[OCCore retrievePrivateLinkForItem:..] to request the private link for an item.
 
