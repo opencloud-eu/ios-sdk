@@ -1,5 +1,5 @@
 //
-//  VaultParsingTests.m
+//  EncryptedVaultTests.m
 //  OpenCloudSDKTests
 //
 //  Regression tests for https://github.com/opencloud-eu/ios/issues/78
@@ -11,10 +11,10 @@
 #import "OCXMLParser.h"
 #import "GADrive.h"
 
-@interface VaultParsingTests : XCTestCase
+@interface EncryptedVaultTests : XCTestCase
 @end
 
-@implementation VaultParsingTests
+@implementation EncryptedVaultTests
 
 // First response recorded from demo.opencloud.eu (2026-11-06): PROPFIND of a folder created as vault by OpenCloud Web.
 // Second response (regular folder) added by hand: the server lists the unknown property in the 404 propstat.

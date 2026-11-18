@@ -98,6 +98,8 @@ typedef BOOL(^OCVaultCompactSelector)(OCSyncAnchor _Nullable syncAnchor, OCItem 
 typedef NSString* OCVaultDriveMetadataKey NS_TYPED_ENUM; //!< Metadata key inside `metadata.plist` (in root folder of local drives folder)
 typedef NSDictionary<OCVaultDriveMetadataKey,id>* OCVaultDriveMetadata; //!< Type representing a `metadata.plist` file's contents
 
+// This account's local storage (database, downloaded files, thumbnails). Unrelated to the
+// server-side encrypted vaults of the web vault app (see OCDrive.isVault, OCItem.isVault).
 @interface OCVault : NSObject
 {
 	NSUUID *_uuid;
