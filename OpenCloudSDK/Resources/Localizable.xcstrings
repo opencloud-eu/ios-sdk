@@ -16514,6 +16514,16 @@
         }
       }
     },
+    "The server did not provide a refresh token, which this app requires to stay signed in" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server hat kein Refresh-Token geliefert, das diese App benötigt, um angemeldet zu bleiben"
+          }
+        }
+      }
+    },
     "The target directory %@ doesn't seem to exist." : {
       "localizations" : {
         "de" : {
