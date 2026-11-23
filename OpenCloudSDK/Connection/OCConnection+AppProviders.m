@@ -143,6 +143,11 @@
 #pragma mark - Open
 - (nullable NSProgress *)openInApp:(OCItem *)item withApp:(nullable OCAppProviderApp *)app viewMode:(nullable OCAppProviderViewMode)viewMode completionHandler:(void(^)(NSError * _Nullable error, NSURL * _Nullable appURL, OCHTTPMethod _Nullable httpMethod, OCHTTPHeaderFields _Nullable headerFields, OCHTTPRequestParameters _Nullable parameters, NSMutableURLRequest * _Nullable urlRequest))completionHandler
 {
+	return ([self openInApp:item withApp:app viewMode:viewMode mobile:NO completionHandler:completionHandler]);
+}
+
+- (nullable NSProgress *)openInApp:(OCItem *)item withApp:(nullable OCAppProviderApp *)app viewMode:(nullable OCAppProviderViewMode)viewMode mobile:(BOOL)mobile completionHandler:(void(^)(NSError * _Nullable error, NSURL * _Nullable appURL, OCHTTPMethod _Nullable httpMethod, OCHTTPHeaderFields _Nullable headerFields, OCHTTPRequestParameters _Nullable parameters, NSMutableURLRequest * _Nullable urlRequest))completionHandler
+{
 	NSProgress *progress = nil;
 	NSURL *appListURL = [self URLForEndpoint:OCConnectionEndpointIDAppProviderOpen options:nil];
 	OCHTTPRequest *request;
@@ -177,6 +182,13 @@
 		{
 			[request addParameters:@{
 				@"view_mode" : viewMode
+			}];
+		}
+
+		if (mobile)
+		{
+			[request addParameters:@{
+				@"mobile" : @"true"
 			}];
 		}
 
