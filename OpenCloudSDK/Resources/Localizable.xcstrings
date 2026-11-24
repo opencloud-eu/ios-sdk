@@ -45,6 +45,12 @@
             "value" : "”%@” har ändrats lokalt"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" 已被本地修改"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +155,12 @@
             "value" : "”%@” ändrades lokalt innan nedladdningen slutfördes."
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" 在下载完成前已被本地修改。"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -225,6 +237,12 @@
             "value" : "%@ finns redan"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 已存在"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,6 +293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det går inte att kopiera %1$@ till %2$@."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 无法复制到 %2$@。"
           }
         },
         "en" : {
@@ -329,6 +353,12 @@
             "value" : "Det går inte att flytta %1$@ till %2$@."
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 无法移动到 %2$@。"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det går inte att byta namn på %1$@ till %2$@."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 无法重命名为 %2$@。"
           }
         },
         "en" : {
@@ -485,6 +521,12 @@
             "value" : "Det gick inte att ta bort %@"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 无法被删除"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -535,6 +577,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det gick inte att byta namn på %1$@ till %2$@."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 无法重命名为 %2$@。"
           }
         },
         "en" : {
@@ -639,6 +687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ hittades inte"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到 %@"
           }
         },
         "en" : {
@@ -2184,7 +2238,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在验证身份……"
+            "value" : "正在验证身份…"
           }
         },
         "en" : {
@@ -4614,7 +4668,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Connecting"
+            "value" : "正在连接"
           }
         },
         "en" : {
@@ -4930,7 +4984,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Connecting…"
+            "value" : "正在连接…"
           }
         },
         "en" : {
@@ -5206,6 +5260,12 @@
             "value" : "Det gick inte att skapa %@"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法创建 %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5264,6 +5324,12 @@
             "value" : "Det gick inte att ta bort %@"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法删除 %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5320,6 +5386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det gick inte att ladda ner %@"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法下载 %@"
           }
         },
         "en" : {
@@ -5478,6 +5550,12 @@
             "value" : "Det gick inte att ladda upp %@"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法上传 %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5534,6 +5612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skapar mappen %@…"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在创建文件夹 %@…"
           }
         },
         "en" : {
@@ -5770,6 +5854,12 @@
             "value" : "Databasversion"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据库版本"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5826,6 +5916,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Databasstorlek"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据库大小"
           }
         },
         "en" : {
@@ -6518,6 +6614,12 @@
             "value" : "Ta bort databas"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除数据库"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6574,6 +6676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tar bort %@…"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在删除 %@…"
           }
         },
         "en" : {
@@ -6739,6 +6847,12 @@
             "value" : "Ladda ner och förhandsvisa"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下载并预览"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6797,6 +6911,12 @@
             "value" : "Laddar ner %@…"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在下载 %@…"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6848,6 +6968,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Redigerare"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑器"
           }
         },
         "en" : {
@@ -8029,7 +8155,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fetching user information…"
+            "value" : "正在获取用户信息…"
           }
         },
         "en" : {
@@ -9194,6 +9320,12 @@
             "value" : "Ogiltig kontrollsumma"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无效校验和"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9877,7 +10009,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "记录HTTP请求和响应"
+            "value" : "记录 HTTP 请求和响应日志"
           }
         },
         "en" : {
@@ -10816,6 +10948,18 @@
             "value" : "Nameloses Item in WebDAV-Antwort zurückgewiesen."
           }
         },
+        "nn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikkje namngjeve element i WebDAV-svar avvist."
+          }
+        },
+        "no" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke navngitt element i WebDAV-svar avvist."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11129,7 +11273,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Network unavailable"
+            "value" : "网络不可用"
           }
         },
         "en" : {
@@ -11813,7 +11957,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Offline"
+            "value" : "离线"
           }
         },
         "en" : {
@@ -12233,7 +12377,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Online"
+            "value" : "在线"
           }
         },
         "en" : {
@@ -13969,6 +14113,12 @@
             "value" : "Omdirigering"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重定向"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14019,6 +14169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avvisar delning…"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在拒绝共享…"
           }
         },
         "en" : {
@@ -14175,6 +14331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tar bort lokal kopia av %@…"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在移除 %@ 的本地拷贝…"
           }
         },
         "en" : {
@@ -16026,6 +16188,12 @@
             "value" : "Tillstånd"
           }
         },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "状态"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16295,7 +16463,7 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ 的证书通过了TLS验证，但未通过用于替换 %2$@ 证书的接受规则。"
+            "value" : "%1$@ 的证书通过了 TLS 验证，但未通过用于替换 %2$@ 证书的接受规则。"
           }
         },
         "en" : {
@@ -16516,6 +16684,12 @@
     },
     "The server did not provide a refresh token, which this app requires to stay signed in" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server did not provide a refresh token, which this app requires to stay signed in"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16846,6 +17020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidsstämpel"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时间戳"
           }
         },
         "en" : {
