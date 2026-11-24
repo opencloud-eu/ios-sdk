@@ -449,16 +449,16 @@
             "value" : "证书链"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Certificate chain"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sertifikaadiahel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificate chain"
           }
         }
       }
@@ -525,16 +525,16 @@
             "value" : "证书异常。"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Certificate has issues."
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sertifikaadiga on seotud paar probleemi."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificate has issues."
           }
         }
       }
@@ -655,16 +655,16 @@
             "value" : "扩展"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Extensions"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laiendused"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensions"
           }
         }
       }
@@ -731,16 +731,16 @@
             "value" : "指纹"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fingerprints"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sõrmejäljed"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fingerprints"
           }
         }
       }
@@ -807,16 +807,16 @@
             "value" : "隐藏 ±"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hide ±"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Peida ±"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide ±"
           }
         }
       }
@@ -883,16 +883,16 @@
             "value" : "主机名"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hostname"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Host nimi"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hostname"
           }
         }
       }
@@ -1169,16 +1169,16 @@
             "value" : "公钥"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Public Key"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avalik sertifikaat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public Key"
           }
         }
       }
@@ -1245,16 +1245,16 @@
             "value" : "理由"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reason"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Põhjus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason"
           }
         }
       }
@@ -1321,16 +1321,16 @@
             "value" : "根证书"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Root Certificate"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Juursertifikaat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Root Certificate"
           }
         }
       }
@@ -1397,16 +1397,16 @@
             "value" : "显示 ±"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show ±"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Näita ±"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show ±"
           }
         }
       }
@@ -1731,16 +1731,16 @@
             "value" : "验证中……"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Validating…"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kontrollin õigsust…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Validating…"
           }
         }
       }
@@ -2123,16 +2123,16 @@
             "value" : "验证状态"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Validation Status"
-          }
-        },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Õigsuse kontrollimi olek"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Validation Status"
           }
         }
       }
